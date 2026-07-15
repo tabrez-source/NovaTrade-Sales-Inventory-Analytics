@@ -1,0 +1,93 @@
+table 'dim DimBranch'
+	lineageTag: 0e835523-f59f-468d-aec1-f98ece16de8b
+
+	column BranchKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 2dfeb6da-be81-460e-8d59-eccf0d67ac8d
+		summarizeBy: none
+		sourceColumn: BranchKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchID
+		dataType: int64
+		formatString: 0
+		lineageTag: 766aeb7d-a1dd-453e-adad-c3551817812d
+		summarizeBy: none
+		sourceColumn: BranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchName
+		dataType: string
+		lineageTag: 9fbc9c17-97ea-4c9e-abc2-fc1b4d6326e4
+		summarizeBy: none
+		sourceColumn: BranchName
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 4589816d-43f8-42d5-96a1-42bcf92086a1
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: d4ab5035-75b6-46e9-bb44-786dd9b8ffbb
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionID
+		dataType: int64
+		formatString: 0
+		lineageTag: dd6b8912-ccd8-4827-921e-4972fbb65230
+		summarizeBy: none
+		sourceColumn: RegionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionName
+		dataType: string
+		lineageTag: 5083697b-d90f-43b4-8d16-b92115b65d3b
+		summarizeBy: none
+		sourceColumn: RegionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsHeadBranch
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bd99939f-0b81-4f8b-b64f-9e1715cbe0dc
+		summarizeBy: none
+		sourceColumn: IsHeadBranch
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4db67328-5bd2-4949-b0d3-bed71b7fede6
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim DimBranch' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("TABREZ", "NovaTrade_DW"),
+				    dim_DimBranch = Source{[Schema="dim",Item="DimBranch"]}[Data]
+				in
+				    dim_DimBranch
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "1958dc59ea847d3f5dc5",
+  "displayName": "Archive - Executive Draft",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

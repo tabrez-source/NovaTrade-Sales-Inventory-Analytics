@@ -1,0 +1,111 @@
+table 'dim DimProduct'
+	lineageTag: c96ecd4c-b4c1-4021-a6ba-880ded4d0bb1
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 51a49f3d-cfeb-4f0e-9f6d-e2e3dacc682e
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: 53c128d2-21f5-4b2b-9d3b-a4d81f6dffc4
+		summarizeBy: count
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKU
+		dataType: string
+		lineageTag: 3ad0ca80-d7f3-41a6-b161-837a145e6fbc
+		summarizeBy: none
+		sourceColumn: SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 1cba269c-416a-4a63-ba0b-49b498920ae0
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoryID
+		dataType: int64
+		formatString: 0
+		lineageTag: 40f0a360-a4c8-4923-b156-82bfe056cdd1
+		summarizeBy: count
+		sourceColumn: CategoryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoryName
+		dataType: string
+		lineageTag: 3bea8a05-0b69-4ced-b4d1-1380cf6e1b37
+		summarizeBy: none
+		sourceColumn: CategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModelNumber
+		dataType: string
+		lineageTag: 1f8759af-43dd-4df8-b1db-bf1ecbb7b834
+		summarizeBy: none
+		sourceColumn: ModelNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Specification
+		dataType: string
+		lineageTag: 5f218887-26a3-49d5-b1dc-9329d3cff02a
+		summarizeBy: none
+		sourceColumn: Specification
+
+		annotation SummarizationSetBy = Automatic
+
+	column PackageQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 6127d59f-0ba3-42c5-81e9-a3e30fb5f440
+		summarizeBy: sum
+		sourceColumn: PackageQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column BasePrice
+		dataType: double
+		lineageTag: 0e57da5f-655c-4d11-b3e7-c7d703118393
+		summarizeBy: sum
+		sourceColumn: BasePrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IsActive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8b24a5c3-0f14-453b-90b7-7cf8cf67f1b1
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim DimProduct' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("TABREZ", "NovaTrade_DW"),
+				    dim_DimProduct = Source{[Schema="dim",Item="DimProduct"]}[Data]
+				in
+				    dim_DimProduct
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

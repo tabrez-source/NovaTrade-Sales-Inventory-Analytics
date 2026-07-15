@@ -1,0 +1,92 @@
+table 'dim DimFromGodown'
+	lineageTag: d7355760-e73b-49f8-8200-0cf13f81aa1a
+
+	column GodownKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c0791f7-07de-449a-b0a5-c653b29fa82c
+		summarizeBy: none
+		sourceColumn: GodownKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GodownID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ff66c22-6f0c-486e-9c56-c53f4d50deab
+		summarizeBy: none
+		sourceColumn: GodownID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GodownName
+		dataType: string
+		lineageTag: 247ed779-de21-446b-a085-f9ae7e6a6423
+		summarizeBy: none
+		sourceColumn: GodownName
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchID
+		dataType: int64
+		formatString: 0
+		lineageTag: 98a7ba6a-42c9-44a8-bcb0-e68b0a77fbd5
+		summarizeBy: none
+		sourceColumn: BranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchName
+		dataType: string
+		lineageTag: a931cd85-f80e-44ca-824c-f231527091b3
+		summarizeBy: none
+		sourceColumn: BranchName
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 9ce6cc7d-875a-45f3-854a-74275622dd13
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: d3c23030-f40d-45f4-8d8e-0399a57b5707
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsMainGodown
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2abd9a0e-da76-47db-96c9-d8d0d153d0d3
+		summarizeBy: none
+		sourceColumn: IsMainGodown
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6aa24df9-66c0-41cf-97d9-013b1223ade7
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim DimFromGodown' = m
+		mode: import
+		source =
+				let
+				    Source = #"dim DimGodown"
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -9,7 +9,7 @@ The staging layer stores raw imported data before it is cleaned and transformed 
 ## Database
 
 ```text
-Akari_Staging
+NovaTrade_Staging
 ```
 
 ## Schema

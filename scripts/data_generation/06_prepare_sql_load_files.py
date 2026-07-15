@@ -8,12 +8,23 @@ load_dir = BASE_DIR / "data" / "sql_load"
 load_dir.mkdir(parents=True, exist_ok=True)
 
 files = [
+    "product_categories",
+    "products",
+    "branches",
+    "godowns",
+    "sales_heads",
+    "distributors",
+    "product_price_history",
+    "price_lists",
     "price_list_items",
+    "schemes",
+    "scheme_slabs",
     "sales_orders",
     "sales_order_items",
     "dispatches",
-    "schemes",
-    "stock_outward"
+    "stock_inward",
+    "stock_outward",
+    "inventory_snapshot"
 ]
 
 for file in files:

@@ -1,0 +1,179 @@
+table 'fact FactSales'
+	lineageTag: ba915cd6-1ed8-44e0-a0df-185a12cf11f3
+
+	column FactSalesKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d6f652cc-3a91-4c39-a770-233f23b2f5bc
+		summarizeBy: count
+		sourceColumn: FactSalesKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b46fb40-d2b1-4a39-bd60-aab84532cf2d
+		summarizeBy: count
+		sourceColumn: SalesOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderItemID
+		dataType: int64
+		formatString: 0
+		lineageTag: 17992d27-918f-4967-b22e-db672ef6a555
+		summarizeBy: count
+		sourceColumn: SalesOrderItemID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumber
+		dataType: string
+		lineageTag: 7d739b1a-5c26-4345-a2ca-c7744b14e8a7
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9bda35cc-2f74-4b08-a534-d8a4da4a1f12
+		summarizeBy: none
+		sourceColumn: OrderDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 85a0fdf1-ea9f-4801-bed8-aa1ab25179a2
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistributorKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e86a2c43-9037-48a8-ac71-a6c6daa6d3e2
+		summarizeBy: none
+		sourceColumn: DistributorKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesHeadKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 50f6d93f-1508-405b-8904-f5415dff44b3
+		summarizeBy: none
+		sourceColumn: SalesHeadKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9defcbe9-04ce-4b4c-951a-f681f8c19ffd
+		summarizeBy: none
+		sourceColumn: BranchKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FulfillmentGodownKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 26e4fa6a-e5f5-450b-9a8a-07b7d251cb73
+		summarizeBy: none
+		sourceColumn: FulfillmentGodownKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 6483eda5-31f0-4f8c-868f-5d485c3a1d19
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = User
+
+	column UnitPrice
+		dataType: double
+		formatString: 0.00
+		lineageTag: 95bcc9d5-1e8b-4e8f-acc7-ddb52f3176b9
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountPercent
+		dataType: double
+		formatString: 0.00
+		lineageTag: 4f8eef25-def1-45af-bcd0-63b97385a924
+		summarizeBy: sum
+		sourceColumn: DiscountPercent
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineTotal
+		dataType: double
+		formatString: 0.00
+		lineageTag: 8a4c0fa9-21af-4850-9a4b-2c36d55478db
+		summarizeBy: sum
+		sourceColumn: LineTotal
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatus
+		dataType: string
+		lineageTag: 76b2752c-b17f-44a5-803a-3efcc53a32dc
+		summarizeBy: none
+		sourceColumn: OrderStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsCrossRegionSale
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 13dda979-e6cf-4a42-b29a-990bf52def66
+		summarizeBy: none
+		sourceColumn: IsCrossRegionSale
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsOutsideAssignedSalesHead
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 350e9d7e-ede6-4007-a51d-37ec1e50c019
+		summarizeBy: none
+		sourceColumn: IsOutsideAssignedSalesHead
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cross Region Type' =
+			
+			IF (
+			    'fact FactSales'[IsCrossRegionSale] = TRUE (),
+			    "Cross Region Sales",
+			    "Region Sales"
+			)
+		lineageTag: 0ab11ebe-7b1b-4d4d-bfa8-366ed60adb84
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fact FactSales' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("TABREZ", "NovaTrade_DW"),
+				    fact_FactSales = Source{[Schema="fact",Item="FactSales"]}[Data]
+				in
+				    fact_FactSales
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

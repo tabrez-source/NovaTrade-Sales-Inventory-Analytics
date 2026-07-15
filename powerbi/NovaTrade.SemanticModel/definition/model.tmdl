@@ -1,0 +1,28 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["dim DimBranch","dim DimDate","dim DimDistributor","dim DimGodown","dim DimSalesHead","fact FactInventoryMovement","dim DimProduct","fact FactSales","dim DimFromGodown","dim DimToGodown"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'dim DimBranch'
+ref table 'dim DimDate'
+ref table 'dim DimDistributor'
+ref table 'dim DimGodown'
+ref table 'dim DimSalesHead'
+ref table 'fact FactInventoryMovement'
+ref table 'dim DimProduct'
+ref table 'fact FactSales'
+ref table 'dim DimFromGodown'
+ref table 'dim DimToGodown'
+ref table Measuress
+
+ref cultureInfo en-US
+

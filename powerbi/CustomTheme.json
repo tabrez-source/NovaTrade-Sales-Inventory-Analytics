@@ -1,0 +1,16 @@
+{
+  "name": "NovaTrade Executive Theme",
+  "foreground": "#1F2933",
+  "background": "#FFFFFF",
+  "tableAccent": "#1F4E79",
+  "dataColors": [
+    "#1F4E79",
+    "#2E75B6",
+    "#70AD47",
+    "#FFC000",
+    "#ED7D31",
+    "#A5A5A5",
+    "#5B9BD5",
+    "#264478"
+  ]
+}

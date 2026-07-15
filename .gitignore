@@ -42,6 +42,8 @@ data/sql_load/
 # ----------------------------
 *.pbix
 *.pbit
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
 
 # ----------------------------
 # OS Files
@@ -54,6 +56,10 @@ Thumbs.db
 # ----------------------------
 .vscode/
 .idea/
+.vs/
+**/.vs/
+*.suo
+*.user
 
 # ----------------------------
 # Temporary / Misc

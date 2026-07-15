@@ -5,7 +5,7 @@
 -- Purpose: Create schemas for staging layer
 -- =============================================
 
-USE Akari_Staging;
+USE NovaTrade_Staging;
 GO
 
 IF NOT EXISTS (

@@ -1,0 +1,5 @@
+IF DB_ID('NovaTrade_OLTP') IS NULL
+BEGIN
+    CREATE DATABASE NovaTrade_OLTP;
+END
+GO

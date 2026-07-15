@@ -1,0 +1,70 @@
+{
+  "name": "NovaTrade Enterprise Light",
+  "dataColors": [
+    "#B87914",
+    "#6F8087",
+    "#A8CF24",
+    "#2D8C6E",
+    "#C56C2B",
+    "#566CB3",
+    "#7C8FA0",
+    "#D9E1E8"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#070f25",
+  "tableAccent": "#0F1934",
+  "textClasses": {
+    "callout": {
+      "color": "#061A2E",
+      "fontFace": "'Comic Sans MS'"
+    },
+    "title": {
+      "color": "#061A2E",
+      "fontFace": "'Segoe UI Bold', wf_segoe-ui_bold, helvetica, arial, sans-serif"
+    },
+    "header": {
+      "color": "#6F8087"
+    }
+  },
+  "bad": "#C94C4C",
+  "neutral": "#B87914",
+  "good": "#2D8C6E",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "border": [
+          {
+            "color": {
+              "solid": {
+                "color": "#DCE4EB"
+              }
+            },
+            "show": true
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F7F9FC"
+              }
+            }
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F7F9FC"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
