@@ -56,6 +56,16 @@ table 'dim DimDate'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Month Year' =
+
+			FORMAT ( 'dim DimDate'[FullDate], "MMM yy" )
+		lineageTag: 5cdd5d4d-5d83-4f8d-a90e-730e9ad4e0f5
+		summarizeBy: none
+		sortByColumn: YearMonthSort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
 	column IsWeekend
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
@@ -66,7 +76,7 @@ table 'dim DimDate'
 		annotation SummarizationSetBy = Automatic
 
 	column YearMonthSort =
-			
+
 			'dim DimDate'[YearNumber] * 100
 			    + MONTH ( 'dim DimDate'[FullDate] )
 		isHidden
@@ -81,7 +91,7 @@ table 'dim DimDate'
 		annotation SummarizationSetBy = Automatic
 
 	column MonthNumber =
-			
+
 			MONTH ( 'dim DimDate'[FullDate] )
 		isHidden
 		formatString: 0
@@ -93,7 +103,7 @@ table 'dim DimDate'
 		annotation SummarizationSetBy = Automatic
 
 	column YearNumber =
-			
+
 			YEAR ( 'dim DimDate'[FullDate] )
 		dataType: int64
 		formatString: 0

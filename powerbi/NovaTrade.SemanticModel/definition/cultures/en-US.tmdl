@@ -14353,7 +14353,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Measuress",
-			          "ConceptualProperty": "Non-Cross Region Sales"
+			          "ConceptualProperty": "Assigned-Region Sales"
 			        }
 			      },
 			      "State": "Generated",

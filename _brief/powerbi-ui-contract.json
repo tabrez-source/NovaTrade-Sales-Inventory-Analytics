@@ -1,0 +1,324 @@
+{
+  "schemaVersion": 1,
+  "systemName": "NovaTrade Power BI UI System",
+  "canvas": {
+    "width": 1440,
+    "height": 810,
+    "displayOption": "FitToPage",
+    "background": "#F7F3EA"
+  },
+  "report": {
+    "filterPaneExpanded": false
+  },
+  "content": {
+    "x": 208,
+    "right": 1416,
+    "grid": 16,
+    "title": {
+      "x": 216,
+      "y": 8,
+      "width": 520,
+      "height": 60
+    },
+    "subtitle": {
+      "x": 216,
+      "y": 70,
+      "width": 650,
+      "height": 38
+    }
+  },
+  "navigation": {
+    "rail": {
+      "x": 0,
+      "y": 0,
+      "width": 196,
+      "height": 810,
+      "fill": "#0B2B3D"
+    },
+    "brand": {
+      "x": 16,
+      "y": 12,
+      "width": 168,
+      "height": 72
+    },
+    "item": {
+      "x": 12,
+      "firstY": 108,
+      "width": 172,
+      "height": 42,
+      "step": 50,
+      "activeFill": "#0B6F6A",
+      "activeText": "#FFFCF7",
+      "inactiveFill": "#12384B",
+      "inactiveText": "#FFFCF7",
+      "outline": "#365568"
+    }
+  },
+  "pages": [
+    {
+      "id": "57f63e365ec04b378b4b",
+      "label": "Executive Overview",
+      "title": "Executive Overview",
+      "subtitle": "Sales and inventory performance at a glance"
+    },
+    {
+      "id": "97dd004d959bc353cfef",
+      "label": "Sales Analysis",
+      "title": "Sales Analysis",
+      "subtitle": "Revenue trends, sales leadership and regional performance"
+    },
+    {
+      "id": "0c293fb867ead9beb4cc",
+      "label": "Product Analysis",
+      "title": "Product Analysis",
+      "subtitle": "Category, product and contribution performance"
+    },
+    {
+      "id": "6e63e51a13c0cbcb29b1",
+      "label": "Inventory Movement",
+      "title": "Inventory Movement Analysis",
+      "subtitle": "Inward, outward, transfer and estimated stock movement"
+    },
+    {
+      "id": "0833d451cbce4704acf3",
+      "label": "Management Insights",
+      "title": "Management Insights",
+      "subtitle": "Decision-ready exceptions, risks and growth opportunities"
+    }
+  ],
+  "legacyNavigationVisualIds": [
+    "7f54942ed6a618f0",
+    "c167770fb51ec21f",
+    "7782097d0c13f0cb",
+    "8c999680df36e458",
+    "1631048d80441981"
+  ],
+  "legacyHeadingVisualIds": [
+    "438a5a4294b2bead",
+    "ba4b29f856590b52"
+  ],
+  "contentTemplates": {
+    "card": "dab956e4dea30777",
+    "line": "35295e3fe4369375",
+    "barTop": "5718a21de2ee5fa6",
+    "barBottom": "a6cd0f341d75fea9",
+    "donut": "9f420e5778c837f2",
+    "slicerYear": "4045a6ffb8100702",
+    "slicerSecondary": "7419fa310624fdff"
+  },
+  "contentPlans": {
+    "97dd004d959bc353cfef": {
+      "cards": [
+        [
+          "Total Sales",
+          "Total Sales"
+        ],
+        [
+          "Sales Orders",
+          "Sales Order Count"
+        ],
+        [
+          "Average Order Value",
+          "Average Order Value"
+        ],
+        [
+          "Cross Region Sales",
+          "Cross Region Sales"
+        ],
+        [
+          "Active Distributors",
+          "Active Distributors"
+        ]
+      ],
+      "line": [
+        "Monthly Sales Trend",
+        "dim DimDate",
+        "Month Year",
+        "Total Sales"
+      ],
+      "barTop": [
+        "Sales by Sales Head",
+        "dim DimSalesHead",
+        "SalesHeadName",
+        "Total Sales"
+      ],
+      "barBottom": [
+        "Sales by Product Category",
+        "dim DimProduct",
+        "CategoryName",
+        "Total Sales"
+      ],
+      "donut": [
+        "Regional Sales Mix",
+        "fact FactSales",
+        "Cross Region Type",
+        "Total Sales"
+      ],
+      "secondarySlicer": [
+        "dim DimDistributor",
+        "PhysicalRegionName"
+      ]
+    },
+    "0c293fb867ead9beb4cc": {
+      "cards": [
+        [
+          "Total Sales",
+          "Total Sales"
+        ],
+        [
+          "Quantity Sold",
+          "Total Quantity Sold"
+        ],
+        [
+          "Products Sold",
+          "Distinct Products Sold"
+        ],
+        [
+          "Average Selling Price",
+          "Average Selling Price"
+        ],
+        [
+          "Sales Orders",
+          "Sales Order Count"
+        ]
+      ],
+      "line": [
+        "Monthly Product Sales",
+        "dim DimDate",
+        "Month Year",
+        "Total Sales"
+      ],
+      "barTop": [
+        "Sales by Product",
+        "dim DimProduct",
+        "ProductName",
+        "Total Sales"
+      ],
+      "barBottom": [
+        "Sales by Product Category",
+        "dim DimProduct",
+        "CategoryName",
+        "Total Sales"
+      ],
+      "donut": [
+        "Category Sales Mix",
+        "dim DimProduct",
+        "CategoryName",
+        "Total Sales"
+      ],
+      "secondarySlicer": [
+        "dim DimProduct",
+        "CategoryName"
+      ]
+    },
+    "6e63e51a13c0cbcb29b1": {
+      "cards": [
+        [
+          "Inward Quantity",
+          "Total Inward Quantity"
+        ],
+        [
+          "Outward Quantity",
+          "Total Outward Quantity"
+        ],
+        [
+          "Transfer Quantity",
+          "Total Transfer Quantity"
+        ],
+        [
+          "Net Movement",
+          "Net Movement Quantity"
+        ],
+        [
+          "Estimated Closing Stock",
+          "Estimated Closing Stock"
+        ]
+      ],
+      "line": [
+        "Monthly Inventory Movement",
+        "dim DimDate",
+        "Month Year",
+        "Total Movement Quantity"
+      ],
+      "barTop": [
+        "Movement by Type",
+        "fact FactInventoryMovement",
+        "MovementType",
+        "Total Movement Quantity"
+      ],
+      "barBottom": [
+        "Movement by Product",
+        "dim DimProduct",
+        "ProductName",
+        "Total Movement Quantity"
+      ],
+      "donut": [
+        "Inventory Movement Mix",
+        "fact FactInventoryMovement",
+        "MovementType",
+        "Total Movement Quantity"
+      ],
+      "secondarySlicer": [
+        "dim DimFromGodown",
+        "GodownName"
+      ]
+    },
+    "0833d451cbce4704acf3": {
+      "cards": [
+        [
+          "Total Sales",
+          "Total Sales"
+        ],
+        [
+          "Cross Region Sales %",
+          "Cross Region Sales %"
+        ],
+        [
+          "Outside Assignment %",
+          "Outside Assigned Sales Head Sales %"
+        ],
+        [
+          "Closing Stock Estimate",
+          "Estimated Closing Stock"
+        ],
+        [
+          "Sales / Distributor",
+          "Sales per Active Distributor"
+        ]
+      ],
+      "line": [
+        "Monthly Sales Trend",
+        "dim DimDate",
+        "Month Year",
+        "Total Sales"
+      ],
+      "barTop": [
+        "Sales Leadership",
+        "dim DimSalesHead",
+        "SalesHeadName",
+        "Total Sales"
+      ],
+      "barBottom": [
+        "Category Contribution",
+        "dim DimProduct",
+        "CategoryName",
+        "Total Sales"
+      ],
+      "donut": [
+        "Cross-Region Exposure",
+        "fact FactSales",
+        "Cross Region Type",
+        "Total Sales"
+      ],
+      "secondarySlicer": [
+        "dim DimDistributor",
+        "PhysicalRegionName"
+      ]
+    }
+  },
+  "disclosure": {
+    "projectIdentity": "NovaTrade only",
+    "data": "Synthetic and illustrative",
+    "externalBranding": "None"
+  }
+}

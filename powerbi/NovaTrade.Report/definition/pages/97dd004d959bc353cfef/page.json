@@ -3,6 +3,42 @@
   "name": "97dd004d959bc353cfef",
   "displayName": "Sales Analysis",
   "displayOption": "FitToPage",
-  "height": 720,
-  "width": 1280
+  "height": 810,
+  "width": 1440,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F7F9FC'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F7F9FC'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
 }

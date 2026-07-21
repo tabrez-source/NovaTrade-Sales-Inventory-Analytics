@@ -3,6 +3,42 @@
   "name": "6e63e51a13c0cbcb29b1",
   "displayName": "Inventory Movement Analysis",
   "displayOption": "FitToPage",
-  "height": 720,
-  "width": 1280
+  "height": 810,
+  "width": 1440,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F7F9FC'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F7F9FC'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
 }

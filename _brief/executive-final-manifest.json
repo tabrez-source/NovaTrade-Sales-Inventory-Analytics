@@ -1,0 +1,37 @@
+{
+  "checkpoint": "Stage 2 final Executive Overview",
+  "projectIdentity": "NovaTrade",
+  "disclosure": "Independent portfolio project using synthetic data; no external company branding or claims.",
+  "canvas": "1440x810",
+  "executivePage": {
+    "kpiCards": 5,
+    "kpis": [
+      "Total Sales",
+      "Total Quantity Sold",
+      "Average Order Value",
+      "Sales Orders",
+      "Active Distributors"
+    ],
+    "analyticalVisuals": 6,
+    "contextualTooltipVisuals": 11,
+    "navigationTargets": 8,
+    "topProductCategories": 5,
+    "monthLabel": "MMM yy",
+    "monthlyScrollbars": false,
+    "rankingLabelUnits": "INR billions",
+    "crossRegionDecisionVisuals": 1,
+    "orderStatusVisual": true,
+    "territoryColors": {
+      "assignedRegion": "teal",
+      "crossRegion": "gold"
+    }
+  },
+  "accessibility": {
+    "altText": true,
+    "logicalTabOrder": true,
+    "keyboardNavigation": true,
+    "colorMeaningAlsoLabeled": true,
+    "normalTextContrast": "WCAG AA"
+  },
+  "nextStage": "Stage 3A - Sales Analysis"
+}

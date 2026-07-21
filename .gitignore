@@ -1,69 +1,51 @@
-# ----------------------------
 # Python
-# ----------------------------
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 *.log
 
-# Virtual environments
+# Virtual environments and secrets
 .env
 venv/
 .venv/
 
-# ----------------------------
-# Data Files (IMPORTANT)
-# ----------------------------
-# Ignore large/raw/generated data
+# Large or generated data
 data/raw/
 data/processed/
 data/sql_load/
-
 *.csv
 *.tsv
 *.xlsx
 
-# Allow only sample data
+# Allow documented samples
 !data/sample/
 !data/sample/*.csv
 !data/sample/*.tsv
 
-# ----------------------------
-# SQL Server / Database
-# ----------------------------
+# SQL Server artifacts
 *.bak
 *.mdf
 *.ldf
 *.trn
 
-# ----------------------------
-# Power BI
-# ----------------------------
+# Power BI local and binary artifacts
 *.pbix
 *.pbit
-**/.pbi/localSettings.json
-**/.pbi/cache.abf
+**/.pbi/
 
-# ----------------------------
-# OS Files
-# ----------------------------
-.DS_Store
-Thumbs.db
-
-# ----------------------------
-# IDE / Editor
-# ----------------------------
+# IDE and operating-system files
 .vscode/
 .idea/
 .vs/
 **/.vs/
 *.suo
 *.user
+.DS_Store
+Thumbs.db
 
-# ----------------------------
-# Temporary / Misc
-# ----------------------------
+# Temporary packages
 *.tmp
 *.temp
-*.cache
+*.cache.pbi/
+*.zip

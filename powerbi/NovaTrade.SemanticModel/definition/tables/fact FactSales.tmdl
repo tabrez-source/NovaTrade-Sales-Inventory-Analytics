@@ -156,8 +156,8 @@ table 'fact FactSales'
 			
 			IF (
 			    'fact FactSales'[IsCrossRegionSale] = TRUE (),
-			    "Cross Region Sales",
-			    "Region Sales"
+			    "Cross-Region Sales",
+			    "Assigned-Region Sales"
 			)
 		lineageTag: 0ab11ebe-7b1b-4d4d-bfa8-366ed60adb84
 		summarizeBy: none

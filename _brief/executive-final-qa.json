@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "issueCount": 0,
+  "evidence": {
+    "visualDefinitions": 243,
+    "pageDefinitions": 12,
+    "semanticReferences": 182,
+    "navigationActions": 33,
+    "tooltipVisuals": 11,
+    "executiveOutOfBounds": 0,
+    "publicDataVisualsWithoutAltText": 0,
+    "externalBrandReferences": 0,
+    "executiveKpis": 5,
+    "crossRegionDecisionVisuals": 1,
+    "orderStatusVisuals": 1,
+    "monthlyScrollbarsEnabled": 0,
+    "compactRankingLabels": 3
+  },
+  "issues": []
+}

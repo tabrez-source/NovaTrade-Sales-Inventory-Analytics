@@ -339,7 +339,7 @@ table Measuress
 		displayFolder: 07_Management Insights
 		lineageTag: 8bc9f10c-189e-4508-bef6-59994534ad9b
 
-	measure 'Non-Cross Region Sales' =
+	measure 'Assigned-Region Sales' =
 			
 			CALCULATE (
 			    [Total Sales],
