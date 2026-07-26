@@ -1,20 +1,20 @@
 {
   "status": "passed",
+  "validatedAt": "2026-07-26T07:29:58.338Z",
   "issueCount": 0,
   "evidence": {
-    "visualDefinitions": 243,
-    "pageDefinitions": 12,
-    "semanticReferences": 182,
-    "navigationActions": 33,
-    "tooltipVisuals": 11,
-    "executiveOutOfBounds": 0,
-    "publicDataVisualsWithoutAltText": 0,
-    "externalBrandReferences": 0,
-    "executiveKpis": 5,
-    "crossRegionDecisionVisuals": 1,
-    "orderStatusVisuals": 1,
-    "monthlyScrollbarsEnabled": 0,
-    "compactRankingLabels": 3
+    "jsonFiles": 212,
+    "pageDefinitions": 9,
+    "publicPages": 5,
+    "hiddenPages": 4,
+    "visualDefinitions": 193,
+    "linguisticMetadata": "valid JSON",
+    "monthAxis": "MonthName sorted by MonthNumber",
+    "yearSelection": "single and required",
+    "compactRankingLabels": 3,
+    "rankingColorPolicy": "stepped single-root teal",
+    "rankingGrid": "374 / 440 / 370 px with 12 px gutters",
+    "registeredResources": 1
   },
   "issues": []
 }

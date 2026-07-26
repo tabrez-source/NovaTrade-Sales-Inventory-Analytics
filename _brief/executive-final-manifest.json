@@ -16,7 +16,7 @@
     "contextualTooltipVisuals": 11,
     "navigationTargets": 8,
     "topProductCategories": 5,
-    "monthLabel": "MMM yy",
+    "monthLabel": "MMM",
     "monthlyScrollbars": false,
     "rankingLabelUnits": "INR billions",
     "crossRegionDecisionVisuals": 1,
@@ -24,7 +24,9 @@
     "territoryColors": {
       "assignedRegion": "teal",
       "crossRegion": "gold"
-    }
+    },
+    "yearSelection": "Exactly one year",
+    "rankingColorStrategy": "Slicer-responsive stepped teal rank tones; bar length and labels remain the primary magnitude encoding."
   },
   "accessibility": {
     "altText": true,
@@ -33,5 +35,10 @@
     "colorMeaningAlsoLabeled": true,
     "normalTextContrast": "WCAG AA"
   },
-  "nextStage": "Stage 3A - Sales Analysis"
+  "nextStage": "Stage 3A - Sales Analysis",
+  "reportPages": {
+    "public": 5,
+    "hiddenSupport": 4,
+    "obsoleteRemoved": 3
+  }
 }

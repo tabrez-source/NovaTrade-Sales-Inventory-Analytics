@@ -23,10 +23,10 @@
                       "Entity": "dim DimDate"
                     }
                   },
-                  "Property": "Month Year"
+                  "Property": "MonthName"
                 }
               },
-              "queryRef": "dim DimDate.Month Year",
+              "queryRef": "dim DimDate.MonthName",
               "nativeQueryRef": "Month",
               "active": true
             }
@@ -111,7 +111,7 @@
                     "Entity": "dim DimDate"
                   }
                 },
-                "Property": "Month Year"
+                "Property": "MonthName"
               }
             },
             "direction": "Ascending"
@@ -278,7 +278,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Line chart showing monthly sales over time. Hover a month for sales, quantity, orders, and average order value.'"
+                  "Value": "'Monthly sales trend for the single year selected in the Year slicer, shown from January through December.'"
                 }
               }
             }

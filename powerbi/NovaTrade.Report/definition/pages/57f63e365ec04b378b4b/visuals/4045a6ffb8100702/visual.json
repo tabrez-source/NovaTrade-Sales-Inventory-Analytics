@@ -167,6 +167,33 @@
             }
           }
         }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "strictSingleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "selectAllCheckboxEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -292,7 +319,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Year filter. Select one or more years to update all visuals on this page.'"
+                  "Value": "'Year filter. Select exactly one year to update all visuals on this page.'"
                 }
               }
             }

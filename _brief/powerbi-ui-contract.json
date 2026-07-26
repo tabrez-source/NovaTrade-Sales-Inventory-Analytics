@@ -133,7 +133,7 @@
       "line": [
         "Monthly Sales Trend",
         "dim DimDate",
-        "Month Year",
+        "YearMonth",
         "Total Sales"
       ],
       "barTop": [
@@ -185,7 +185,7 @@
       "line": [
         "Monthly Product Sales",
         "dim DimDate",
-        "Month Year",
+        "YearMonth",
         "Total Sales"
       ],
       "barTop": [
@@ -237,7 +237,7 @@
       "line": [
         "Monthly Inventory Movement",
         "dim DimDate",
-        "Month Year",
+        "YearMonth",
         "Total Movement Quantity"
       ],
       "barTop": [
@@ -289,7 +289,7 @@
       "line": [
         "Monthly Sales Trend",
         "dim DimDate",
-        "Month Year",
+        "YearMonth",
         "Total Sales"
       ],
       "barTop": [

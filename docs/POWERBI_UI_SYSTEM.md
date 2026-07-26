@@ -10,6 +10,8 @@
 - Main content: x = 208 through x = 1416
 - KPI row: five 232 px cards with four exact 12 px gutters
 - Palette: navy for structure, teal for primary analysis, gold for secondary emphasis
+- Time view: Jan–Dec when exactly one year is selected; `YearMonth` for multi-year trends on deeper analysis pages
+- Ranking colour: slicer-responsive stepped teal tones; bar length and direct labels remain the primary magnitude encoding
 - Visual language: warm ivory surfaces, concise business titles, restrained borders and no decorative product imagery
 
 ## Business language
@@ -24,3 +26,4 @@ Field names are translated for business readers: Month, Product Category, Sales 
 - Decorative objects excluded from the tab sequence
 - WCAG AA contrast for normal report text
 - Teal and gold categories also named in titles, legends and alt text
+- Year slicer requires exactly one year and does not expose Select All

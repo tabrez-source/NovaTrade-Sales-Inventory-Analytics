@@ -23,10 +23,10 @@
                       "Entity": "dim DimDate"
                     }
                   },
-                  "Property": "Month Year"
+                  "Property": "MonthName"
                 }
               },
-              "queryRef": "dim DimDate.Month Year",
+              "queryRef": "dim DimDate.MonthName",
               "nativeQueryRef": "Month",
               "active": true
             }
@@ -126,7 +126,7 @@
                     "Entity": "dim DimDate"
                   }
                 },
-                "Property": "Month Year"
+                "Property": "MonthName"
               }
             },
             "direction": "Ascending"
@@ -293,7 +293,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stacked column chart comparing monthly sales inside the assigned region with cross-region sales outside it.'"
+                  "Value": "'Monthly assigned-region and cross-region sales for the single year selected in the Year slicer, shown from January through December.'"
                 }
               }
             }

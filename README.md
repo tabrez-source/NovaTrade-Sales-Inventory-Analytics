@@ -28,7 +28,7 @@ flowchart LR
 
 ## Stage 2 status
 
-The Executive Overview is the approved golden design system for the remaining pages. It includes five aligned KPIs, six analytical visuals, contextual tooltips, page navigation, logical keyboard order, descriptive alt text, WCAG-aware contrast and a visible synthetic-data disclosure.
+The Executive Overview is the approved golden design system for the remaining pages. It includes five aligned KPIs, six analytical visuals, a required single-year Jan–Dec view, slicer-responsive stepped teal ranking tones, contextual tooltips, page navigation, logical keyboard order, descriptive alt text, WCAG-aware contrast and a visible synthetic-data disclosure.
 
 Current page sequence:
 
@@ -50,9 +50,11 @@ Current page sequence:
 ## Validation evidence
 
 - Microsoft PBIR validation: 0 errors, 0 warnings
+- Reproducible Executive checkpoint validation: 0 issues
 - Semantic references resolved against the TMDL model
 - Navigation targets verified
 - Executive visuals checked against the 1440 x 810 canvas
+- Five public pages and four hidden support pages verified
 - Public data visuals checked for alt text and keyboard order
 - NovaTrade-only identity and external-brand separation verified
 

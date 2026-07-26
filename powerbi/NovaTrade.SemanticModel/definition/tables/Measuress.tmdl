@@ -472,6 +472,70 @@ table Measuress
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Executive Category Rank Color' =
+
+			VAR RankPosition =
+				RANKX (
+					ALLSELECTED ( 'dim DimProduct'[CategoryName] ),
+					[Total Sales],
+					,
+					DESC,
+					DENSE
+				)
+			RETURN
+				SWITCH (
+					RankPosition,
+					1, "#0B6F6A",
+					2, "#148D87",
+					3, "#45AAA4",
+					4, "#7DC5C1",
+					"#B6DEDB"
+				)
+		displayFolder: 08_UI
+		lineageTag: 5e1de98e-8c7f-4a0c-9cf0-019b88bb2d38
+
+	measure 'Executive Sales Head Rank Color' =
+
+			VAR RankPosition =
+				RANKX (
+					ALLSELECTED ( 'dim DimSalesHead'[SalesHeadName] ),
+					[Total Sales],
+					,
+					DESC,
+					DENSE
+				)
+			RETURN
+				SWITCH (
+					RankPosition,
+					1, "#0B6F6A",
+					2, "#148D87",
+					3, "#45AAA4",
+					"#7DC5C1"
+				)
+		displayFolder: 08_UI
+		lineageTag: bba3a31c-fd3c-4e45-b7ed-35f1f757e2c8
+
+	measure 'Executive Region Rank Color' =
+
+			VAR RankPosition =
+				RANKX (
+					ALLSELECTED ( 'dim DimDistributor'[PhysicalRegionName] ),
+					[Total Sales],
+					,
+					DESC,
+					DENSE
+				)
+			RETURN
+				SWITCH (
+					RankPosition,
+					1, "#0B6F6A",
+					2, "#148D87",
+					3, "#45AAA4",
+					"#7DC5C1"
+				)
+		displayFolder: 08_UI
+		lineageTag: 39a17175-8b06-49ce-9df7-b0957ceaa173
+
 	column Value
 		isHidden
 		formatString: 0

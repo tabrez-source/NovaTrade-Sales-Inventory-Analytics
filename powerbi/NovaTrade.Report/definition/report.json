@@ -65,24 +65,9 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "batteries20755036479770694.png",
-          "path": "batteries20755036479770694.png",
-          "type": "Image"
-        },
-        {
-          "name": "mos_bat3097343853681004.jpg",
-          "path": "mos_bat3097343853681004.jpg",
-          "type": "Image"
-        },
-        {
           "name": "NovaTrade_Enterprise_Light45386714401986705.json",
           "path": "NovaTrade_Enterprise_Light45386714401986705.json",
           "type": "CustomTheme"
-        },
-        {
-          "name": "torch6333343974821143.jpg",
-          "path": "torch6333343974821143.jpg",
-          "type": "Image"
         }
       ]
     }

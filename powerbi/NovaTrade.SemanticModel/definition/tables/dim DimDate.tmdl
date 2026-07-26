@@ -56,16 +56,6 @@ table 'dim DimDate'
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Month Year' =
-
-			FORMAT ( 'dim DimDate'[FullDate], "MMM yy" )
-		lineageTag: 5cdd5d4d-5d83-4f8d-a90e-730e9ad4e0f5
-		summarizeBy: none
-		sortByColumn: YearMonthSort
-
-		changedProperty = SortByColumn
-
-		annotation SummarizationSetBy = Automatic
 	column IsWeekend
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
@@ -114,14 +104,6 @@ table 'dim DimDate'
 
 		annotation SummarizationSetBy = User
 
-	column Column
-		type: calculated
-		lineageTag: 10737f15-cec6-4544-8a3e-3389c57b7abb
-		summarizeBy: sum
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
 
 	partition 'dim DimDate' = m
 		mode: import
