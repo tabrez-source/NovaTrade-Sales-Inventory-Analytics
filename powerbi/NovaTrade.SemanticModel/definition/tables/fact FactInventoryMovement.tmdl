@@ -1,0 +1,185 @@
+table 'fact FactInventoryMovement'
+	lineageTag: 160d066b-2478-4ba7-97e4-a4ae88139633
+
+	column InventoryMovementKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e06be41d-f331-40ea-9bb1-a6a2a871d17d
+		summarizeBy: count
+		sourceColumn: InventoryMovementKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MovementID
+		dataType: int64
+		formatString: 0
+		lineageTag: 6179442c-2000-4230-b0bd-e24b31c994f4
+		summarizeBy: count
+		sourceColumn: MovementID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MovementDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: a8cf37a9-4cc9-4183-a3ff-a7c0ccd8a32f
+		summarizeBy: none
+		sourceColumn: MovementDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 82ba1ba9-76e5-45f1-a42b-e9d88faec4c2
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FromGodownKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d24a192-3bc1-4f70-bf9a-aa20f933af5c
+		summarizeBy: none
+		sourceColumn: FromGodownKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ToGodownKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 24472562-2a12-427c-8789-df8b4ee6ed7c
+		summarizeBy: none
+		sourceColumn: ToGodownKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FromGodownID
+		dataType: int64
+		formatString: 0
+		lineageTag: 07cb76a8-fcc6-4d53-9648-77f30155676b
+		summarizeBy: count
+		sourceColumn: FromGodownID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ToGodownID
+		dataType: int64
+		formatString: 0
+		lineageTag: 92cae792-33ec-4457-b310-f3d97708059f
+		summarizeBy: count
+		sourceColumn: ToGodownID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MovementType
+		dataType: string
+		lineageTag: f3b44169-6e8f-407d-99b8-e30adfc6f600
+		summarizeBy: none
+		sourceColumn: MovementType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 01ef3639-6243-468d-a893-52018ad06383
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column InwardQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 49e45499-4e36-458f-a19e-8d7e02628c0d
+		summarizeBy: sum
+		sourceColumn: InwardQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutwardQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b57d5cc-5522-49d6-a781-3023eccfce9b
+		summarizeBy: sum
+		sourceColumn: OutwardQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransferQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: a3ab32c6-76c5-4141-9946-318d5408f1a5
+		summarizeBy: sum
+		sourceColumn: TransferQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReferenceID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ce57069-aa2d-4cc1-9fec-aaad541ebfb4
+		summarizeBy: count
+		sourceColumn: ReferenceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FromGodown =
+			
+			LOOKUPVALUE(
+			    'dim DimToGodown'[GodownName],
+			    'dim DimToGodown'[GodownKey],
+			    'fact FactInventoryMovement'[FromGodownID]
+			)
+		lineageTag: 210313ea-a00d-4488-b4f1-0a4c1bd22aeb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ToGodown =
+			
+			LOOKUPVALUE(
+			    'dim DimToGodown'[GodownName],
+			    'dim DimToGodown'[GodownKey],
+			    'fact FactInventoryMovement'[ToGodownID]
+			)
+		lineageTag: ecefd35a-d326-4f0c-ab7e-2520eda073e8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column MovementGodown =
+			
+			SWITCH(
+			    TRUE(),
+			    COALESCE('fact FactInventoryMovement'[InwardQuantity], 0) > 0,
+			        'fact FactInventoryMovement'[ToGodown],
+			
+			    COALESCE('fact FactInventoryMovement'[OutwardQuantity], 0) > 0,
+			        'fact FactInventoryMovement'[FromGodown],
+			
+			    NOT ISBLANK('fact FactInventoryMovement'[ToGodown]),
+			        'fact FactInventoryMovement'[ToGodown],
+			
+			    'fact FactInventoryMovement'[FromGodown]
+			)
+		lineageTag: 4e05b887-142c-4236-9e55-d12aaa1e3598
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fact FactInventoryMovement' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("TABREZ", "NovaTrade_DW"),
+				    fact_FactInventoryMovement = Source{[Schema="fact",Item="FactInventoryMovement"]}[Data]
+				in
+				    fact_FactInventoryMovement
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

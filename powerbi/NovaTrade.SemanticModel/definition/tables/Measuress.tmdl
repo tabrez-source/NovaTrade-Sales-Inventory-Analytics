@@ -1,0 +1,501 @@
+table Measuress
+	lineageTag: 3d44b202-66c2-42af-bc49-11f8ceaf36cb
+
+	measure 'Total Sales' =
+			
+			SUM ( 'fact FactSales'[LineTotal] )
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 01_FoundationKPIs
+		lineageTag: f7863985-df45-4bd8-8702-8e9321cec3d3
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Total Quantity Sold' =
+			
+			SUM ( 'fact FactSales'[Quantity] )
+		formatString: 0
+		displayFolder: 01_FoundationKPIs
+		lineageTag: 3e3bb17c-9621-45ff-8a57-ac2ba095b1de
+
+	measure 'Sales Row Count' =
+			
+			COUNTROWS ( 'fact FactSales' )
+		formatString: 0
+		displayFolder: 04_Validation
+		lineageTag: 4769165b-0c21-467c-84f5-37cc6d4c50dd
+
+	measure 'Sales Order Count' =
+			
+			DISTINCTCOUNT ( 'fact FactSales'[OrderNumber] )
+		formatString: 0
+		displayFolder: 01_FoundationKPIs
+		lineageTag: fe4f6bdf-c855-49e4-aa30-df779855515d
+
+	measure 'Average Line Sales' =
+			
+			AVERAGE ( 'fact FactSales'[LineTotal] )
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 01_FoundationKPIs
+		lineageTag: 250decac-dfe2-4948-87bf-c8db1ecb5909
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Active Distributors' =
+			
+			DISTINCTCOUNT ( 'fact FactSales'[DistributorKey] )
+		formatString: 0
+		displayFolder: 01_FoundationKPIs
+		lineageTag: 98469789-14b1-4358-881e-de3ddb5d8feb
+
+	measure 'Inventory Row Count' =
+			
+			COUNTROWS ( 'fact FactInventoryMovement' )
+		formatString: 0
+		displayFolder: 04_Validation
+		lineageTag: c9c18c38-eb52-491e-89db-7c134897d8f5
+
+	measure 'Total Inward Quantity' =
+			
+			SUM ( 'fact FactInventoryMovement'[InwardQuantity] )
+		formatString: 0
+		displayFolder: 03_Inventory
+		lineageTag: a53e7f78-028a-4a38-8a21-841c971850b3
+
+	measure 'Total Outward Quantity' =
+			
+			SUM ( 'fact FactInventoryMovement'[OutwardQuantity] )
+		formatString: 0
+		displayFolder: 03_Inventory
+		lineageTag: 749c7b2b-9f73-4fcd-a018-621aeb3b0099
+
+	measure 'Total Transfer Quantity' =
+			
+			SUM ( 'fact FactInventoryMovement'[TransferQuantity] )
+		formatString: 0
+		displayFolder: 03_Inventory
+		lineageTag: 289b1017-2db3-4398-89a6-052d38a873f4
+
+	measure 'Net Movement Quantity' =
+			
+			[Total Inward Quantity] - [Total Outward Quantity]
+		formatString: 0
+		displayFolder: 03_Inventory
+		lineageTag: 9d710b46-e718-4e27-829e-1aa0463fe82d
+
+	measure 'Sales YTD' =
+			
+			TOTALYTD (
+			    [Total Sales],
+			    'dim DimDate'[FullDate]
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 02_Time Intelligence
+		lineageTag: 2ce8e44e-8119-4007-b843-c3c15da897d7
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Previous Month Sales' =
+			
+			VAR PrevMonthSales =
+			    CALCULATE (
+			        [Total Sales],
+			        DATEADD ( 'dim DimDate'[FullDate], -1, MONTH )
+			    )
+			RETURN
+			IF (
+			    NOT ISINSCOPE ( 'dim DimDate'[YearMonth] ),
+			    BLANK (),
+			    PrevMonthSales
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 02_Time Intelligence
+		lineageTag: 0e0bde2e-946d-4642-bbf0-6ff41daf639c
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'MoM Sales Change' =
+			
+			VAR PreviousMonthSales =
+			    [Previous Month Sales]
+			RETURN
+			IF (
+			    NOT ISINSCOPE ( 'dim DimDate'[YearMonth] ),
+			    BLANK (),
+			    IF (
+			        ISBLANK ( PreviousMonthSales ),
+			        BLANK (),
+			        [Total Sales] - PreviousMonthSales
+			    )
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 02_Time Intelligence
+		lineageTag: 20c35abc-bea4-49db-b752-3ae0cd913f3c
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'MoM Sales Change %' =
+			
+			VAR PreviousMonthSales =
+			    [Previous Month Sales]
+			RETURN
+			IF (
+			    NOT ISINSCOPE ( 'dim DimDate'[YearMonth] ),
+			    BLANK (),
+			    IF (
+			        ISBLANK ( PreviousMonthSales ),
+			        BLANK (),
+			        DIVIDE ( [MoM Sales Change], PreviousMonthSales )
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 02_Time Intelligence
+		lineageTag: 48362285-e7f2-4147-ab26-9882f38a0b89
+
+	measure 'Previous Year Sales' =
+			
+			VAR PrevYearSales =
+			    CALCULATE (
+			        [Total Sales],
+			        SAMEPERIODLASTYEAR ( 'dim DimDate'[FullDate] )
+			    )
+			RETURN
+			IF (
+			    NOT ISINSCOPE ( 'dim DimDate'[YearMonth] ),
+			    BLANK (),
+			    PrevYearSales
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 02_Time Intelligence
+		lineageTag: e3908046-ec6b-48b5-b932-3999d33b7a16
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'YoY Sales Change' =
+			
+			VAR PrevYearSales =
+			    [Previous Year Sales]
+			RETURN
+			IF (
+			    ISBLANK ( PrevYearSales ),
+			    BLANK (),
+			    [Total Sales] - PrevYearSales
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 02_Time Intelligence
+		lineageTag: 5d91c136-19ea-4eb9-ac2f-8e89499c0051
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'YoY Sales Change %' =
+			
+			VAR PrevYearSales =
+			    [Previous Year Sales]
+			RETURN
+			IF (
+			    ISBLANK ( PrevYearSales ),
+			    BLANK (),
+			    DIVIDE ( [YoY Sales Change], PrevYearSales )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 02_Time Intelligence
+		lineageTag: 99becef4-5544-4035-8e3e-45dd9513f993
+
+	measure 'Running Total Sales' =
+			
+			VAR MaxVisibleDate =
+			    MAX ( 'dim DimDate'[FullDate] )
+			RETURN
+			CALCULATE (
+			    [Total Sales],
+			    FILTER (
+			        ALLSELECTED ( 'dim DimDate' ),
+			        'dim DimDate'[FullDate] <= MaxVisibleDate
+			    )
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 02_Time Intelligence
+		lineageTag: b65d2c95-fae7-4872-b43d-253d13747a23
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Average Order Value' =
+			
+			DIVIDE (
+			    [Total Sales],
+			    [Sales Order Count]
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 05_Sales Analysis
+		lineageTag: f8b8603f-7d34-4881-a5fc-6be09f99a383
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Average Movement Quantity' =
+			
+			DIVIDE(
+			    [Total Inward Quantity] + [Total Outward Quantity],
+			    [Movement Row Count]
+			)
+		formatString: 0
+		displayFolder: 05_Sales Analysis
+		lineageTag: 9b6db9a0-fe48-4a57-87d8-cbf0e9c5943f
+
+	measure 'Sales per Active Distributor' =
+			
+			DIVIDE (
+			    [Total Sales],
+			    [Active Distributors]
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 05_Sales Analysis
+		lineageTag: 0f7d00f8-c6bc-4332-9dfd-a67e0c558510
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Product Rank by Sales' =
+			
+			RANKX (
+			    ALLSELECTED ( 'dim DimProduct'[ProductName] ),
+			    [Total Sales],
+			    ,
+			    DESC,
+			    DENSE
+			)
+		formatString: 0
+		displayFolder: 06_Ranking & Contribution
+		lineageTag: 7828e0ff-6b7e-46ff-a1a7-a4e76682602c
+
+	measure 'Distributor Rank by Sales' =
+			
+			RANKX (
+			    ALLSELECTED ( 'dim DimDistributor'[DistributorName] ),
+			    [Total Sales],
+			    ,
+			    DESC,
+			    DENSE
+			)
+		formatString: 0
+		displayFolder: 06_Ranking & Contribution
+		lineageTag: 3e588350-cbe1-487d-a70b-0fce69cc7057
+
+	measure 'Sales Head Rank by Sales' =
+			
+			RANKX (
+			    ALLSELECTED ( 'dim DimSalesHead'[SalesHeadName] ),
+			    [Total Sales],
+			    ,
+			    DESC,
+			    DENSE
+			)
+		formatString: 0
+		displayFolder: 06_Ranking & Contribution
+		lineageTag: aeaca069-8e2a-4d54-908b-7b2979eb29df
+
+	measure 'Product Sales Contribution within category%' =
+			
+			DIVIDE (
+			    [Total Sales],
+			    CALCULATE (
+			        [Total Sales],
+			        ALLSELECTED ( 'dim DimProduct'[ProductName] )
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 06_Ranking & Contribution
+		lineageTag: 2a03fc6c-39cd-4209-8fbf-4c9a727cd84d
+
+	measure 'Category Sales Contribution %' =
+			
+			DIVIDE (
+			    [Total Sales],
+			    CALCULATE (
+			        [Total Sales],
+			        ALLSELECTED ( 'dim DimProduct'[CategoryName] )
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 06_Ranking & Contribution
+		lineageTag: 7c1b03a9-2281-4350-9ef6-77c849d62846
+
+	measure 'Cross Region Sales' =
+			
+			CALCULATE (
+			    [Total Sales],
+			    'fact FactSales'[IsCrossRegionSale] = TRUE ()
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 07_Management Insights
+		lineageTag: 3aa30bc1-1807-4886-9752-c95f1a151437
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Cross Region Sales %' =
+			
+			DIVIDE (
+			    [Cross Region Sales],
+			    [Total Sales]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 07_Management Insights
+		lineageTag: 8bc9f10c-189e-4508-bef6-59994534ad9b
+
+	measure 'Assigned-Region Sales' =
+			
+			CALCULATE (
+			    [Total Sales],
+			    'fact FactSales'[IsCrossRegionSale] = FALSE ()
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 07_Management Insights
+		lineageTag: febc91fc-3655-486f-8958-9d0bb563f0c0
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Outside Assigned Sales Head Sales' =
+			
+			CALCULATE (
+			    [Total Sales],
+			    'fact FactSales'[IsOutsideAssignedSalesHead] = TRUE ()
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 07_Management Insights
+		lineageTag: c637d9a2-9b7e-4d7a-927f-dfe78a06da9c
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Outside Assigned Sales Head Sales %' =
+			
+			DIVIDE (
+			    [Outside Assigned Sales Head Sales],
+			    [Total Sales]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 07_Management Insights
+		lineageTag: 577531c5-9d4c-4e66-b906-dc7201ed0e91
+
+	measure 'Distinct Products Sold' =
+			
+			DISTINCTCOUNT ( 'fact FactSales'[ProductKey] )
+		formatString: 0
+		displayFolder: 04_Validation
+		lineageTag: b9c9612f-b13b-43e0-8625-ac0e0ed7494c
+
+	measure 'Distinct Sales Heads' =
+			
+			DISTINCTCOUNT ( 'fact FactSales'[SalesHeadKey] )
+		formatString: 0
+		displayFolder: 04_Validation
+		lineageTag: 91223f85-57c5-4fe1-a967-27280b01011c
+
+	measure 'Distinct Branches' =
+			
+			DISTINCTCOUNT ( 'fact FactSales'[BranchKey] )
+		formatString: 0
+		displayFolder: 04_Validation
+		lineageTag: d540bc0f-1f4d-45ac-8dde-6d4f632d9375
+
+	measure 'Average Selling Price' =
+			
+			DIVIDE (
+			    [Total Sales],
+			    [Total Quantity Sold]
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 05_Sales Analysis
+		lineageTag: 6f35eaee-06ec-4b38-b1cc-c4652b2ac18f
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Product Quantity Contribution %' =
+			
+			DIVIDE (
+			    [Total Quantity Sold],
+			    CALCULATE (
+			        [Total Quantity Sold],
+			        ALLSELECTED ( 'dim DimProduct'[ProductName] )
+			    )
+			)
+		displayFolder: 06_Ranking & Contribution
+		lineageTag: 233a735e-a999-40cd-945b-c47284302204
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Product Sales Contribution %' =
+			
+			DIVIDE (
+			    [Total Sales],
+			    CALCULATE (
+			        [Total Sales],
+			        ALLSELECTED ( 'dim DimProduct'[ProductName] )
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 06_Ranking & Contribution
+		lineageTag: ef4db39b-fda8-4e8f-a97b-7fba7703c3d4
+
+	measure 'Total Movement Quantity' =
+			
+			[Total Inward Quantity] + [Total Outward Quantity]
+		formatString: 0
+		displayFolder: 03_Inventory
+		lineageTag: cda3ff51-318f-49e8-9f3a-4d9e350819e8
+
+	measure 'Assump Opening Stock' =
+			
+			4523546812
+		formatString: 0.0
+		displayFolder: 03_Inventory
+		lineageTag: 0e02e3ce-4838-4702-9766-0e2ad0992716
+
+	measure 'Estimated Closing Stock' =
+			
+			[Assump Opening Stock] + [Net Movement Quantity]
+		formatString: 0.00
+		displayFolder: 03_Inventory
+		lineageTag: 1f98bc4a-7c77-426e-834b-f1365553e889
+
+	measure 'Movement Row Count' =
+			
+			COUNTROWS('fact FactInventoryMovement')
+		formatString: 0
+		displayFolder: 03_Inventory
+		lineageTag: ec066508-6cd7-4905-80fa-52391a6d2613
+
+	measure 'Total COGS' =
+			
+			SUMX (
+			    'fact FactSales',
+			    'fact FactSales'[Quantity] * 'fact FactSales'[UnitPrice]
+			)
+		displayFolder: 01_FoundationKPIs
+		lineageTag: b0ebbe92-abbc-40e8-b461-3f3d2d605358
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		isHidden
+		formatString: 0
+		lineageTag: 26e126a0-c68d-409d-b2cc-62f2db21fa50
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cross Region Type' =
+			
+			IF (
+			    'fact FactSales'[IsCrossRegionSale] = TRUE (),
+			    "Cross Region",
+			    "Non-Cross Region"
+			)
+		lineageTag: bf5b9fdd-1832-4570-92d2-21b749aceb9f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Measuress = calculated
+		mode: import
+		source = { BLANK() }
+
+	annotation PBI_Id = 23251035da304c7ab82b48d0f54b4fac

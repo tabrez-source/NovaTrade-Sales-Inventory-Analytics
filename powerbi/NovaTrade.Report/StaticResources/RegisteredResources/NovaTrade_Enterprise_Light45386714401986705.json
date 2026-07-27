@@ -1,0 +1,116 @@
+{
+  "name": "NovaTrade_Enterprise_Light45386714401986705.json",
+  "dataColors": [
+    "#148D87",
+    "#C7A23A",
+    "#4F7A89",
+    "#7D9E96",
+    "#CF7C58",
+    "#7A6C91",
+    "#9B8062",
+    "#B4C7C2"
+  ],
+  "background": "#FFFCF7",
+  "foreground": "#0D2A3C",
+  "tableAccent": "#148D87",
+  "textClasses": {
+    "callout": {
+      "color": "#0D2A3C",
+      "fontFace": "'Segoe UI Semibold', 'Segoe UI', sans-serif"
+    },
+    "title": {
+      "color": "#0D2A3C",
+      "fontFace": "'Segoe UI Semibold', 'Segoe UI', sans-serif"
+    },
+    "header": {
+      "color": "#0D2A3C",
+      "fontFace": "'Segoe UI Semibold', 'Segoe UI', sans-serif"
+    },
+    "label": {
+      "color": "#566671",
+      "fontFace": "'Segoe UI', sans-serif"
+    }
+  },
+  "bad": "#B84A55",
+  "neutral": "#C7A23A",
+  "good": "#148D87",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFCF7"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#D8D0C6"
+              }
+            },
+            "radius": 5
+          }
+        ],
+        "title": [
+          {
+            "show": true,
+            "fontColor": {
+              "solid": {
+                "color": "#0D2A3C"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#FFFCF7"
+              }
+            },
+            "alignment": "left",
+            "fontFamily": "Segoe UI Semibold"
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": false,
+            "foreground": {
+              "solid": {
+                "color": "#6C7984"
+              }
+            },
+            "transparency": 100
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F7F3EA"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F7F3EA"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

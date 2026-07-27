@@ -5,7 +5,7 @@
     Purpose: Validate staging data after bulk load
 */
 
-USE Akari_Staging;
+USE NovaTrade_Staging;
 GO
 
 -- 1. Row count check

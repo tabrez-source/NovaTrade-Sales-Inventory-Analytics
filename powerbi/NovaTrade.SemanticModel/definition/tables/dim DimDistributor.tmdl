@@ -1,0 +1,143 @@
+table 'dim DimDistributor'
+	lineageTag: 88ef7807-1639-48e3-860f-543359ed39e7
+
+	column DistributorKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 80ff7934-c070-44d5-b59f-b749fcfbec0c
+		summarizeBy: none
+		sourceColumn: DistributorKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistributorID
+		dataType: int64
+		formatString: 0
+		lineageTag: 97f635e0-8ef0-46f3-b8a6-7f47b2b01b29
+		summarizeBy: none
+		sourceColumn: DistributorID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistributorName
+		dataType: string
+		lineageTag: 29af6e6d-3680-44a1-b19e-aa9d1aa0449c
+		summarizeBy: none
+		sourceColumn: DistributorName
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 158bce30-ceb5-44de-b142-37282ebe11e2
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateName
+		dataType: string
+		lineageTag: c27db3cd-3dfb-4cf5-8d3b-bc4b9c033649
+		summarizeBy: none
+		sourceColumn: StateName
+
+		annotation SummarizationSetBy = Automatic
+
+	column PhysicalBranchID
+		dataType: int64
+		formatString: 0
+		lineageTag: 224981f3-024f-40b0-be30-0b1c9092a31c
+		summarizeBy: none
+		sourceColumn: PhysicalBranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PhysicalBranchName
+		dataType: string
+		lineageTag: 58a4b53e-1ce3-44ff-a7d2-28e8b0a748bc
+		summarizeBy: none
+		sourceColumn: PhysicalBranchName
+
+		annotation SummarizationSetBy = Automatic
+
+	column PhysicalRegionName
+		dataType: string
+		lineageTag: 89119cab-12ad-49f1-9c74-213469181ecd
+		summarizeBy: none
+		sourceColumn: PhysicalRegionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column AssignedSalesHeadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 733a5404-8e45-400b-b149-c26582f302db
+		summarizeBy: none
+		sourceColumn: AssignedSalesHeadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AssignedSalesHeadName
+		dataType: string
+		lineageTag: ebe73514-aacd-411a-9420-3dfc36624efc
+		summarizeBy: none
+		sourceColumn: AssignedSalesHeadName
+
+		annotation SummarizationSetBy = Automatic
+
+	column AssignedSalesHeadBranch
+		dataType: string
+		lineageTag: 2b2bc72b-b67e-49ac-9e02-2923b3f6d74e
+		summarizeBy: none
+		sourceColumn: AssignedSalesHeadBranch
+
+		annotation SummarizationSetBy = Automatic
+
+	column AssignedSalesHeadBaseRegion
+		dataType: string
+		lineageTag: 15659196-ed28-4769-b0be-a3dafc7c7659
+		summarizeBy: none
+		sourceColumn: AssignedSalesHeadBaseRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreditLimit
+		dataType: double
+		lineageTag: 4dc5b340-20cf-4cd8-aa7b-eb2cbb969c05
+		summarizeBy: none
+		sourceColumn: CreditLimit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ActivityTier
+		dataType: string
+		lineageTag: 3c06b334-531e-4393-a3d9-24761666ed68
+		summarizeBy: none
+		sourceColumn: ActivityTier
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: da4247ae-8c1d-4622-831e-5626d48c9cb1
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim DimDistributor' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("TABREZ", "NovaTrade_DW"),
+				    dim_DimDistributor = Source{[Schema="dim",Item="DimDistributor"]}[Data]
+				in
+				    dim_DimDistributor
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

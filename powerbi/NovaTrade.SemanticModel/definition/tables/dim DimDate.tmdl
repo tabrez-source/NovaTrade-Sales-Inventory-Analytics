@@ -1,0 +1,123 @@
+table 'dim DimDate'
+	lineageTag: 8b66a2a4-ec1b-4e1a-b6fa-a61872ca03b6
+	dataCategory: Time
+
+	column DateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bcca0087-be04-4ecf-828e-c2769d11234e
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullDate
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: d330930f-e0c3-4483-933c-c39364f4f880
+		summarizeBy: none
+		sourceColumn: FullDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MonthName
+		dataType: string
+		lineageTag: 2b4f2d6b-b348-41f7-a710-6d41873c4d9a
+		summarizeBy: none
+		sourceColumn: MonthName
+		sortByColumn: MonthNumber
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterName
+		dataType: string
+		lineageTag: 6f385e4d-ec09-42a0-9b6d-5b0e3198efd9
+		summarizeBy: none
+		sourceColumn: QuarterName
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: string
+		lineageTag: ba4b61fe-ce2f-4469-a015-354139a63c13
+		summarizeBy: none
+		sourceColumn: YearMonth
+		sortByColumn: YearMonthSort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWeekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a871dc0a-001e-4f43-a3c8-202c4bd5d430
+		summarizeBy: none
+		sourceColumn: IsWeekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthSort =
+
+			'dim DimDate'[YearNumber] * 100
+			    + MONTH ( 'dim DimDate'[FullDate] )
+		isHidden
+		formatString: 0
+		lineageTag: 18ff8caa-1c06-4b49-8eba-39ec5eb94205
+		summarizeBy: sum
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber =
+
+			MONTH ( 'dim DimDate'[FullDate] )
+		isHidden
+		formatString: 0
+		lineageTag: 8a7b7be0-c66b-451d-b7e8-fb7320c58fb3
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearNumber =
+
+			YEAR ( 'dim DimDate'[FullDate] )
+		dataType: int64
+		formatString: 0
+		lineageTag: 05209415-0ffe-42db-a5ab-9c2e568012be
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = User
+
+
+	partition 'dim DimDate' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("TABREZ", "NovaTrade_DW"),
+				    dim_DimDate = Source{[Schema="dim",Item="DimDate"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(dim_DimDate,{"DayNumber", "DayName", "WeekNumber", "MonthNumber", "QuarterNumber"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Columns", each true),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Filtered Rows",{"IsHoliday", "HolidayName", "YearNumber"})
+				in
+				    #"Removed Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

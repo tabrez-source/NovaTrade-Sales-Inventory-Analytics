@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "NovaTrade"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "b23cd53c-5f99-4ffb-8144-b4cb427dee72"
+  }
+}

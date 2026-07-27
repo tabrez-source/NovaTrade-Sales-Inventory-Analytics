@@ -1,0 +1,164 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 316.20620518761865,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 334.20869998790079,
+            "y": 78.459252936911071
+          },
+          "nodeIndex": "dim DimBranch",
+          "nodeLineageTag": "0e835523-f59f-468d-aec1-f98ece16de8b",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1524.5595773782143,
+            "y": 233.83755979965611
+          },
+          "nodeIndex": "dim DimDate",
+          "nodeLineageTag": "8b66a2a4-ec1b-4e1a-b6fa-a61872ca03b6",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1201.0270815272379,
+            "y": 365.67511959931215
+          },
+          "nodeIndex": "dim DimDistributor",
+          "nodeLineageTag": "88ef7807-1639-48e3-860f-543359ed39e7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": -50
+          },
+          "nodeIndex": "dim DimGodown",
+          "nodeLineageTag": "4e91bdab-095f-49f0-8844-baaefd138155",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1290.5595773782143,
+            "y": 8.2886583211540028
+          },
+          "nodeIndex": "dim DimProduct",
+          "nodeLineageTag": "c96ecd4c-b4c1-4021-a6ba-880ded4d0bb1",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 729.71208996275027,
+            "y": 374.036912412962
+          },
+          "nodeIndex": "dim DimSalesHead",
+          "nodeLineageTag": "3a8abd34-d9ae-40d8-b3c8-71226bed95d9",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 621.73464364583151,
+            "y": -1.2868468116237182
+          },
+          "nodeIndex": "fact FactInventoryMovement",
+          "nodeLineageTag": "160d066b-2478-4ba7-97e4-a4ae88139633",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 911.1625486910242,
+            "y": 17.327906020136879
+          },
+          "nodeIndex": "fact FactSales",
+          "nodeLineageTag": "ba915cd6-1ed8-44e0-a0df-185a12cf11f3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1758.5595773782143,
+            "y": 209.83755979965611
+          },
+          "nodeIndex": "dim DimFromGodown",
+          "nodeLineageTag": "d7355760-e73b-49f8-8200-0cf13f81aa1a",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2042.5595773782143,
+            "y": 209.83755979965611
+          },
+          "nodeIndex": "dim DimToGodown",
+          "nodeLineageTag": "7aafabbd-3663-4bcb-bf61-8a2c258b00d1",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2276.5595773782143,
+            "y": 257.83755979965611
+          },
+          "nodeIndex": "Measuress",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 50.346892102823226,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

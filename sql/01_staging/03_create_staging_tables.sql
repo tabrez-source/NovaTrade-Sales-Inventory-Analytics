@@ -4,7 +4,7 @@
 -- Script: 03_create_staging_tables.sql
 -- =============================================
 
-USE Akari_Staging;
+USE NovaTrade_Staging;
 GO
 
 --------------------------------------------------
@@ -14,7 +14,7 @@ GO
 CREATE TABLE stg.ProductCategories_Raw (
     CategoryID VARCHAR(50),
     CategoryName VARCHAR(100),
-    IsActive VARCHAR(10)
+    IsActive VARCHAR(50)
 );
 
 CREATE TABLE stg.Products_Raw (
@@ -28,7 +28,7 @@ CREATE TABLE stg.Products_Raw (
     BasePrice VARCHAR(50),
     PriceListDate VARCHAR(50),
     PriceListBranch VARCHAR(100),
-    IsActive VARCHAR(10)
+    IsActive VARCHAR(50)
 );
 
 CREATE TABLE stg.Branches_Raw (
@@ -38,7 +38,7 @@ CREATE TABLE stg.Branches_Raw (
     State VARCHAR(100),
     Region VARCHAR(50),
     IsHeadBranch VARCHAR(10),
-    IsActive VARCHAR(10)
+    IsActive VARCHAR(50)
 );
 
 CREATE TABLE stg.Godowns_Raw (
@@ -48,7 +48,7 @@ CREATE TABLE stg.Godowns_Raw (
     City VARCHAR(100),
     State VARCHAR(100),
     IsMainGodown VARCHAR(10),
-    IsActive VARCHAR(10)
+    IsActive VARCHAR(50)
 );
 
 CREATE TABLE stg.SalesHeads_Raw (
@@ -56,7 +56,7 @@ CREATE TABLE stg.SalesHeads_Raw (
     SalesHeadName VARCHAR(100),
     HomeBranchID VARCHAR(50),
     Region VARCHAR(50),
-    IsActive VARCHAR(10)
+    IsActive VARCHAR(50)
 );
 
 CREATE TABLE stg.Distributors_Raw (
@@ -68,7 +68,7 @@ CREATE TABLE stg.Distributors_Raw (
     AssignedSalesHeadID VARCHAR(50),
     CreditLimit VARCHAR(50),
     ActivityTier VARCHAR(50),
-    IsActive VARCHAR(10)
+    IsActive VARCHAR(50)
 );
 
 --------------------------------------------------
@@ -99,8 +99,7 @@ CREATE TABLE stg.PriceListItems_Raw (
     ProductID VARCHAR(50),
     SKU VARCHAR(50),
     UnitPrice VARCHAR(50),
-    IsIncluded VARCHAR(10)
-);
+    IsIncluded VARCHAR(50));
 
 CREATE TABLE stg.Schemes_Raw (
     SchemeID VARCHAR(50),
@@ -108,7 +107,7 @@ CREATE TABLE stg.Schemes_Raw (
     SchemeType VARCHAR(100),
     StartDate VARCHAR(50),
     EndDate VARCHAR(50),
-    IsActive VARCHAR(10)
+    IsActive VARCHAR(50)
 );
 
 CREATE TABLE stg.SchemeSlabs_Raw (

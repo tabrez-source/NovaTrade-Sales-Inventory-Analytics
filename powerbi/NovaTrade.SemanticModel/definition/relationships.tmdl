@@ -1,0 +1,40 @@
+relationship 090e60c4-1e1d-c38a-66c2-c4aeead039a0
+	fromColumn: 'fact FactSales'.OrderDateKey
+	toColumn: 'dim DimDate'.DateKey
+
+relationship 22e1e1bd-08f4-5ebc-d5cd-b81dbe5660db
+	fromColumn: 'fact FactSales'.ProductKey
+	toColumn: 'dim DimProduct'.ProductKey
+
+relationship 719997ab-88e7-9460-c96b-be5db755dbc9
+	fromColumn: 'fact FactSales'.BranchKey
+	toColumn: 'dim DimBranch'.BranchKey
+
+relationship 9850d269-1095-ec4c-72c3-52e5afd454c6
+	fromColumn: 'fact FactSales'.FulfillmentGodownKey
+	toColumn: 'dim DimGodown'.GodownKey
+
+relationship 067c9742-9672-8bfb-3e6e-1ff9cc3ff8b9
+	fromColumn: 'fact FactSales'.SalesHeadKey
+	toColumn: 'dim DimSalesHead'.SalesHeadKey
+
+relationship 2a8f63e8-7eab-3639-aeb4-94df3bb81b90
+	fromColumn: 'fact FactSales'.DistributorKey
+	toColumn: 'dim DimDistributor'.DistributorKey
+
+relationship ed153999-ad27-3b7a-853b-674fdecb026d
+	fromColumn: 'fact FactInventoryMovement'.MovementDateKey
+	toColumn: 'dim DimDate'.DateKey
+
+relationship 55a5c449-774e-0e94-86df-64c05537be24
+	fromColumn: 'fact FactInventoryMovement'.ProductKey
+	toColumn: 'dim DimProduct'.ProductKey
+
+relationship 27a711be-2302-8203-f069-c33ab99b76b5
+	fromColumn: 'fact FactInventoryMovement'.ToGodownKey
+	toColumn: 'dim DimToGodown'.GodownKey
+
+relationship a866215e-544d-0d88-8654-88d55e4fc3aa
+	fromColumn: 'fact FactInventoryMovement'.FromGodownKey
+	toColumn: 'dim DimFromGodown'.GodownKey
+

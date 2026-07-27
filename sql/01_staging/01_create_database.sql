@@ -5,8 +5,8 @@
 -- Purpose: Create the staging database
 -- =============================================
 
-IF DB_ID('Akari_Staging') IS NULL
+IF DB_ID('NovaTrade_Staging') IS NULL
 BEGIN
-    CREATE DATABASE Akari_Staging;
+    CREATE DATABASE NovaTrade_Staging;
 END
 GO
