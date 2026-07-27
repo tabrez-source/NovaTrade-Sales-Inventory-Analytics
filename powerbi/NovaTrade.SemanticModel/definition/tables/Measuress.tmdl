@@ -153,16 +153,9 @@ table Measuress
 
 	measure 'Previous Year Sales' =
 			
-			VAR PrevYearSales =
-			    CALCULATE (
-			        [Total Sales],
-			        SAMEPERIODLASTYEAR ( 'dim DimDate'[FullDate] )
-			    )
-			RETURN
-			IF (
-			    NOT ISINSCOPE ( 'dim DimDate'[YearMonth] ),
-			    BLANK (),
-			    PrevYearSales
+			CALCULATE (
+			    [Total Sales],
+			    SAMEPERIODLASTYEAR ( 'dim DimDate'[FullDate] )
 			)
 		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
 		displayFolder: 02_Time Intelligence
@@ -290,6 +283,45 @@ table Measuress
 		formatString: 0
 		displayFolder: 06_Ranking & Contribution
 		lineageTag: aeaca069-8e2a-4d54-908b-7b2979eb29df
+
+	measure 'Sales Head Sales Contribution %' =
+			
+			DIVIDE (
+			    [Total Sales],
+			    CALCULATE (
+			        [Total Sales],
+			        ALLSELECTED ( 'dim DimSalesHead'[SalesHeadName] )
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 06_Ranking & Contribution
+		lineageTag: b10e4bd1-0ef1-4f77-a395-f392fa034b98
+
+	measure 'Distributor Sales Contribution %' =
+			
+			DIVIDE (
+			    [Total Sales],
+			    CALCULATE (
+			        [Total Sales],
+			        ALLSELECTED ( 'dim DimDistributor'[DistributorName] )
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 06_Ranking & Contribution
+		lineageTag: 7aa44fd0-8e04-42d3-a3fc-1385e7a366ab
+
+	measure 'Region Sales Contribution %' =
+			
+			DIVIDE (
+			    [Total Sales],
+			    CALCULATE (
+			        [Total Sales],
+			        ALLSELECTED ( 'dim DimDistributor'[ReportingRegionName] )
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 06_Ranking & Contribution
+		lineageTag: c622bf86-cd65-489a-966e-600f9d3cc00b
 
 	measure 'Product Sales Contribution within category%' =
 			

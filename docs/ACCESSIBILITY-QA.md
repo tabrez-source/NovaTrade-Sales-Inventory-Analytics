@@ -9,11 +9,12 @@ Applied to the five public analytical pages:
 - Text contrast meets WCAG AA for normal-size text in the report palette
 - Teal and gold series are also identified by text labels and legends
 - Executive chart and KPI titles use plain business language
+- Sales Performance selected-year and prior-year lines use solid and dashed styles in addition to color
 
 Final Desktop QA still required after rendering:
 
 1. Use Tab and Shift+Tab to confirm focus order and visible focus indicators.
 2. Use Enter or Space on navigation buttons in reading view.
 3. Test Windows high-contrast mode and a screen reader if available.
-4. Confirm tooltip values under Year and Physical Region filters.
+4. Confirm tooltip values under Year and Reporting Region filters.
 5. Confirm no text clipping at Fit to page and Actual size.

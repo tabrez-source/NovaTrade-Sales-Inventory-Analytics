@@ -35,7 +35,7 @@ The Executive Overview is the approved golden design system for the remaining pa
 Current page sequence:
 
 1. Executive Overview — Stage 2 complete
-2. Sales Analysis — next build
+2. Sales Performance — rebuild implemented; Desktop review pending
 3. Product Analysis — functional shell
 4. Inventory Movement — functional shell; reconciliation gate pending
 5. Management Insights — functional shell
@@ -71,4 +71,4 @@ See [Validation Summary](docs/VALIDATION-SUMMARY.md), [Accessibility QA](docs/AC
 
 ## Next milestone
 
-Stage 3A will complete Sales Analysis: prior-year trend comparison, Sales Head and region drivers, distributor ranking, territory mix, drillthrough, interaction QA and accessibility validation.
+Stage 3A will lock Sales Performance after Desktop review: prior-year trend comparison, Sales Head and corrected region drivers, distributor ranking, territory mix, interaction QA and accessibility validation.

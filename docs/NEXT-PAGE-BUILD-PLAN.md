@@ -4,7 +4,7 @@
 
 Stage 2 establishes the Executive Overview as the golden design and interaction contract. The other four public pages already have functional first-pass shells, but they are not yet accepted as business-ready. Complete one page at a time; do not redesign all four simultaneously.
 
-## Stage 3A — Sales Analysis (next)
+## Stage 3A — Sales Performance (Desktop review pending)
 
 Business questions: When did sales change? Which regions, Sales Heads and distributors drove it? Is cross-region activity healthy or concentrated?
 
@@ -70,4 +70,4 @@ Completion gate: every observation links to a visible measure or drill path; no 
 
 ## Execution rule
 
-Build Sales Analysis next. Lock its screenshot and validation evidence before Product Analysis. This keeps each approval small, prevents defects from multiplying and lets the report grow as a coherent decision platform rather than four copied dashboards.
+Lock the Sales Performance screenshot and validation evidence before Product Analysis. This keeps each approval small, prevents defects from multiplying and lets the report grow as a coherent decision platform rather than four copied dashboards.

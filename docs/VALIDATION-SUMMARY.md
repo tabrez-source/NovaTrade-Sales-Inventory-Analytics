@@ -1,6 +1,6 @@
-# Stage 2 Executive Overview source checkpoint — validation summary
+# NovaTrade PBIP source checkpoint — validation summary
 
-Validated on 2026-07-26.
+Validated on 2026-07-27.
 
 ## Microsoft PBIR validation
 
@@ -8,28 +8,29 @@ Validated on 2026-07-26.
 - Result: succeeded
 - Errors: 0
 - Warnings: 0
-- Visual definitions: 177
+- Visual definitions: 202
 - Page definitions: 9
 
-## Reproducible checkpoint validation
+## Reproducible repository validation
 
-- Command: `node scripts/qa/validate-executive-checkpoint.mjs .`
+- Command: `node scripts/qa/validate-pbip-repository.mjs .`
 - Result: passed
 - Issues: 0
-- JSON files checked: 196
+- JSON files checked: 217
 - Public pages: 5
 - Hidden support pages: 4
-- Registered report resources: 1
+- Registered report resources: 2
 
-## Report and semantic integrity
+## Reproducible page checkpoints
 
-- Semantic references checked: 182
-- Unknown report-to-model fields or measures: 0
-- Page-navigation actions checked: 33 across the report
-- Invalid navigation targets: 0
-- Tooltip-enabled Executive visuals: 11
-- Public data or interactive visuals missing alt text: 0
-- External company brand or website references: 0
+- Executive command: `node scripts/qa/validate-executive-checkpoint.mjs . --no-write`
+- Executive result: passed, 0 issues
+- Sales command: `node scripts/qa/validate-sales-checkpoint.mjs .`
+- Sales result: passed, 0 issues
+- Sales Performance visual definitions: 55
+- Sales primary tab order: 11, 12, 20–24 and 30–34
+- Sales interactive or data visuals missing alt text: 0
+- Sales primary visual overlaps or out-of-canvas positions: 0
 
 ## Executive Overview checks
 
@@ -56,6 +57,22 @@ Validated on 2026-07-26.
 - UI template, model, measure and business-rules support pages: hidden in view mode
 - Unused generic `DimDate[Column]` artifact: removed
 
+## Sales Performance checks
+
+- Five KPIs: Total Sales, Sales Orders, Average Order Value, YoY Sales Growth and Active Distributors
+- Month display field: `MonthName`, sorted by `MonthNumber`
+- Selected-year versus prior-year series: present with solid and dashed line styles
+- Year slicer: strict single-select; Select All disabled
+- Corrected reporting-region slicer: `ReportingRegionName`
+- Territory comparison: assigned-region versus cross-region sales by month
+- Ranked drivers: Reporting Region, Sales Head and Top 5 Distributors
+- Distributor ranking: Visual Top 5 by Total Sales
+- Legacy donut and product-category duplication: removed
+- `Previous Year Sales`: no longer blocked outside `YearMonth` scope
+- Mumbai reporting geography: corrected to West in the generator and semantic reporting field
+- Cross-page navigation label: Sales Performance
+- Rebuild script: deterministic and idempotent
+
 ## Final Desktop render gate
 
-The earlier Power BI Desktop screenshot confirmed the grid, Jan–Dec labels and required single-year selection, but it also proved that the first compact-label and colour implementation did not render. This review checkpoint replaces those settings with element-level custom label formatting and a supported `dataPoint.fill` colour rule. Desktop must confirm `₹x.xM` labels, light-to-dark teal bars, the icon-free navigation rail, Top 5 response, tooltips, keyboard focus indicators and absence of text clipping before the branch is pushed or merged.
+Microsoft schema validation confirms that the source is structurally valid, but Power BI Desktop remains the final visual and analytical runtime. Desktop must confirm that both monthly lines render, the prior-year series is dashed, the Reporting Region slicer shows West/South/North/East, Top 5 distributors do not scroll, tooltips and cross-highlighting behave as intended, card totals reconcile with Executive Overview under identical filters, and no text clips at Fit to page or Actual size.

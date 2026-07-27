@@ -68,6 +68,21 @@ table 'dim DimDistributor'
 
 		annotation SummarizationSetBy = Automatic
 
+	column ReportingRegionName =
+			
+			SWITCH (
+			    'dim DimDistributor'[PhysicalBranchID],
+			    1, "West",
+			    2, "South",
+			    3, "North",
+			    4, "East",
+			    'dim DimDistributor'[PhysicalRegionName]
+			)
+		lineageTag: 8a6c7e98-89d1-4a67-b174-5c896ff01af4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	column AssignedSalesHeadID
 		dataType: int64
 		formatString: 0
@@ -140,4 +155,3 @@ table 'dim DimDistributor'
 	annotation PBI_NavigationStepName = Navigation
 
 	annotation PBI_ResultType = Table
-
