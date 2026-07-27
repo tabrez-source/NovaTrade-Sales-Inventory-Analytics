@@ -1,0 +1,67 @@
+name: Power BI CI
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "powerbi/**"
+      - "scripts/qa/**"
+      - ".github/workflows/powerbi-ci.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "powerbi/**"
+      - "scripts/qa/**"
+      - ".github/workflows/powerbi-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: powerbi-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate PBIP sources
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Check changed-file formatting
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          zero_sha="0000000000000000000000000000000000000000"
+
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            git diff --check "$BASE_SHA...$HEAD_SHA"
+          elif [[ -n "$BEFORE_SHA" && "$BEFORE_SHA" != "$zero_sha" ]]; then
+            git diff --check "$BEFORE_SHA...$HEAD_SHA"
+          else
+            git diff-tree --check --root -r "$HEAD_SHA"
+          fi
+
+      - name: Validate PBIP repository structure
+        run: node scripts/qa/validate-pbip-repository.mjs .
+
+      - name: Validate Executive checkpoint
+        run: node scripts/qa/validate-executive-checkpoint.mjs . --no-write

@@ -4,6 +4,7 @@ import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const root = path.resolve(process.argv[2] || ".");
+const writeEvidence = !process.argv.includes("--no-write");
 const reportRoot = path.join(
   root,
   "powerbi",
@@ -518,6 +519,8 @@ const result = {
 };
 
 const output = path.join(root, "_brief", "executive-final-qa.json");
-await writeFile(output, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+if (writeEvidence) {
+  await writeFile(output, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+}
 console.log(JSON.stringify(result, null, 2));
 process.exitCode = issues.length === 0 ? 0 : 1;

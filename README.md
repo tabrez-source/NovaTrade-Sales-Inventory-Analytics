@@ -1,5 +1,7 @@
 # NovaTrade Sales & Inventory Analytics
 
+[![Power BI CI](https://github.com/tabrez-source/NovaTrade-Sales-Inventory-Analytics/actions/workflows/powerbi-ci.yml/badge.svg?branch=main)](https://github.com/tabrez-source/NovaTrade-Sales-Inventory-Analytics/actions/workflows/powerbi-ci.yml)
+
 NovaTrade is an end-to-end business intelligence portfolio project for a synthetic product-distribution company. It demonstrates the full analytics lifecycle from transactional data and dimensional modeling to an accessible, decision-focused Power BI reporting layer.
 
 ![Stage 2 Executive Overview desktop render](docs/images/executive-overview-stage2-desktop.png)
