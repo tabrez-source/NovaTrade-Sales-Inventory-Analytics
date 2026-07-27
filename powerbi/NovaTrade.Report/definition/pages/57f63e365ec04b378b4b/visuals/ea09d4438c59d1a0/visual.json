@@ -2,9 +2,9 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "ea09d4438c59d1a0",
   "position": {
-    "x": 44,
+    "x": 20,
     "y": 208,
-    "width": 134,
+    "width": 156,
     "height": 42,
     "z": 20221
   },
@@ -22,7 +22,7 @@
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontWeight": "normal",
-                      "fontSize": "9.5pt",
+                      "fontSize": "10.5pt",
                       "color": "#FFFCF7"
                     }
                   }

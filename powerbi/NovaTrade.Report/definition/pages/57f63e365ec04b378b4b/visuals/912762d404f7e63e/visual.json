@@ -703,7 +703,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000000000'"
+                  "Value": "'1'"
                 }
               }
             },
@@ -713,6 +713,13 @@
                   "Value": "1L"
                 }
               }
+            },
+            "valueCustomFormatString": {
+              "expr": {
+                "Literal": {
+                  "Value": "'₹0.0,,\"M\"'"
+                }
+              }
             }
           }
         }
@@ -720,22 +727,60 @@
       "dataPoint": [
         {
           "properties": {
-            "defaultColor": {
+            "fill": {
               "solid": {
                 "color": {
                   "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Measuress"
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Measuress"
+                            }
+                          },
+                          "Property": "Total Sales"
                         }
                       },
-                      "Property": "Executive Region Rank Color"
+                      "FillRule": {
+                        "linearGradient2": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#B6DEDB'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#0B6F6A'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'noColor'"
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
               }
             }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ]
           }
         }
       ]

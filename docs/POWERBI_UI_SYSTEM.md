@@ -11,7 +11,8 @@
 - KPI row: five 232 px cards with four exact 12 px gutters
 - Palette: navy for structure, teal for primary analysis, gold for secondary emphasis
 - Time view: Jan–Dec when exactly one year is selected; `YearMonth` for multi-year trends on deeper analysis pages
-- Ranking colour: slicer-responsive stepped teal tones; bar length and direct labels remain the primary magnitude encoding
+- Ranking colour: slicer-responsive light-to-dark teal tones based on Total Sales; each bar remains a solid shade, while bar length and direct labels remain the primary magnitude encoding
+- Navigation labels: icon-free, 10.5 pt for reporting pages and 10 pt for reference pages
 - Visual language: warm ivory surfaces, concise business titles, restrained borders and no decorative product imagery
 
 ## Business language

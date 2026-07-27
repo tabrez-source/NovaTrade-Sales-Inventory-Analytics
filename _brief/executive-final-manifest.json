@@ -15,10 +15,11 @@
     "analyticalVisuals": 6,
     "contextualTooltipVisuals": 11,
     "navigationTargets": 8,
+    "navigationStyle": "Icon-free labels; 10.5 pt reporting navigation and 10 pt reference navigation",
     "topProductCategories": 5,
     "monthLabel": "MMM",
     "monthlyScrollbars": false,
-    "rankingLabelUnits": "INR billions",
+    "rankingLabelUnits": "INR millions",
     "crossRegionDecisionVisuals": 1,
     "orderStatusVisual": true,
     "territoryColors": {
@@ -26,7 +27,7 @@
       "crossRegion": "gold"
     },
     "yearSelection": "Exactly one year",
-    "rankingColorStrategy": "Slicer-responsive stepped teal rank tones; bar length and labels remain the primary magnitude encoding."
+    "rankingColorStrategy": "Slicer-responsive light-to-dark teal tones driven directly by Total Sales; each bar uses one solid shade and bar length remains the primary magnitude encoding."
   },
   "accessibility": {
     "altText": true,

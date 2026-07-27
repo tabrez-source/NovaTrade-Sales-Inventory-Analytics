@@ -1,18 +1,19 @@
 {
   "status": "passed",
-  "validatedAt": "2026-07-26T07:29:58.338Z",
+  "validatedAt": "2026-07-27T04:11:53.811Z",
   "issueCount": 0,
   "evidence": {
-    "jsonFiles": 212,
+    "jsonFiles": 196,
     "pageDefinitions": 9,
     "publicPages": 5,
     "hiddenPages": 4,
-    "visualDefinitions": 193,
+    "visualDefinitions": 177,
     "linguisticMetadata": "valid JSON",
     "monthAxis": "MonthName sorted by MonthNumber",
     "yearSelection": "single and required",
     "compactRankingLabels": 3,
-    "rankingColorPolicy": "stepped single-root teal",
+    "rankingColorPolicy": "sales-magnitude light-to-dark teal",
+    "navigation": "icon-free; 5 primary and 3 reference labels enlarged",
     "rankingGrid": "374 / 440 / 370 px with 12 px gutters",
     "registeredResources": 1
   },

@@ -293,19 +293,32 @@ async function validateYearSlicer() {
 
 async function validateRankings() {
   const configs = [
-    [ids.categoryRanking, "Executive Category Rank Color"],
-    [ids.salesHeadRanking, "Executive Sales Head Rank Color"],
-    [ids.regionRanking, "Executive Region Rank Color"],
+    ids.categoryRanking,
+    ids.salesHeadRanking,
+    ids.regionRanking,
   ];
 
-  for (const [id, measure] of configs) {
+  for (const id of configs) {
     const visual = await loadExecutiveVisual(id);
     const objects = visual.visual.objects;
-    if (literalValue(objects.labels?.[0]?.properties?.labelDisplayUnits) !== "'1000000000'") {
-      addIssue("ranking-units", `${id} must display labels in billions.`);
+    const labels = objects.labels?.[0]?.properties;
+    if (literalValue(labels?.labelDisplayUnits) !== "'1'") {
+      addIssue(
+        "ranking-units",
+        `${id} must disable automatic label scaling before applying the custom format.`,
+      );
     }
-    if (literalValue(objects.labels?.[0]?.properties?.labelPrecision) !== "1L") {
+    if (literalValue(labels?.labelPrecision) !== "1L") {
       addIssue("ranking-precision", `${id} must use one decimal place.`);
+    }
+    if (
+      literalValue(labels?.valueCustomFormatString) !==
+      "'₹0.0,,\"M\"'"
+    ) {
+      addIssue(
+        "ranking-format",
+        `${id} must use the compact ₹0.0M label format.`,
+      );
     }
     if (literalValue(objects.categoryAxis?.[0]?.properties?.showAxisTitle) !== "false") {
       addIssue("ranking-category-title", `${id} has a redundant category-axis title.`);
@@ -313,36 +326,103 @@ async function validateRankings() {
     if (literalValue(objects.valueAxis?.[0]?.properties?.showAxisTitle) !== "false") {
       addIssue("ranking-value-title", `${id} has a redundant value-axis title.`);
     }
-    const colorMeasure =
-      objects.dataPoint?.[0]?.properties?.defaultColor?.solid?.color?.expr
-        ?.Measure?.Property;
-    if (colorMeasure !== measure) {
+
+    const dataPoint = objects.dataPoint?.[0];
+    const fillRule =
+      dataPoint?.properties?.fill?.solid?.color?.expr?.FillRule;
+    if (fillRule?.Input?.Measure?.Property !== "Total Sales") {
       addIssue(
-        "ranking-color",
-        `${id} must use ${measure} for stepped rank colour.`,
+        "ranking-color-input",
+        `${id} must derive its teal scale from Total Sales.`,
+      );
+    }
+    const gradient = fillRule?.FillRule?.linearGradient2;
+    if (
+      gradient?.min?.color?.Literal?.Value !== "'#B6DEDB'" ||
+      gradient?.max?.color?.Literal?.Value !== "'#0B6F6A'"
+    ) {
+      addIssue(
+        "ranking-color-scale",
+        `${id} must use the approved light-to-dark teal scale.`,
+      );
+    }
+    if (
+      dataPoint?.selector?.data?.[0]?.dataViewWildcard?.matchingOption !== 0
+    ) {
+      addIssue(
+        "ranking-color-selector",
+        `${id} must apply the colour scale to all bar instances and totals.`,
       );
     }
   }
 
-  const measures = await readFile(
-    path.join(
-      root,
-      "powerbi",
-      "NovaTrade.SemanticModel",
-      "definition",
-      "tables",
-      "Measuress.tmdl",
-    ),
-    "utf8",
-  );
-  for (const [, measure] of configs) {
-    if (!measures.includes(`measure '${measure}'`)) {
-      addIssue("missing-color-measure", `Missing measure: ${measure}.`);
+  evidence.compactRankingLabels = configs.length;
+  evidence.rankingColorPolicy = "sales-magnitude light-to-dark teal";
+}
+
+async function validateNavigation() {
+  const directories = (await readdir(executiveVisuals, { withFileTypes: true }))
+    .filter((entry) => entry.isDirectory());
+  let primaryLabels = 0;
+  let referenceLabels = 0;
+
+  for (const directory of directories) {
+    const file = path.join(executiveVisuals, directory.name, "visual.json");
+    let visual;
+    try {
+      visual = await readJson(file);
+    } catch {
+      continue;
+    }
+
+    const altText = literalValue(
+      visual.visual.visualContainerObjects?.general?.[0]?.properties?.altText,
+    ) ?? "";
+    if (/NT_STAGE2_(DOC_)?ICON/.test(altText)) {
+      addIssue(
+        "navigation-icon",
+        `Navigation icon remains in visual ${directory.name}.`,
+      );
+    }
+
+    const textStyle =
+      visual.visual.objects?.general?.[0]?.properties?.paragraphs?.[0]
+        ?.textRuns?.[0]?.textStyle;
+    if (/NT_UI_NAV_.*_TEXT_/.test(altText)) {
+      primaryLabels += 1;
+      if (
+        visual.position.x !== 20 ||
+        visual.position.width !== 156 ||
+        textStyle?.fontSize !== "10.5pt"
+      ) {
+        addIssue(
+          "primary-navigation-label",
+          `${directory.name} must use x=20, width=156, and 10.5pt text.`,
+        );
+      }
+    }
+    if (/NT_STAGE2_DOC_TEXT/.test(altText)) {
+      referenceLabels += 1;
+      if (
+        visual.position.x !== 20 ||
+        visual.position.width !== 156 ||
+        textStyle?.fontSize !== "10pt"
+      ) {
+        addIssue(
+          "reference-navigation-label",
+          `${directory.name} must use x=20, width=156, and 10pt text.`,
+        );
+      }
     }
   }
 
-  evidence.compactRankingLabels = configs.length;
-  evidence.rankingColorPolicy = "stepped single-root teal";
+  if (primaryLabels !== 5 || referenceLabels !== 3) {
+    addIssue(
+      "navigation-label-count",
+      `Expected 5 primary and 3 reference labels; found ${primaryLabels} and ${referenceLabels}.`,
+    );
+  }
+  evidence.navigation = "icon-free; 5 primary and 3 reference labels enlarged";
 }
 
 async function validateLayout() {
@@ -425,6 +505,7 @@ await validatePages();
 await validateMonthlyViews();
 await validateYearSlicer();
 await validateRankings();
+await validateNavigation();
 await validateLayout();
 await validateResourcesAndReferences();
 

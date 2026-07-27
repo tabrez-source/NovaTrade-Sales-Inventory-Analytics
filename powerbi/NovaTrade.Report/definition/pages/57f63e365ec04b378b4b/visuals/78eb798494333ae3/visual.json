@@ -2,9 +2,9 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "78eb798494333ae3",
   "position": {
-    "x": 44,
+    "x": 20,
     "y": 506,
-    "width": 134,
+    "width": 156,
     "height": 38,
     "z": 20431
   },
@@ -21,7 +21,7 @@
                     "value": "Business Rules",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
-                      "fontSize": "9pt",
+                      "fontSize": "10pt",
                       "color": "#FFFCF7"
                     }
                   }
