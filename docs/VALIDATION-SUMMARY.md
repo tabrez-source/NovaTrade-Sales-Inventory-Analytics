@@ -1,6 +1,6 @@
 # NovaTrade PBIP source checkpoint — validation summary
 
-Validated on 2026-07-27.
+Validated on 2026-07-28.
 
 ## Microsoft PBIR validation
 
@@ -65,14 +65,16 @@ Validated on 2026-07-27.
 - Year slicer: strict single-select; Select All disabled
 - Corrected reporting-region slicer: `ReportingRegionName`
 - Territory comparison: assigned-region versus cross-region sales by month
-- Ranked drivers: Reporting Region, Sales Head and Top 5 Distributors
+- Ranked drivers: Reporting Region YoY growth, Sales Head sales and Top 5 Distributors
 - Distributor ranking: Visual Top 5 by Total Sales
 - Legacy donut and product-category duplication: removed
 - `Previous Year Sales`: no longer blocked outside `YearMonth` scope
+- First-year YoY state: KPI displays `N/A` when no prior-year sales exist
+- Regional diagnostic: signed YoY percentage, sorted descending, with sales context in tooltips
 - Mumbai reporting geography: corrected to West in the generator and semantic reporting field
 - Cross-page navigation label: Sales Performance
 - Rebuild script: deterministic and idempotent
 
 ## Final Desktop render gate
 
-Microsoft schema validation confirms that the source is structurally valid, but Power BI Desktop remains the final visual and analytical runtime. Desktop must confirm that both monthly lines render, the prior-year series is dashed, the Reporting Region slicer shows West/South/North/East, Top 5 distributors do not scroll, tooltips and cross-highlighting behave as intended, card totals reconcile with Executive Overview under identical filters, and no text clips at Fit to page or Actual size.
+Microsoft schema validation confirms that the source is structurally valid, but Power BI Desktop remains the final visual and analytical runtime. Desktop must confirm that 2020 displays `N/A` for YoY growth, 2021 onward displays a percentage, both monthly lines render, the prior-year series is dashed, the regional YoY chart renders signed percentages, the Reporting Region slicer shows West/South/North/East, Top 5 distributors do not scroll, tooltips and cross-highlighting behave as intended, card totals reconcile with Executive Overview under identical filters, and no text clips at Fit to page or Actual size.

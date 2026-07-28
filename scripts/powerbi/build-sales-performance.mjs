@@ -367,9 +367,9 @@ async function buildKpiRow() {
       seed: "sales-kpi-yoy-growth",
       x: 940,
       title: "YoY Sales Growth",
-      measure: "YoY Sales Change %",
+      measure: "YoY Sales Growth Display",
       tooltips: ["Total Sales", "Previous Year Sales", "YoY Sales Change"],
-      alt: "Year-over-year sales growth for the selected filters.",
+      alt: "Year-over-year sales growth for the selected filters. N/A means the selected period has no prior-year sales.",
     },
     {
       template: templateIds.activeDistributorsCard,
@@ -517,14 +517,14 @@ async function buildTerritoryMix() {
   );
 }
 
-function rankingQuery(category, tooltips) {
+function rankingQuery(category, tooltips, measure = "Total Sales") {
   return {
     queryState: {
       Category: {
         projections: [category],
       },
       Y: {
-        projections: [measureProjection("Total Sales")],
+        projections: [measureProjection(measure)],
       },
       Tooltips: {
         projections: tooltips.map((measure) => measureProjection(measure)),
@@ -533,7 +533,7 @@ function rankingQuery(category, tooltips) {
     sortDefinition: {
       sort: [
         {
-          field: measureProjection("Total Sales").field,
+          field: measureProjection(measure).field,
           direction: "Descending",
         },
       ],
@@ -555,7 +555,28 @@ function setBarAxisTitle(visual, title) {
     literal("1L");
 }
 
+function setPercentBarAxis(visual, title) {
+  const categoryAxis = visual.visual.objects.categoryAxis[0].properties;
+  const valueAxis = visual.visual.objects.valueAxis[0].properties;
+  const labels = visual.visual.objects.labels[0].properties;
+
+  categoryAxis.titleText = literal(quoted(title));
+  categoryAxis.showAxisTitle = literal("false");
+  valueAxis.showAxisTitle = literal("false");
+  valueAxis.titleText = literal(quoted("YoY Growth"));
+  valueAxis.labelDisplayUnits = literal(quoted("1"));
+  valueAxis.labelPrecision = literal("1L");
+  labels.labelDisplayUnits = literal(quoted("1"));
+  labels.labelPrecision = literal("1L");
+  labels.valueCustomFormatString = literal(
+    quoted("0.0%;-0.0%;0.0%"),
+  );
+}
+
 async function buildRegionRanking() {
+  // Chart contract: compare signed selected-year growth across the four
+  // reporting regions; sort descending, label percentages directly, and
+  // preserve an honest blank state when no prior-year period exists.
   await cloneTemplate(
     templateIds.regionRanking,
     "sales-region-ranking",
@@ -574,19 +595,32 @@ async function buildRegionRanking() {
           "Reporting Region",
         ),
         [
+          "Total Sales",
+          "Previous Year Sales",
           "Region Sales Contribution %",
-          "YoY Sales Change %",
           "Cross Region Sales %",
           "Active Distributors",
         ],
+        "YoY Sales Change %",
       );
       delete visual.filterConfig;
-      setTitle(visual, "Sales by Reporting Region");
+      setTitle(visual, "YoY Growth by Reporting Region");
       setAltText(
         visual,
-        "Ranked bar chart comparing sales across corrected West, South, North and East reporting regions.",
+        "Ranked bar chart comparing year-over-year sales growth across corrected West, South, North and East reporting regions. Blank bars mean no prior-year comparison is available.",
       );
-      setBarAxisTitle(visual, "Reporting Region");
+      setPercentBarAxis(visual, "Reporting Region");
+
+      const dataPoint =
+        visual.visual.objects.dataPoint?.[0]?.properties?.fill?.solid
+          ?.color?.expr?.FillRule;
+      if (dataPoint) {
+        dataPoint.Input.Measure.Property = "YoY Sales Change %";
+        dataPoint.FillRule.linearGradient2.min.color.Literal.Value =
+          "'#D8EEEE'";
+        dataPoint.FillRule.linearGradient2.max.color.Literal.Value =
+          "'#0B6F6A'";
+      }
     },
   );
 }
@@ -712,11 +746,11 @@ async function buildFooter() {
   await cloneTemplate(templateIds.footerText, "sales-footer-text", (visual) => {
     setTextbox(
       visual,
-      "Filters apply to every visual. Hover rankings for contribution, YoY growth, orders and cross-region context.",
+      "Filters apply to every visual. YoY shows N/A when no prior-year period exists; hover rankings for diagnostic context.",
     );
     setAltText(
       visual,
-      "Sales Performance usage note: filters apply across the page and tooltips provide diagnostic context.",
+      "Sales Performance usage note: filters apply across the page, N/A means no prior-year comparison, and tooltips provide diagnostic context.",
     );
   });
 }

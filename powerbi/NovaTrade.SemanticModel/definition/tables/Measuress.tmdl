@@ -193,6 +193,19 @@ table Measuress
 		displayFolder: 02_Time Intelligence
 		lineageTag: 99becef4-5544-4035-8e3e-45dd9513f993
 
+	measure 'YoY Sales Growth Display' =
+
+			VAR GrowthRate =
+			    [YoY Sales Change %]
+			RETURN
+			IF (
+			    ISBLANK ( GrowthRate ),
+			    "N/A",
+			    FORMAT ( GrowthRate, "0.00%;-0.00%;0.00%" )
+			)
+		displayFolder: 02_Time Intelligence
+		lineageTag: 6d6fa624-2e16-4fa9-a4b5-78ee4ae8c420
+
 	measure 'Running Total Sales' =
 			
 			VAR MaxVisibleDate =

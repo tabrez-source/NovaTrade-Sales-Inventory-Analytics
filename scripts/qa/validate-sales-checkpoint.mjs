@@ -259,7 +259,7 @@ function validateKpis(visuals) {
     ["Total Sales", "Total Sales"],
     ["Sales Orders", "Sales Order Count"],
     ["Average Order Value", "Average Order Value"],
-    ["YoY Sales Growth", "YoY Sales Change %"],
+    ["YoY Sales Growth", "YoY Sales Growth Display"],
     ["Active Distributors", "Active Distributors"],
   ]);
 
@@ -377,20 +377,67 @@ function validateDiagnostics(visuals) {
     }
   }
 
-  const region = findByTitle(visuals, "Sales by Reporting Region");
-  if (
-    region &&
-    !hasField(
-      region,
-      "Column",
-      "dim DimDistributor",
-      "ReportingRegionName",
-    )
-  ) {
-    addIssue(
-      "region-field",
-      "Region ranking must use ReportingRegionName.",
+  const region = findByTitle(
+    visuals,
+    "YoY Growth by Reporting Region",
+  );
+  if (region) {
+    if (
+      !hasField(
+        region,
+        "Column",
+        "dim DimDistributor",
+        "ReportingRegionName",
+      )
+    ) {
+      addIssue(
+        "region-field",
+        "Regional YoY comparison must use ReportingRegionName.",
+      );
+    }
+    const primary =
+      region.visual?.query?.queryState?.Y?.projections?.[0]?.field
+        ?.Measure?.Property;
+    if (primary !== "YoY Sales Change %") {
+      addIssue(
+        "region-measure",
+        `Regional YoY comparison must bind to YoY Sales Change %, found ${primary}.`,
+      );
+    }
+    const sortMeasure =
+      region.visual?.query?.sortDefinition?.sort?.[0]?.field?.Measure
+        ?.Property;
+    if (
+      sortMeasure !== "YoY Sales Change %" ||
+      region.visual?.query?.sortDefinition?.sort?.[0]?.direction !==
+        "Descending"
+    ) {
+      addIssue(
+        "region-sort",
+        "Regional YoY comparison must sort YoY Sales Change % descending.",
+      );
+    }
+    const labelFormat = literalValue(
+      region.visual?.objects?.labels?.[0]?.properties
+        ?.valueCustomFormatString,
     );
+    if (labelFormat !== "'0.0%;-0.0%;0.0%'") {
+      addIssue(
+        "region-label-format",
+        `Regional YoY labels must use signed percentages, found ${labelFormat}.`,
+      );
+    }
+    if (hasField(region, "Measure", "Measuress", "Total Sales")) {
+      const yMeasures = (
+        region.visual?.query?.queryState?.Y?.projections ?? []
+      ).map((projection) => projection.field?.Measure?.Property);
+      if (yMeasures.includes("Total Sales")) {
+        addIssue(
+          "region-duplicate-analysis",
+          "Regional diagnostic must not repeat the Executive total-sales view.",
+        );
+      }
+    }
   }
 
   const salesHead = findByTitle(visuals, "Sales by Sales Head");
@@ -458,7 +505,7 @@ function validateDiagnostics(visuals) {
 
   evidence.diagnostics = [
     "territory mix",
-    "reporting-region ranking",
+    "reporting-region YoY growth",
     "Sales Head ranking",
     "Top 5 distributors",
   ];
@@ -510,6 +557,21 @@ async function validateModel() {
     );
   }
 
+  const yoyDisplay = measures.match(
+    /measure 'YoY Sales Growth Display' =([\s\S]*?)\n\t\tdisplayFolder:/,
+  )?.[1];
+  if (
+    !yoyDisplay?.includes("[YoY Sales Change %]") ||
+    !yoyDisplay.includes('ISBLANK ( GrowthRate )') ||
+    !yoyDisplay.includes('"N/A"') ||
+    !yoyDisplay.includes("FORMAT ( GrowthRate")
+  ) {
+    addIssue(
+      "yoy-display-dax",
+      "YoY Sales Growth Display must show N/A only when the numeric YoY measure is blank.",
+    );
+  }
+
   for (const measure of [
     "Sales Head Sales Contribution %",
     "Distributor Sales Contribution %",
@@ -547,7 +609,8 @@ async function validateModel() {
     );
   }
 
-  evidence.model = "YoY scope repaired; reporting-region mapping corrected";
+  evidence.model =
+    "YoY scope repaired; explicit N/A state; reporting-region mapping corrected";
 }
 
 async function validateNavigationRename() {

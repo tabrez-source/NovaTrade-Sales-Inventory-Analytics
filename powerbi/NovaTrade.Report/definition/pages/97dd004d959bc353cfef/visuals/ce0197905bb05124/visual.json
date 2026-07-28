@@ -42,11 +42,11 @@
                       "Entity": "Measuress"
                     }
                   },
-                  "Property": "Total Sales"
+                  "Property": "YoY Sales Change %"
                 }
               },
-              "queryRef": "Measuress.Total Sales",
-              "nativeQueryRef": "Total Sales",
+              "queryRef": "Measuress.YoY Sales Change %",
+              "nativeQueryRef": "YoY Sales Change %",
               "active": true
             }
           ]
@@ -61,11 +61,11 @@
                       "Entity": "Measuress"
                     }
                   },
-                  "Property": "Region Sales Contribution %"
+                  "Property": "Total Sales"
                 }
               },
-              "queryRef": "Measuress.Region Sales Contribution %",
-              "nativeQueryRef": "Region Sales Contribution %",
+              "queryRef": "Measuress.Total Sales",
+              "nativeQueryRef": "Total Sales",
               "active": true
             },
             {
@@ -76,11 +76,26 @@
                       "Entity": "Measuress"
                     }
                   },
-                  "Property": "YoY Sales Change %"
+                  "Property": "Previous Year Sales"
                 }
               },
-              "queryRef": "Measuress.YoY Sales Change %",
-              "nativeQueryRef": "YoY Sales Change %",
+              "queryRef": "Measuress.Previous Year Sales",
+              "nativeQueryRef": "Previous Year Sales",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measuress"
+                    }
+                  },
+                  "Property": "Region Sales Contribution %"
+                }
+              },
+              "queryRef": "Measuress.Region Sales Contribution %",
+              "nativeQueryRef": "Region Sales Contribution %",
               "active": true
             },
             {
@@ -126,7 +141,7 @@
                     "Entity": "Measuress"
                   }
                 },
-                "Property": "Total Sales"
+                "Property": "YoY Sales Change %"
               }
             },
             "direction": "Descending"
@@ -149,7 +164,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales by Reporting Region'"
+                  "Value": "'YoY Growth by Reporting Region'"
                 }
               }
             },
@@ -294,7 +309,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ranked bar chart comparing sales across corrected West, South, North and East reporting regions.'"
+                  "Value": "'Ranked bar chart comparing year-over-year sales growth across corrected West, South, North and East reporting regions. Blank bars mean no prior-year comparison is available.'"
                 }
               }
             }
@@ -618,14 +633,14 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales'"
+                  "Value": "'YoY Growth'"
                 }
               }
             },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000000'"
+                  "Value": "'1'"
                 }
               }
             },
@@ -732,7 +747,7 @@
             "valueCustomFormatString": {
               "expr": {
                 "Literal": {
-                  "Value": "'₹0.0,,\"M\"'"
+                  "Value": "'0.0%;-0.0%;0.0%'"
                 }
               }
             }
@@ -754,7 +769,7 @@
                               "Entity": "Measuress"
                             }
                           },
-                          "Property": "Total Sales"
+                          "Property": "YoY Sales Change %"
                         }
                       },
                       "FillRule": {
@@ -762,7 +777,7 @@
                           "min": {
                             "color": {
                               "Literal": {
-                                "Value": "'#B6DEDB'"
+                                "Value": "'#D8EEEE'"
                               }
                             }
                           },

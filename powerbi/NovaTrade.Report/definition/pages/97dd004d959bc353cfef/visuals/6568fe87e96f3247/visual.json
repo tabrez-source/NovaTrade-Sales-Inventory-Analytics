@@ -23,11 +23,11 @@
                       "Entity": "Measuress"
                     }
                   },
-                  "Property": "YoY Sales Change %"
+                  "Property": "YoY Sales Growth Display"
                 }
               },
-              "queryRef": "Measuress.YoY Sales Change %",
-              "nativeQueryRef": "YoY Sales Change %",
+              "queryRef": "Measuress.YoY Sales Growth Display",
+              "nativeQueryRef": "YoY Sales Growth Display",
               "active": true
             }
           ]
@@ -242,7 +242,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Year-over-year sales growth for the selected filters.'"
+                  "Value": "'Year-over-year sales growth for the selected filters. N/A means the selected period has no prior-year sales.'"
                 }
               }
             }
