@@ -18,7 +18,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Product Analysis",
+                    "value": "Product Performance",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontWeight": "normal",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'NT_UI_NAV_0c293fb867ead9beb4cc_TEXT_INACTIVE | Product Analysis navigation label'"
+                  "Value": "'NT_UI_NAV_0c293fb867ead9beb4cc_TEXT_INACTIVE | Product Performance navigation label'"
                 }
               }
             }

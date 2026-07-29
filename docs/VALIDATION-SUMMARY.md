@@ -1,6 +1,6 @@
 # NovaTrade PBIP source checkpoint — validation summary
 
-Validated on 2026-07-28.
+Validated on 2026-07-29.
 
 ## Microsoft PBIR validation
 
@@ -8,7 +8,7 @@ Validated on 2026-07-28.
 - Result: succeeded
 - Errors: 0
 - Warnings: 0
-- Visual definitions: 202
+- Visual definitions: 226
 - Page definitions: 9
 
 ## Reproducible repository validation
@@ -16,7 +16,7 @@ Validated on 2026-07-28.
 - Command: `node scripts/qa/validate-pbip-repository.mjs .`
 - Result: passed
 - Issues: 0
-- JSON files checked: 217
+- JSON files checked: 241
 - Public pages: 5
 - Hidden support pages: 4
 - Registered report resources: 2
@@ -27,7 +27,10 @@ Validated on 2026-07-28.
 - Executive result: passed, 0 issues
 - Sales command: `node scripts/qa/validate-sales-checkpoint.mjs .`
 - Sales result: passed, 0 issues
+- Product command: `node scripts/qa/validate-product-checkpoint.mjs .`
+- Product result: passed, 0 issues
 - Sales Performance visual definitions: 55
+- Product Performance visual definitions: 54
 - Sales primary tab order: 11, 12, 20–24 and 30–34
 - Sales interactive or data visuals missing alt text: 0
 - Sales primary visual overlaps or out-of-canvas positions: 0
@@ -73,6 +76,25 @@ Validated on 2026-07-28.
 - Regional diagnostic: signed YoY percentage, sorted descending, with sales context in tooltips
 - Mumbai reporting geography: corrected to West in the generator and semantic reporting field
 - Cross-page navigation label: Sales Performance
+- Rebuild script: deterministic and idempotent
+
+## Product Performance checks
+
+- Five KPIs: Product Revenue, Units Sold, Product Coverage, Average Selling
+  Price and Top Category Revenue Share
+- Catalog audit: 125 approved products reach `DimProduct`; the earlier 200
+  figure refers to distributors
+- Product Coverage: compact `sold / catalog` value with the coverage rate in
+  tooltip context
+- Category growth: signed YoY comparison with solid teal bars
+- Top products: Visual Top 10 using native visual-level million display units
+  and increased vertical room
+- Price-volume diagnostic: six category observations, units on X, ASP on Y,
+  revenue bubble size and a readable category legend
+- Portfolio table: seven retained fields, compact headers, fixed widths and
+  visual-level million display units for revenue
+- Footer: concise Product-specific guidance with stale Sales copy removed
+- Executive and Sales regression checkpoints: passed
 - Rebuild script: deterministic and idempotent
 
 ## Final Desktop render gate

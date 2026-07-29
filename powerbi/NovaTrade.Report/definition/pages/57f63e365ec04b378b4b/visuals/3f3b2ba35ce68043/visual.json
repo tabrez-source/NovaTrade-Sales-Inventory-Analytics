@@ -108,7 +108,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Open Product Analysis'"
+                  "Value": "'Open Product Performance'"
                 }
               }
             },
@@ -128,7 +128,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Go to Product Analysis page.'"
+                  "Value": "'Go to Product Performance page.'"
                 }
               }
             }

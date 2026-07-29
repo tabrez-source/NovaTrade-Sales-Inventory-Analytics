@@ -22,7 +22,7 @@ const executiveVisuals = path.join(
 const expectedPublicPages = new Set([
   "Executive Overview",
   "Sales Performance",
-  "Product Analysis",
+  "Product Performance",
   "Inventory Movement Analysis",
   "Management Insights",
 ]);
