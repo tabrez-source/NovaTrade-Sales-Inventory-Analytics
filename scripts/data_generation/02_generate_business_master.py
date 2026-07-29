@@ -12,7 +12,7 @@ output_dir.mkdir(parents=True, exist_ok=True)
 # Branches
 # -------------------------
 branches = pd.DataFrame([
-    [1, "Mumbai Head Branch", "Mumbai", "Maharashtra", "East", 1, 1],
+    [1, "Mumbai Head Branch", "Mumbai", "Maharashtra", "West", 1, 1],
     [2, "Chennai Branch", "Chennai", "Tamil Nadu", "South", 0, 1],
     [3, "Delhi Branch", "Delhi", "Delhi", "North", 0, 1],
     [4, "Kolkata Branch", "Kolkata", "West Bengal", "East", 0, 1],

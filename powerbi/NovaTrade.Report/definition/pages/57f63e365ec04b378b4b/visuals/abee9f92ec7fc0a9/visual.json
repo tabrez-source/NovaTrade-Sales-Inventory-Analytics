@@ -108,7 +108,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Open Sales Analysis'"
+                  "Value": "'Open Sales Performance'"
                 }
               }
             },
@@ -128,7 +128,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Go to Sales Analysis page.'"
+                  "Value": "'Go to Sales Performance page.'"
                 }
               }
             }

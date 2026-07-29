@@ -63,9 +63,9 @@
     },
     {
       "id": "97dd004d959bc353cfef",
-      "label": "Sales Analysis",
-      "title": "Sales Analysis",
-      "subtitle": "Revenue trends, sales leadership and regional performance"
+      "label": "Sales Performance",
+      "title": "Sales Performance",
+      "subtitle": "Track momentum, territory execution, sales ownership and distributor concentration"
     },
     {
       "id": "0c293fb867ead9beb4cc",
@@ -122,8 +122,8 @@
           "Average Order Value"
         ],
         [
-          "Cross Region Sales",
-          "Cross Region Sales"
+          "YoY Sales Growth",
+          "YoY Sales Change %"
         ],
         [
           "Active Distributors",
@@ -131,32 +131,40 @@
         ]
       ],
       "line": [
-        "Monthly Sales Trend",
+        "Monthly Sales: Selected Year vs Prior Year",
         "dim DimDate",
-        "YearMonth",
+        "MonthName",
+        "Total Sales",
+        "Previous Year Sales"
+      ],
+      "territoryMix": [
+        "Assigned vs Cross-Region Sales by Month",
+        "dim DimDate",
+        "MonthName",
+        "Assigned-Region Sales",
+        "Cross Region Sales"
+      ],
+      "regionRanking": [
+        "Sales by Reporting Region",
+        "dim DimDistributor",
+        "ReportingRegionName",
         "Total Sales"
       ],
-      "barTop": [
+      "salesHeadRanking": [
         "Sales by Sales Head",
         "dim DimSalesHead",
         "SalesHeadName",
         "Total Sales"
       ],
-      "barBottom": [
-        "Sales by Product Category",
-        "dim DimProduct",
-        "CategoryName",
-        "Total Sales"
-      ],
-      "donut": [
-        "Regional Sales Mix",
-        "fact FactSales",
-        "Cross Region Type",
+      "distributorRanking": [
+        "Top 5 Distributors by Sales",
+        "dim DimDistributor",
+        "DistributorName",
         "Total Sales"
       ],
       "secondarySlicer": [
         "dim DimDistributor",
-        "PhysicalRegionName"
+        "ReportingRegionName"
       ]
     },
     "0c293fb867ead9beb4cc": {
