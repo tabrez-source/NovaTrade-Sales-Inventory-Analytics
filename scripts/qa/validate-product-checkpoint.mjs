@@ -646,7 +646,7 @@ async function validateModel() {
   )?.[1];
   if (
     !compactRevenue?.includes("[Total Sales]") ||
-    !compactRevenue.includes('formatString: "₹"0.00,,"M"')
+    !compactRevenue.includes('formatString: """₹""0.00,,""M"""')
   ) {
     addIssue(
       "compact-product-revenue",

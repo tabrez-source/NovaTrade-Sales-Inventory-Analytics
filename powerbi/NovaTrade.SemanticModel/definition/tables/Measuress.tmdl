@@ -470,7 +470,7 @@ table Measuress
 	measure 'Product Revenue (₹M)' =
 
 			[Total Sales]
-		formatString: "₹"0.00,,"M"
+		formatString: """₹""0.00,,""M"""
 		displayFolder: 08_Product Performance
 		lineageTag: 4456d40c-6c8c-41f3-84bf-edb8b7c5b352
 
