@@ -1,6 +1,6 @@
 # NovaTrade PBIP source checkpoint — validation summary
 
-Validated on 2026-07-28.
+Validated on 2026-07-29.
 
 ## Microsoft PBIR validation
 
@@ -8,7 +8,7 @@ Validated on 2026-07-28.
 - Result: succeeded
 - Errors: 0
 - Warnings: 0
-- Visual definitions: 202
+- Visual definitions: 226
 - Page definitions: 9
 
 ## Reproducible repository validation
@@ -16,7 +16,7 @@ Validated on 2026-07-28.
 - Command: `node scripts/qa/validate-pbip-repository.mjs .`
 - Result: passed
 - Issues: 0
-- JSON files checked: 217
+- JSON files checked: 241
 - Public pages: 5
 - Hidden support pages: 4
 - Registered report resources: 2
@@ -28,6 +28,7 @@ Validated on 2026-07-28.
 - Sales command: `node scripts/qa/validate-sales-checkpoint.mjs .`
 - Sales result: passed, 0 issues
 - Sales Performance visual definitions: 55
+- Product Performance visual definitions: 54
 - Sales primary tab order: 11, 12, 20–24 and 30–34
 - Sales interactive or data visuals missing alt text: 0
 - Sales primary visual overlaps or out-of-canvas positions: 0
@@ -73,6 +74,27 @@ Validated on 2026-07-28.
 - Regional diagnostic: signed YoY percentage, sorted descending, with sales context in tooltips
 - Mumbai reporting geography: corrected to West in the generator and semantic reporting field
 - Cross-page navigation label: Sales Performance
+- Rebuild script: deterministic and idempotent
+
+## Product Performance checks
+
+- Five KPIs: Product Revenue, Units Sold, Product Coverage, Average Selling
+  Price and Top Category Revenue Share
+- Catalog audit: 199 seed candidates, 125 approved products and 74 excluded
+  candidates; no product rows were lost in OLTP or warehouse loading
+- Product Coverage: compact `sold / catalog (rate)` display with the catalog
+  denominator protected from product-row filters
+- Category growth: signed YoY comparison with solid teal bars and no redundant
+  gradient legend
+- Top products: Visual Top 10, compact million labels, dense row spacing and
+  solid teal marks
+- Price-volume diagnostic: product-level observations, units on X, ASP on Y,
+  revenue bubble size, category in tooltips and collision-prone labels hidden
+- Portfolio table: product, category, compact revenue, units, ASP, revenue
+  share and YoY growth, sorted by revenue descending
+- Footer: concise product-specific guidance with stale Sales copy removed
+- Executive and Sales regression checkpoints: passed
+- Microsoft PBIR: 0 errors and 0 warnings
 - Rebuild script: deterministic and idempotent
 
 ## Final Desktop render gate

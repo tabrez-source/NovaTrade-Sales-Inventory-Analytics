@@ -19,20 +19,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "Filters apply to every visual. Bubble size represents revenue; hover charts for share, growth, units and pricing context.",
+                    "value": "Filters apply page-wide. Each bubble is a product; size = revenue. Hover for category, share and growth.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontWeight": "bold",
                       "fontSize": "9.5pt",
                       "color": "#0B6F6A"
-                    }
-                  },
-                  {
-                    "value": "An order sold outside the Sales Head's assigned base region. It highlights market reach; it does not mean the account was reassigned.",
-                    "textStyle": {
-                      "fontFamily": "'Segoe UI'",
-                      "fontSize": "9.5pt",
-                      "color": "#0D2A3C"
                     }
                   }
                 ],
@@ -76,7 +68,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Product Performance usage note: filters apply across the page, bubble size represents revenue, and tooltips provide portfolio context.'"
+                  "Value": "'Product Performance usage note: filters apply across the page; each bubble represents a product and its size represents revenue.'"
                 }
               }
             }

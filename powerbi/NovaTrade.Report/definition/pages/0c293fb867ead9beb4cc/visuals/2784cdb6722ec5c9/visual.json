@@ -3,9 +3,9 @@
   "name": "2784cdb6722ec5c9",
   "position": {
     "x": 728,
-    "y": 466,
+    "y": 478,
     "z": 17100,
-    "height": 262,
+    "height": 250,
     "width": 688,
     "tabOrder": 33
   },
@@ -55,10 +55,10 @@
                       "Entity": "Measuress"
                     }
                   },
-                  "Property": "Total Sales"
+                  "Property": "Product Revenue (₹M)"
                 }
               },
-              "queryRef": "Measuress.Total Sales",
+              "queryRef": "Measuress.Product Revenue (₹M)",
               "nativeQueryRef": "Revenue",
               "active": true
             },
@@ -135,7 +135,7 @@
                     "Entity": "Measuress"
                   }
                 },
-                "Property": "Total Sales"
+                "Property": "Product Revenue (₹M)"
               }
             },
             "direction": "Descending"

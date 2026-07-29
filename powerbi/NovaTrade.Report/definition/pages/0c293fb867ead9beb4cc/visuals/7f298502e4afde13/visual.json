@@ -3,9 +3,9 @@
   "name": "7f298502e4afde13",
   "position": {
     "x": 208,
-    "y": 466,
+    "y": 478,
     "z": 17000,
-    "height": 262,
+    "height": 250,
     "width": 508,
     "tabOrder": 32
   },
@@ -23,13 +23,13 @@
                       "Entity": "dim DimProduct"
                     }
                   },
-                  "Property": "CategoryName"
+                  "Property": "ProductName"
                 }
               },
-              "queryRef": "dim DimProduct.CategoryName",
-              "nativeQueryRef": "Category",
+              "queryRef": "dim DimProduct.ProductName",
+              "nativeQueryRef": "Product",
               "active": true,
-              "displayName": "Category"
+              "displayName": "Product"
             }
           ]
         },
@@ -100,10 +100,25 @@
                       "Entity": "Measuress"
                     }
                   },
-                  "Property": "Category Sales Contribution %"
+                  "Property": "Product Category Tooltip"
                 }
               },
-              "queryRef": "Measuress.Category Sales Contribution %",
+              "queryRef": "Measuress.Product Category Tooltip",
+              "nativeQueryRef": "Category",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measuress"
+                    }
+                  },
+                  "Property": "Product Portfolio Contribution %"
+                }
+              },
+              "queryRef": "Measuress.Product Portfolio Contribution %",
               "nativeQueryRef": "Revenue Share",
               "active": true
             },
@@ -130,11 +145,11 @@
                       "Entity": "Measuress"
                     }
                   },
-                  "Property": "Distinct Products Sold"
+                  "Property": "Total Sales"
                 }
               },
-              "queryRef": "Measuress.Distinct Products Sold",
-              "nativeQueryRef": "Products Sold",
+              "queryRef": "Measuress.Total Sales",
+              "nativeQueryRef": "Revenue",
               "active": true
             }
           ]
@@ -168,14 +183,14 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -188,7 +203,78 @@
             "show": {
               "expr": {
                 "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0B6F6A'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "markers": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
+            "borderShow": {
+              "expr": {
+                "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "borderWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "borderColorMatchFill": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "borderColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#084F4C'"
+                    }
+                  }
                 }
               }
             }
@@ -201,7 +287,7 @@
             "bubbleSize": {
               "expr": {
                 "Literal": {
-                  "Value": "55L"
+                  "Value": "28L"
                 }
               }
             },
@@ -319,7 +405,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Category Price–Volume Matrix'"
+                  "Value": "'Product Price–Volume Matrix'"
                 }
               }
             }
@@ -332,7 +418,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Bubble chart comparing category units sold and average selling price, with bubble size representing revenue.'"
+                  "Value": "'Product-level bubble chart comparing units sold and average selling price. Bubble size represents revenue; hover for category, share and growth.'"
                 }
               }
             }

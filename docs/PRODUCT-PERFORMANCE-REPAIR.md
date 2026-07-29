@@ -26,17 +26,32 @@ Product Performance is the portfolio decision page for NovaTrade. It answers:
 4. Average Selling Price
 5. Top Category Revenue Share
 
-Product Coverage is displayed as `products sold of catalog / coverage rate`.
-The catalog denominator ignores product-row filters so it remains a stable
-portfolio benchmark.
+Product Coverage is displayed compactly as
+`products sold / catalog (coverage rate)`. The catalog denominator ignores
+product-row filters so it remains a stable portfolio benchmark.
+
+### Catalog-count audit
+
+- The original seed at commit `bccdc37` contains 199 candidate product rows.
+- Exactly 125 rows are marked `Include`; the remaining 74 are not approved for
+  generation.
+- The generated `products.csv` contains 125 product records.
+- The OLTP and warehouse load scripts apply no product-row limit and load all
+  approved products.
+- Therefore `DimProduct = 125` is correct and `125 / 125 (100%)` is a truthful
+  coverage result for a year in which every approved product generated sales.
+- The earlier figure of 200 belongs to the generated distributor master, not
+  the approved product catalog.
 
 ### Diagnostics
 
 - Category YoY Growth: signed year-over-year growth by category.
-- Top 10 Products by Revenue: revenue ranking with portfolio share, growth,
-  units, and average selling price in tooltips.
-- Category Price–Volume Matrix: units on X, average selling price on Y, and
-  revenue as bubble size.
+- Top 10 Products by Revenue: compact revenue ranking with portfolio share,
+  growth, units, and average selling price in tooltips.
+- Product Price–Volume Matrix: one product per point, units on X, average
+  selling price on Y, and revenue as bubble size. Labels are intentionally
+  suppressed to prevent collisions; product and category remain available in
+  the hover context.
 - Product Portfolio Detail: product, category, revenue, units, average selling
   price, portfolio revenue share, and YoY growth.
 
@@ -54,12 +69,12 @@ portfolio benchmark.
    2019 sales exist.
 2. Select 2021 and confirm all category growth bars render.
 3. Confirm Product Coverage shows the sold count, catalog count, and percent.
-4. Confirm Top 10 Products contains ten ranked products without an unexpected
-   recovery warning.
-5. Confirm the price–volume matrix shows one labelled bubble per category and
-   bubble size varies with revenue.
-6. Confirm the portfolio table sorts by revenue descending and scrolls for
-   lookup.
+4. Confirm Top 10 Products displays all ten ranked products without a scrollbar
+   or an unexpected recovery warning.
+5. Confirm the price–volume matrix renders one bubble per sold product, does
+   not show overlapping labels, and bubble size varies with revenue.
+6. Confirm the portfolio table sorts by compact revenue descending and scrolls
+   for lookup.
 7. Confirm Product Performance is the active navigation item and the other
    report-page labels remain visible.
 8. Confirm no clipping, blank KPI, or broken interaction appears.

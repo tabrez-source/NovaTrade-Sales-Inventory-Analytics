@@ -83,6 +83,12 @@ function dataVisual(visual) {
   ].includes(visual.visual?.visualType);
 }
 
+function hasFillRule(visual) {
+  return JSON.stringify(visual.visual?.objects ?? {}).includes(
+    '"FillRule"',
+  );
+}
+
 function overlaps(left, right) {
   const leftRight = left.position.x + left.position.width;
   const leftBottom = left.position.y + left.position.height;
@@ -324,6 +330,12 @@ function validateCategoryGrowth(visuals) {
       "Category YoY Growth must sort growth descending.",
     );
   }
+  if (hasFillRule(chart)) {
+    addIssue(
+      "category-growth-gradient",
+      "Category YoY Growth must use a solid mark color without a redundant gradient legend.",
+    );
+  }
   evidence.categoryGrowth = "signed YoY growth by CategoryName";
 }
 
@@ -338,11 +350,16 @@ function validateTopProducts(visuals) {
   }
   if (
     !hasField(chart, "Column", "dim DimProduct", "ProductName") ||
-    !hasField(chart, "Measure", "Measuress", "Total Sales")
+    !hasField(
+      chart,
+      "Measure",
+      "Measuress",
+      "Product Revenue (₹M)",
+    )
   ) {
     addIssue(
       "top-products-fields",
-      "Top 10 Products must use ProductName and Total Sales.",
+      "Top 10 Products must use ProductName and compact product revenue.",
     );
   }
   const topN =
@@ -355,6 +372,7 @@ function validateTopProducts(visuals) {
     );
   }
   for (const measure of [
+    "Total Sales",
     "Product Portfolio Contribution %",
     "YoY Sales Change %",
     "Total Quantity Sold",
@@ -367,24 +385,57 @@ function validateTopProducts(visuals) {
       );
     }
   }
-  evidence.topProducts = "Top 10 revenue with portfolio diagnostics";
+  const primary =
+    chart.visual?.query?.queryState?.Y?.projections?.[0]?.field?.Measure
+      ?.Property;
+  const sort = chart.visual?.query?.sortDefinition?.sort?.[0];
+  if (
+    primary !== "Product Revenue (₹M)" ||
+    sort?.field?.Measure?.Property !== "Product Revenue (₹M)" ||
+    sort?.direction !== "Descending"
+  ) {
+    addIssue(
+      "top-products-compact-revenue",
+      "Top 10 Products must plot and sort compact product revenue descending.",
+    );
+  }
+  const categoryAxis =
+    chart.visual?.objects?.categoryAxis?.[0]?.properties;
+  if (
+    Number.parseFloat(literalValue(categoryAxis?.preferredCategoryWidth)) >
+      12 ||
+    Number.parseInt(literalValue(categoryAxis?.innerPadding), 10) > 18
+  ) {
+    addIssue(
+      "top-products-density",
+      "Top 10 Products must use compact category width and padding so all ten rows fit.",
+    );
+  }
+  if (hasFillRule(chart)) {
+    addIssue(
+      "top-products-gradient",
+      "Top 10 Products must use a solid mark color without a redundant gradient legend.",
+    );
+  }
+  evidence.topProducts =
+    "Top 10 compact revenue ranking with portfolio diagnostics";
 }
 
 function validatePriceVolume(visuals) {
   const chart = findByTitle(
     visuals,
-    "Category Price–Volume Matrix",
+    "Product Price–Volume Matrix",
   );
   if (!chart) return;
   if (chart.visual?.visualType !== "scatterChart") {
     addIssue(
       "price-volume-type",
-      "Category Price–Volume Matrix must be a scatterChart.",
+      "Product Price–Volume Matrix must be a scatterChart.",
     );
   }
 
   const expectedRoles = new Map([
-    ["Category", ["Column", "CategoryName"]],
+    ["Category", ["Column", "ProductName"]],
     ["X", ["Measure", "Total Quantity Sold"]],
     ["Y", ["Measure", "Average Selling Price"]],
     ["Size", ["Measure", "Total Sales"]],
@@ -403,8 +454,35 @@ function validatePriceVolume(visuals) {
       );
     }
   }
+  if (
+    !hasField(
+      chart,
+      "Measure",
+      "Measuress",
+      "Product Category Tooltip",
+    ) ||
+    !hasField(
+      chart,
+      "Measure",
+      "Measuress",
+      "Product Portfolio Contribution %",
+    )
+  ) {
+    addIssue(
+      "price-volume-tooltip",
+      "Product Price–Volume Matrix must expose category and portfolio share in its hover context.",
+    );
+  }
+  const labels =
+    chart.visual?.objects?.categoryLabels?.[0]?.properties;
+  if (literalValue(labels?.show) !== "false") {
+    addIssue(
+      "price-volume-labels",
+      "Product Price–Volume Matrix must suppress overlapping point labels.",
+    );
+  }
   evidence.priceVolume =
-    "category points; units x ASP; revenue bubble size";
+    "product points; units x ASP; revenue bubble size; category in tooltips";
 }
 
 function validatePortfolioTable(visuals) {
@@ -419,7 +497,7 @@ function validatePortfolioTable(visuals) {
   const required = [
     ["Column", "dim DimProduct", "ProductName"],
     ["Column", "dim DimProduct", "CategoryName"],
-    ["Measure", "Measuress", "Total Sales"],
+    ["Measure", "Measuress", "Product Revenue (₹M)"],
     ["Measure", "Measuress", "Total Quantity Sold"],
     ["Measure", "Measuress", "Average Selling Price"],
     [
@@ -439,12 +517,12 @@ function validatePortfolioTable(visuals) {
   }
   const sort = table.visual?.query?.sortDefinition?.sort?.[0];
   if (
-    sort?.field?.Measure?.Property !== "Total Sales" ||
+    sort?.field?.Measure?.Property !== "Product Revenue (₹M)" ||
     sort?.direction !== "Descending"
   ) {
     addIssue(
       "portfolio-table-sort",
-      "Product Portfolio Detail must sort Total Sales descending.",
+      "Product Portfolio Detail must sort compact product revenue descending.",
     );
   }
   evidence.portfolioTable =
@@ -482,6 +560,40 @@ function validateLegacyRemoval(visuals) {
     "duplicated monthly, product/category revenue, donut and orders removed";
 }
 
+function validateFooter(visuals) {
+  const footer = visuals.find((visual) => {
+    const runs =
+      visual.visual?.objects?.general?.[0]?.properties?.paragraphs?.[0]
+        ?.textRuns;
+    return (
+      visual.visual?.visualType === "textbox" &&
+      Array.isArray(runs) &&
+      runs.some((run) => run.value?.includes("Each bubble is a product"))
+    );
+  });
+  if (!footer) {
+    addIssue(
+      "product-footer",
+      "Product usage footer with product-level bubble guidance is missing.",
+    );
+    return;
+  }
+  const textRuns =
+    footer.visual.objects.general[0].properties.paragraphs[0].textRuns;
+  const footerText = textRuns.map((run) => run.value).join("");
+  if (
+    textRuns.length !== 1 ||
+    footerText.includes("An order") ||
+    footerText.includes("context.An")
+  ) {
+    addIssue(
+      "product-footer-copy",
+      "Product footer must contain one concise product-specific text run without stale Sales copy.",
+    );
+  }
+  evidence.footer = footerText;
+}
+
 async function validateModel() {
   const measures = await readFile(
     path.join(
@@ -498,6 +610,8 @@ async function validateModel() {
     "Product Catalog Count",
     "Product Coverage %",
     "Product Coverage Display",
+    "Product Revenue (₹M)",
+    "Product Category Tooltip",
     "Product Portfolio Contribution %",
     "Top Category Revenue Share",
   ];
@@ -517,12 +631,41 @@ async function validateModel() {
     !coverage?.includes("[Distinct Products Sold]") ||
     !coverage.includes("[Product Catalog Count]") ||
     !coverage.includes("[Product Coverage %]") ||
-    !coverage.includes('" of "') ||
-    !coverage.includes('" / "')
+    !coverage.includes('" / "') ||
+    !coverage.includes('" ("') ||
+    !coverage.includes('")"')
   ) {
     addIssue(
       "coverage-dax",
       "Product Coverage Display must show sold, catalog and coverage-rate context.",
+    );
+  }
+
+  const compactRevenue = measures.match(
+    /measure 'Product Revenue \(₹M\)' =([\s\S]*?)\n\t\tdisplayFolder:/,
+  )?.[1];
+  if (
+    !compactRevenue?.includes("[Total Sales]") ||
+    !compactRevenue.includes('formatString: "₹"0.00,,"M"')
+  ) {
+    addIssue(
+      "compact-product-revenue",
+      "Product Revenue (₹M) must preserve Total Sales while formatting display values in millions.",
+    );
+  }
+
+  const categoryTooltip = measures.match(
+    /measure 'Product Category Tooltip' =([\s\S]*?)\n\t\tdisplayFolder:/,
+  )?.[1];
+  if (
+    !categoryTooltip?.includes("SELECTEDVALUE") ||
+    !categoryTooltip.includes(
+      "'dim DimProduct'[CategoryName]",
+    )
+  ) {
+    addIssue(
+      "product-category-tooltip",
+      "Product Category Tooltip must return the selected product category through a tooltip-compatible measure.",
     );
   }
 
@@ -601,6 +744,7 @@ validateTopProducts(visuals);
 validatePriceVolume(visuals);
 validatePortfolioTable(visuals);
 validateLegacyRemoval(visuals);
+validateFooter(visuals);
 await validateModel();
 await validateNavigationRename();
 

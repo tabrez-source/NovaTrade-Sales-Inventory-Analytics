@@ -5,7 +5,7 @@
     "x": 208,
     "y": 206,
     "z": 14600,
-    "height": 248,
+    "height": 260,
     "width": 620,
     "tabOrder": 30
   },
@@ -762,42 +762,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "FillRule": {
-                      "Input": {
-                        "Measure": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "Measuress"
-                            }
-                          },
-                          "Property": "YoY Sales Change %"
-                        }
-                      },
-                      "FillRule": {
-                        "linearGradient2": {
-                          "min": {
-                            "color": {
-                              "Literal": {
-                                "Value": "'#D8EEEE'"
-                              }
-                            }
-                          },
-                          "max": {
-                            "color": {
-                              "Literal": {
-                                "Value": "'#0B6F6A'"
-                              }
-                            }
-                          },
-                          "nullColoringStrategy": {
-                            "strategy": {
-                              "Literal": {
-                                "Value": "'noColor'"
-                              }
-                            }
-                          }
-                        }
-                      }
+                    "Literal": {
+                      "Value": "'#0B6F6A'"
                     }
                   }
                 }
