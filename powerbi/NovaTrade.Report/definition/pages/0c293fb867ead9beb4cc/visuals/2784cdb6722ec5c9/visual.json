@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "2784cdb6722ec5c9",
   "position": {
-    "x": 728,
-    "y": 478,
+    "x": 768,
+    "y": 502,
     "z": 17100,
-    "height": 250,
-    "width": 688,
+    "height": 226,
+    "width": 648,
     "tabOrder": 33
   },
   "visual": {
@@ -55,12 +55,13 @@
                       "Entity": "Measuress"
                     }
                   },
-                  "Property": "Product Revenue (₹M)"
+                  "Property": "Total Sales"
                 }
               },
-              "queryRef": "Measuress.Product Revenue (₹M)",
+              "queryRef": "Measuress.Total Sales",
               "nativeQueryRef": "Revenue",
-              "active": true
+              "active": true,
+              "displayName": "Revenue"
             },
             {
               "field": {
@@ -75,7 +76,8 @@
               },
               "queryRef": "Measuress.Total Quantity Sold",
               "nativeQueryRef": "Units",
-              "active": true
+              "active": true,
+              "displayName": "Units"
             },
             {
               "field": {
@@ -90,7 +92,8 @@
               },
               "queryRef": "Measuress.Average Selling Price",
               "nativeQueryRef": "ASP",
-              "active": true
+              "active": true,
+              "displayName": "ASP"
             },
             {
               "field": {
@@ -105,7 +108,8 @@
               },
               "queryRef": "Measuress.Product Portfolio Contribution %",
               "nativeQueryRef": "Revenue Share",
-              "active": true
+              "active": true,
+              "displayName": "Share"
             },
             {
               "field": {
@@ -120,7 +124,8 @@
               },
               "queryRef": "Measuress.YoY Sales Change %",
               "nativeQueryRef": "YoY Growth",
-              "active": true
+              "active": true,
+              "displayName": "YoY"
             }
           ]
         }
@@ -135,7 +140,7 @@
                     "Entity": "Measuress"
                   }
                 },
-                "Property": "Product Revenue (₹M)"
+                "Property": "Total Sales"
               }
             },
             "direction": "Descending"
@@ -158,24 +163,189 @@
             "autoSizeColumnWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
             "columnAdjustment": {
               "expr": {
                 "Literal": {
-                  "Value": "'growToFit'"
+                  "Value": "'fixedWidth'"
+                }
+              }
+            },
+            "customColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "defaultColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "76D"
                 }
               }
             },
             "wordWrap": {
               "expr": {
                 "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1000000'"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleValues": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
                   "Value": "true"
                 }
               }
             }
+          },
+          "selector": {
+            "metadata": "Measuress.Total Sales"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "142D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim DimProduct.ProductName"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "104D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim DimProduct.CategoryName"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "76D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measuress.Total Sales"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "58D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measuress.Total Quantity Sold"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "60D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measuress.Average Selling Price"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "58D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measuress.Product Portfolio Contribution %"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "56D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measuress.YoY Sales Change %"
           }
         }
       ],

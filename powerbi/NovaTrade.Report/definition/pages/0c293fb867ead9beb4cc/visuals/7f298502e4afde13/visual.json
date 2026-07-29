@@ -3,10 +3,10 @@
   "name": "7f298502e4afde13",
   "position": {
     "x": 208,
-    "y": 478,
+    "y": 502,
     "z": 17000,
-    "height": 250,
-    "width": 508,
+    "height": 226,
+    "width": 548,
     "tabOrder": 32
   },
   "visual": {
@@ -23,13 +23,13 @@
                       "Entity": "dim DimProduct"
                     }
                   },
-                  "Property": "ProductName"
+                  "Property": "CategoryName"
                 }
               },
-              "queryRef": "dim DimProduct.ProductName",
-              "nativeQueryRef": "Product",
+              "queryRef": "dim DimProduct.CategoryName",
+              "nativeQueryRef": "Category",
               "active": true,
-              "displayName": "Product"
+              "displayName": "Category"
             }
           ]
         },
@@ -100,25 +100,10 @@
                       "Entity": "Measuress"
                     }
                   },
-                  "Property": "Product Category Tooltip"
+                  "Property": "Category Sales Contribution %"
                 }
               },
-              "queryRef": "Measuress.Product Category Tooltip",
-              "nativeQueryRef": "Category",
-              "active": true
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Measuress"
-                    }
-                  },
-                  "Property": "Product Portfolio Contribution %"
-                }
-              },
-              "queryRef": "Measuress.Product Portfolio Contribution %",
+              "queryRef": "Measuress.Category Sales Contribution %",
               "nativeQueryRef": "Revenue Share",
               "active": true
             },
@@ -145,11 +130,11 @@
                       "Entity": "Measuress"
                     }
                   },
-                  "Property": "Total Sales"
+                  "Property": "Distinct Products Sold"
                 }
               },
-              "queryRef": "Measuress.Total Sales",
-              "nativeQueryRef": "Revenue",
+              "queryRef": "Measuress.Distinct Products Sold",
+              "nativeQueryRef": "Products Sold",
               "active": true
             }
           ]
@@ -163,7 +148,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -171,6 +156,20 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'RightCenter'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }
@@ -203,78 +202,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#0B6F6A'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ]
-          }
-        }
-      ],
-      "markers": [
-        {
-          "properties": {
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "18D"
-                }
-              }
-            },
-            "borderShow": {
-              "expr": {
-                "Literal": {
                   "Value": "true"
-                }
-              }
-            },
-            "borderWidth": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            },
-            "borderColorMatchFill": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "borderColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#084F4C'"
-                    }
-                  }
                 }
               }
             }
@@ -287,7 +215,7 @@
             "bubbleSize": {
               "expr": {
                 "Literal": {
-                  "Value": "28L"
+                  "Value": "42L"
                 }
               }
             },
@@ -405,7 +333,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Product Price–Volume Matrix'"
+                  "Value": "'Category Price–Volume Matrix'"
                 }
               }
             }
@@ -418,7 +346,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Product-level bubble chart comparing units sold and average selling price. Bubble size represents revenue; hover for category, share and growth.'"
+                  "Value": "'Six-category bubble chart comparing units sold and average selling price. Bubble size represents revenue and the legend identifies each category.'"
                 }
               }
             }

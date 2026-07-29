@@ -27,6 +27,8 @@ Validated on 2026-07-29.
 - Executive result: passed, 0 issues
 - Sales command: `node scripts/qa/validate-sales-checkpoint.mjs .`
 - Sales result: passed, 0 issues
+- Product command: `node scripts/qa/validate-product-checkpoint.mjs .`
+- Product result: passed, 0 issues
 - Sales Performance visual definitions: 55
 - Product Performance visual definitions: 54
 - Sales primary tab order: 11, 12, 20–24 and 30–34
@@ -80,21 +82,19 @@ Validated on 2026-07-29.
 
 - Five KPIs: Product Revenue, Units Sold, Product Coverage, Average Selling
   Price and Top Category Revenue Share
-- Catalog audit: 199 seed candidates, 125 approved products and 74 excluded
-  candidates; no product rows were lost in OLTP or warehouse loading
-- Product Coverage: compact `sold / catalog (rate)` display with the catalog
-  denominator protected from product-row filters
-- Category growth: signed YoY comparison with solid teal bars and no redundant
-  gradient legend
-- Top products: Visual Top 10, compact million labels, dense row spacing and
-  solid teal marks
-- Price-volume diagnostic: product-level observations, units on X, ASP on Y,
-  revenue bubble size, category in tooltips and collision-prone labels hidden
-- Portfolio table: product, category, compact revenue, units, ASP, revenue
-  share and YoY growth, sorted by revenue descending
-- Footer: concise product-specific guidance with stale Sales copy removed
+- Catalog audit: 125 approved products reach `DimProduct`; the earlier 200
+  figure refers to distributors
+- Product Coverage: compact `sold / catalog` value with the coverage rate in
+  tooltip context
+- Category growth: signed YoY comparison with solid teal bars
+- Top products: Visual Top 10 using native visual-level million display units
+  and increased vertical room
+- Price-volume diagnostic: six category observations, units on X, ASP on Y,
+  revenue bubble size and a readable category legend
+- Portfolio table: seven retained fields, compact headers, fixed widths and
+  visual-level million display units for revenue
+- Footer: concise Product-specific guidance with stale Sales copy removed
 - Executive and Sales regression checkpoints: passed
-- Microsoft PBIR: 0 errors and 0 warnings
 - Rebuild script: deterministic and idempotent
 
 ## Final Desktop render gate

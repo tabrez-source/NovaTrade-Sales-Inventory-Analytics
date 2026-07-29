@@ -74,7 +74,11 @@ function quoted(value) {
   return `'${value.replaceAll("'", "''")}'`;
 }
 
-function measureProjection(property, nativeQueryRef = property) {
+function measureProjection(
+  property,
+  nativeQueryRef = property,
+  displayName = undefined,
+) {
   return {
     field: {
       Measure: {
@@ -89,6 +93,7 @@ function measureProjection(property, nativeQueryRef = property) {
     queryRef: `Measuress.${property}`,
     nativeQueryRef,
     active: true,
+    ...(displayName ? { displayName } : {}),
   };
 }
 
@@ -528,7 +533,7 @@ async function buildCategoryGrowth() {
     x: 208,
     y: 206,
     width: 620,
-    height: 260,
+    height: 284,
     tabOrder: 30,
   });
   visual.visual.query = rankingQuery(
@@ -567,7 +572,7 @@ async function buildTopProducts() {
     x: 840,
     y: 206,
     width: 576,
-    height: 260,
+    height: 284,
     tabOrder: 31,
   });
   visual.visual.query = rankingQuery(
@@ -579,22 +584,12 @@ async function buildTopProducts() {
     ),
     "Total Sales",
     [
-      "Total Sales",
       "Product Portfolio Contribution %",
       "YoY Sales Change %",
       "Total Quantity Sold",
       "Average Selling Price",
     ],
   );
-  visual.visual.query.queryState.Y.projections = [
-    measureProjection("Product Revenue (₹M)", "Revenue"),
-  ];
-  visual.visual.query.sortDefinition.sort = [
-    {
-      field: measureProjection("Product Revenue (₹M)").field,
-      direction: "Descending",
-    },
-  ];
   visual.filterConfig = {
     filters: [
       {
@@ -643,16 +638,14 @@ async function buildTopProducts() {
   setRevenueBarAxis(visual);
   const categoryAxis =
     visual.visual.objects.categoryAxis[0].properties;
-  categoryAxis.preferredCategoryWidth = literal("12D");
-  categoryAxis.innerPadding = literal("18L");
+  categoryAxis.preferredCategoryWidth = literal("8D");
+  categoryAxis.innerPadding = literal("8L");
   categoryAxis.fontSize = literal("8D");
 
   const labels = visual.visual.objects.labels[0].properties;
   labels.labelDisplayUnits = literal(quoted("1000000"));
   labels.labelPrecision = literal("2L");
-  labels.valueCustomFormatString = literal(
-    quoted("₹0.00,,\"M\""),
-  );
+  delete labels.valueCustomFormatString;
   setSolidBarColor(visual);
   await writeVisual(visual, "product-top-ten-products");
 }
@@ -684,10 +677,10 @@ async function buildPriceVolumeMatrix() {
     name: "",
     position: {
       x: 208,
-      y: 478,
+      y: 502,
       z: 17000,
-      height: 250,
-      width: 508,
+      height: 226,
+      width: 548,
       tabOrder: 32,
     },
     visual: {
@@ -698,9 +691,9 @@ async function buildPriceVolumeMatrix() {
             projections: [
               columnProjection(
                 "dim DimProduct",
-                "ProductName",
-                "Product",
-                "Product",
+                "CategoryName",
+                "Category",
+                "Category",
               ),
             ],
           },
@@ -722,15 +715,14 @@ async function buildPriceVolumeMatrix() {
           Tooltips: {
             projections: [
               measureProjection(
-                "Product Category Tooltip",
-                "Category",
-              ),
-              measureProjection(
-                "Product Portfolio Contribution %",
+                "Category Sales Contribution %",
                 "Revenue Share",
               ),
               measureProjection("YoY Sales Change %", "YoY Growth"),
-              measureProjection("Total Sales", "Revenue"),
+              measureProjection(
+                "Distinct Products Sold",
+                "Products Sold",
+              ),
             ],
           },
         },
@@ -739,8 +731,10 @@ async function buildPriceVolumeMatrix() {
         legend: [
           {
             properties: {
-              show: literal("false"),
+              show: literal("true"),
               showTitle: literal("false"),
+              position: literal(quoted("RightCenter")),
+              fontSize: literal("8D"),
             },
           },
         ],
@@ -755,49 +749,14 @@ async function buildPriceVolumeMatrix() {
         colorByCategory: [
           {
             properties: {
-              show: literal("false"),
-            },
-          },
-        ],
-        dataPoint: [
-          {
-            properties: {
-              fill: {
-                solid: {
-                  color: literal(quoted("#0B6F6A")),
-                },
-              },
-            },
-            selector: {
-              data: [
-                {
-                  dataViewWildcard: {
-                    matchingOption: 0,
-                  },
-                },
-              ],
-            },
-          },
-        ],
-        markers: [
-          {
-            properties: {
-              transparency: literal("18D"),
-              borderShow: literal("true"),
-              borderWidth: literal("1D"),
-              borderColorMatchFill: literal("false"),
-              borderColor: {
-                solid: {
-                  color: literal(quoted("#084F4C")),
-                },
-              },
+              show: literal("true"),
             },
           },
         ],
         bubbles: [
           {
             properties: {
-              bubbleSize: literal("28L"),
+              bubbleSize: literal("42L"),
               markerRangeType: literal(quoted("dataRange")),
               preventOverflow: literal("true"),
             },
@@ -827,8 +786,8 @@ async function buildPriceVolumeMatrix() {
         ],
       },
       visualContainerObjects: visualContainerObjects(
-        "Product Price–Volume Matrix",
-        "Product-level bubble chart comparing units sold and average selling price. Bubble size represents revenue; hover for category, share and growth.",
+        "Category Price–Volume Matrix",
+        "Six-category bubble chart comparing units sold and average selling price. Bubble size represents revenue and the legend identifies each category.",
       ),
       drillFilterOtherVisuals: true,
     },
@@ -851,25 +810,30 @@ async function buildPortfolioTable() {
       "Category",
       "Category",
     ),
-    measureProjection("Product Revenue (₹M)", "Revenue"),
-    measureProjection("Total Quantity Sold", "Units"),
-    measureProjection("Average Selling Price", "ASP"),
+    measureProjection("Total Sales", "Revenue", "Revenue"),
+    measureProjection("Total Quantity Sold", "Units", "Units"),
+    measureProjection("Average Selling Price", "ASP", "ASP"),
     measureProjection(
       "Product Portfolio Contribution %",
       "Revenue Share",
+      "Share",
     ),
-    measureProjection("YoY Sales Change %", "YoY Growth"),
+    measureProjection(
+      "YoY Sales Change %",
+      "YoY Growth",
+      "YoY",
+    ),
   ];
   const visual = {
     $schema:
       "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
     name: "",
     position: {
-      x: 728,
-      y: 478,
+      x: 768,
+      y: 502,
       z: 17100,
-      height: 250,
-      width: 688,
+      height: 226,
+      width: 648,
       tabOrder: 33,
     },
     visual: {
@@ -883,7 +847,7 @@ async function buildPortfolioTable() {
         sortDefinition: {
           sort: [
             {
-              field: measureProjection("Product Revenue (₹M)").field,
+              field: measureProjection("Total Sales").field,
               direction: "Descending",
             },
           ],
@@ -895,9 +859,85 @@ async function buildPortfolioTable() {
           {
             properties: {
               bold: literal("true"),
-              autoSizeColumnWidth: literal("true"),
-              columnAdjustment: literal(quoted("growToFit")),
-              wordWrap: literal("true"),
+              autoSizeColumnWidth: literal("false"),
+              columnAdjustment: literal(quoted("fixedWidth")),
+              customColumnWidth: literal("true"),
+              defaultColumnWidth: literal("76D"),
+              wordWrap: literal("false"),
+            },
+          },
+        ],
+        columnFormatting: [
+          {
+            properties: {
+              labelDisplayUnits: literal(quoted("1000000")),
+              labelPrecision: literal("2L"),
+              alignment: literal(quoted("Right")),
+              styleHeader: literal("true"),
+              styleValues: literal("true"),
+              styleTotal: literal("true"),
+            },
+            selector: {
+              metadata: "Measuress.Total Sales",
+            },
+          },
+        ],
+        columnWidth: [
+          {
+            properties: {
+              value: literal("142D"),
+            },
+            selector: {
+              metadata: "dim DimProduct.ProductName",
+            },
+          },
+          {
+            properties: {
+              value: literal("104D"),
+            },
+            selector: {
+              metadata: "dim DimProduct.CategoryName",
+            },
+          },
+          {
+            properties: {
+              value: literal("76D"),
+            },
+            selector: {
+              metadata: "Measuress.Total Sales",
+            },
+          },
+          {
+            properties: {
+              value: literal("58D"),
+            },
+            selector: {
+              metadata: "Measuress.Total Quantity Sold",
+            },
+          },
+          {
+            properties: {
+              value: literal("60D"),
+            },
+            selector: {
+              metadata: "Measuress.Average Selling Price",
+            },
+          },
+          {
+            properties: {
+              value: literal("58D"),
+            },
+            selector: {
+              metadata:
+                "Measuress.Product Portfolio Contribution %",
+            },
+          },
+          {
+            properties: {
+              value: literal("56D"),
+            },
+            selector: {
+              metadata: "Measuress.YoY Sales Change %",
             },
           },
         ],
@@ -945,20 +985,13 @@ async function buildFooter() {
     templateIds.footerText,
     "product-footer-text",
     (visual) => {
-      const textRuns =
-        visual.visual.objects.general[0].properties.paragraphs[0]
-          .textRuns;
-      visual.visual.objects.general[0].properties.paragraphs[0].textRuns =
-        [
-          {
-            ...textRuns[0],
-            value:
-              "Filters apply page-wide. Each bubble is a product; size = revenue. Hover for category, share and growth.",
-          },
-        ];
+      setTextbox(
+        visual,
+        "Filters apply page-wide. Category bubbles compare price and volume; size represents revenue. Hover for share, growth and units.",
+      );
       setAltText(
         visual,
-        "Product Performance usage note: filters apply across the page; each bubble represents a product and its size represents revenue.",
+        "Product Performance usage note: filters apply across the page; each bubble is a category and its size represents revenue.",
       );
     },
   );

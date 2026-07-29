@@ -5,7 +5,7 @@
     "x": 840,
     "y": 206,
     "z": 14800,
-    "height": 260,
+    "height": 284,
     "width": 576,
     "tabOrder": 31
   },
@@ -43,32 +43,17 @@
                       "Entity": "Measuress"
                     }
                   },
-                  "Property": "Product Revenue (₹M)"
-                }
-              },
-              "queryRef": "Measuress.Product Revenue (₹M)",
-              "nativeQueryRef": "Revenue",
-              "active": true
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Measuress"
-                    }
-                  },
                   "Property": "Total Sales"
                 }
               },
               "queryRef": "Measuress.Total Sales",
               "nativeQueryRef": "Total Sales",
               "active": true
-            },
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
             {
               "field": {
                 "Measure": {
@@ -142,7 +127,7 @@
                     "Entity": "Measuress"
                   }
                 },
-                "Property": "Product Revenue (₹M)"
+                "Property": "Total Sales"
               }
             },
             "direction": "Descending"
@@ -387,7 +372,7 @@
             "preferredCategoryWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "8D"
                 }
               }
             },
@@ -504,7 +489,7 @@
             "innerPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "18L"
+                  "Value": "8L"
                 }
               }
             },
@@ -742,13 +727,6 @@
               "expr": {
                 "Literal": {
                   "Value": "2L"
-                }
-              }
-            },
-            "valueCustomFormatString": {
-              "expr": {
-                "Literal": {
-                  "Value": "'₹0.00,,\"M\"'"
                 }
               }
             }

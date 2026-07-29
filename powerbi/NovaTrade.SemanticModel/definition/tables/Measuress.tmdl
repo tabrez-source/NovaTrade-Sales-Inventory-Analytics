@@ -451,8 +451,6 @@ table Measuress
 			    [Distinct Products Sold]
 			VAR CatalogProducts =
 			    [Product Catalog Count]
-			VAR CoverageRate =
-			    [Product Coverage %]
 			RETURN
 			IF (
 			    ISBLANK ( ProductsSold ),
@@ -460,30 +458,9 @@ table Measuress
 			    FORMAT ( ProductsSold, "#,0" )
 			        & " / "
 			        & FORMAT ( CatalogProducts, "#,0" )
-			        & " ("
-			        & FORMAT ( CoverageRate, "0%" )
-			        & ")"
 			)
 		displayFolder: 08_Product Performance
 		lineageTag: 6d691914-c9f8-445d-a3d1-f27173830ac4
-
-	measure 'Product Revenue (₹M)' =
-
-			[Total Sales]
-		formatString: """₹""0.00,,""M"""
-		displayFolder: 08_Product Performance
-		lineageTag: 4456d40c-6c8c-41f3-84bf-edb8b7c5b352
-
-		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
-
-	measure 'Product Category Tooltip' =
-
-			SELECTEDVALUE (
-			    'dim DimProduct'[CategoryName],
-			    "Multiple Categories"
-			)
-		displayFolder: 08_Product Performance
-		lineageTag: 413c680c-d07f-4589-ad5a-5446f5adcdb2
 
 	measure 'Distinct Sales Heads' =
 			
