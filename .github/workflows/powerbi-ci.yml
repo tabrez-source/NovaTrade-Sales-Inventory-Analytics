@@ -77,3 +77,6 @@ jobs:
 
       - name: Validate Sales Performance checkpoint
         run: node scripts/qa/validate-sales-checkpoint.mjs .
+
+      - name: Validate Product Performance checkpoint
+        run: node scripts/qa/validate-product-checkpoint.mjs .
