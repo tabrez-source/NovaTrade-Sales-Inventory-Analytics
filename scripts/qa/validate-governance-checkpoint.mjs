@@ -300,6 +300,35 @@ if ((measuresText.match(/displayFolder: 11_Report Validation/g) ?? []).length !=
   fail("All 18 validation measures must be assigned to 11_Report Validation.");
 }
 
+const inventoryOrphanMeasure = measuresText.match(
+  /measure 'Validation Inventory Orphan Rows' =([\s\S]*?)\n\tmeasure 'Validation Orphan Fact Rows' =/,
+)?.[1];
+if (!inventoryOrphanMeasure) {
+  fail("Could not inspect the inventory orphan-row validation measure.");
+} else {
+  for (const optionalRoleKey of ["FromGodownKey", "ToGodownKey"]) {
+    if (
+      !inventoryOrphanMeasure.includes(
+        `NOT ISBLANK ( 'fact FactInventoryMovement'[${optionalRoleKey}] )`,
+      )
+    ) {
+      fail(
+        `Inventory relationship validation must ignore a blank optional ${optionalRoleKey}.`,
+      );
+    }
+  }
+  for (const roleDimension of ["DimFromGodown", "DimToGodown"]) {
+    const unconditionalBlankCheck = new RegExp(
+      `\\|\\|\\s+ISBLANK \\( RELATED \\( 'dim ${roleDimension}'`,
+    );
+    if (unconditionalBlankCheck.test(inventoryOrphanMeasure)) {
+      fail(
+        `Inventory relationship validation must not require ${roleDimension} on every movement row.`,
+      );
+    }
+  }
+}
+
 const relationshipsText = await readFile(relationshipsFile, "utf8");
 const relationshipCount =
   relationshipsText.match(/^relationship /gm)?.length ?? 0;

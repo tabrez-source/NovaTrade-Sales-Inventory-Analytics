@@ -1513,8 +1513,14 @@ async function updateValidationMeasures() {
 \t\t\t        'fact FactInventoryMovement',
 \t\t\t        ISBLANK ( RELATED ( 'dim DimDate'[DateKey] ) )
 \t\t\t            || ISBLANK ( RELATED ( 'dim DimProduct'[ProductKey] ) )
-\t\t\t            || ISBLANK ( RELATED ( 'dim DimFromGodown'[GodownKey] ) )
-\t\t\t            || ISBLANK ( RELATED ( 'dim DimToGodown'[GodownKey] ) )
+\t\t\t            || (
+\t\t\t                NOT ISBLANK ( 'fact FactInventoryMovement'[FromGodownKey] )
+\t\t\t                    && ISBLANK ( RELATED ( 'dim DimFromGodown'[GodownKey] ) )
+\t\t\t            )
+\t\t\t            || (
+\t\t\t                NOT ISBLANK ( 'fact FactInventoryMovement'[ToGodownKey] )
+\t\t\t                    && ISBLANK ( RELATED ( 'dim DimToGodown'[GodownKey] ) )
+\t\t\t            )
 \t\t\t    )
 \t\t\t)
 \t\tformatString: 0

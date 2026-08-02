@@ -816,8 +816,14 @@ table Measuress
 			        'fact FactInventoryMovement',
 			        ISBLANK ( RELATED ( 'dim DimDate'[DateKey] ) )
 			            || ISBLANK ( RELATED ( 'dim DimProduct'[ProductKey] ) )
-			            || ISBLANK ( RELATED ( 'dim DimFromGodown'[GodownKey] ) )
-			            || ISBLANK ( RELATED ( 'dim DimToGodown'[GodownKey] ) )
+			            || (
+			                NOT ISBLANK ( 'fact FactInventoryMovement'[FromGodownKey] )
+			                    && ISBLANK ( RELATED ( 'dim DimFromGodown'[GodownKey] ) )
+			            )
+			            || (
+			                NOT ISBLANK ( 'fact FactInventoryMovement'[ToGodownKey] )
+			                    && ISBLANK ( RELATED ( 'dim DimToGodown'[GodownKey] ) )
+			            )
 			    )
 			)
 		formatString: 0
