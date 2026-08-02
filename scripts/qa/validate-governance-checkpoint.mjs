@@ -329,6 +329,29 @@ if (!inventoryOrphanMeasure) {
   }
 }
 
+for (const orphanMeasureName of [
+  "Validation Sales Orphan Rows",
+  "Validation Inventory Orphan Rows",
+]) {
+  const nextMeasureName =
+    orphanMeasureName === "Validation Sales Orphan Rows"
+      ? "Validation Inventory Orphan Rows"
+      : "Validation Orphan Fact Rows";
+  const orphanMeasure = measuresText.match(
+    new RegExp(
+      `measure '${orphanMeasureName}' =([\\s\\S]*?)\\n\\tmeasure '${nextMeasureName}' =`,
+    ),
+  )?.[1];
+  if (
+    !orphanMeasure?.includes("COALESCE (") ||
+    !/\n\s*0\n\s*\)/.test(orphanMeasure)
+  ) {
+    fail(
+      `${orphanMeasureName} must display an explicit zero for an empty orphan set.`,
+    );
+  }
+}
+
 const relationshipsText = await readFile(relationshipsFile, "utf8");
 const relationshipCount =
   relationshipsText.match(/^relationship /gm)?.length ?? 0;

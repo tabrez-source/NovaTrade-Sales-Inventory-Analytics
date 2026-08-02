@@ -1491,16 +1491,19 @@ async function updateValidationMeasures() {
 
 \tmeasure 'Validation Sales Orphan Rows' =
 
-\t\t\tCOUNTROWS (
-\t\t\t    FILTER (
-\t\t\t        'fact FactSales',
-\t\t\t        ISBLANK ( RELATED ( 'dim DimDate'[DateKey] ) )
-\t\t\t            || ISBLANK ( RELATED ( 'dim DimProduct'[ProductKey] ) )
-\t\t\t            || ISBLANK ( RELATED ( 'dim DimDistributor'[DistributorKey] ) )
-\t\t\t            || ISBLANK ( RELATED ( 'dim DimSalesHead'[SalesHeadKey] ) )
-\t\t\t            || ISBLANK ( RELATED ( 'dim DimBranch'[BranchKey] ) )
-\t\t\t            || ISBLANK ( RELATED ( 'dim DimGodown'[GodownKey] ) )
-\t\t\t    )
+\t\t\tCOALESCE (
+\t\t\t    COUNTROWS (
+\t\t\t        FILTER (
+\t\t\t            'fact FactSales',
+\t\t\t            ISBLANK ( RELATED ( 'dim DimDate'[DateKey] ) )
+\t\t\t                || ISBLANK ( RELATED ( 'dim DimProduct'[ProductKey] ) )
+\t\t\t                || ISBLANK ( RELATED ( 'dim DimDistributor'[DistributorKey] ) )
+\t\t\t                || ISBLANK ( RELATED ( 'dim DimSalesHead'[SalesHeadKey] ) )
+\t\t\t                || ISBLANK ( RELATED ( 'dim DimBranch'[BranchKey] ) )
+\t\t\t                || ISBLANK ( RELATED ( 'dim DimGodown'[GodownKey] ) )
+\t\t\t        )
+\t\t\t    ),
+\t\t\t    0
 \t\t\t)
 \t\tformatString: 0
 \t\tdisplayFolder: 11_Report Validation
@@ -1508,20 +1511,23 @@ async function updateValidationMeasures() {
 
 \tmeasure 'Validation Inventory Orphan Rows' =
 
-\t\t\tCOUNTROWS (
-\t\t\t    FILTER (
-\t\t\t        'fact FactInventoryMovement',
-\t\t\t        ISBLANK ( RELATED ( 'dim DimDate'[DateKey] ) )
-\t\t\t            || ISBLANK ( RELATED ( 'dim DimProduct'[ProductKey] ) )
-\t\t\t            || (
-\t\t\t                NOT ISBLANK ( 'fact FactInventoryMovement'[FromGodownKey] )
-\t\t\t                    && ISBLANK ( RELATED ( 'dim DimFromGodown'[GodownKey] ) )
-\t\t\t            )
-\t\t\t            || (
-\t\t\t                NOT ISBLANK ( 'fact FactInventoryMovement'[ToGodownKey] )
-\t\t\t                    && ISBLANK ( RELATED ( 'dim DimToGodown'[GodownKey] ) )
-\t\t\t            )
-\t\t\t    )
+\t\t\tCOALESCE (
+\t\t\t    COUNTROWS (
+\t\t\t        FILTER (
+\t\t\t            'fact FactInventoryMovement',
+\t\t\t            ISBLANK ( RELATED ( 'dim DimDate'[DateKey] ) )
+\t\t\t                || ISBLANK ( RELATED ( 'dim DimProduct'[ProductKey] ) )
+\t\t\t                || (
+\t\t\t                    NOT ISBLANK ( 'fact FactInventoryMovement'[FromGodownKey] )
+\t\t\t                        && ISBLANK ( RELATED ( 'dim DimFromGodown'[GodownKey] ) )
+\t\t\t                )
+\t\t\t                || (
+\t\t\t                    NOT ISBLANK ( 'fact FactInventoryMovement'[ToGodownKey] )
+\t\t\t                        && ISBLANK ( RELATED ( 'dim DimToGodown'[GodownKey] ) )
+\t\t\t                )
+\t\t\t        )
+\t\t\t    ),
+\t\t\t    0
 \t\t\t)
 \t\tformatString: 0
 \t\tdisplayFolder: 11_Report Validation

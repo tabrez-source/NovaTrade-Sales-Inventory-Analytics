@@ -794,16 +794,19 @@ table Measuress
 
 	measure 'Validation Sales Orphan Rows' =
 
-			COUNTROWS (
-			    FILTER (
-			        'fact FactSales',
-			        ISBLANK ( RELATED ( 'dim DimDate'[DateKey] ) )
-			            || ISBLANK ( RELATED ( 'dim DimProduct'[ProductKey] ) )
-			            || ISBLANK ( RELATED ( 'dim DimDistributor'[DistributorKey] ) )
-			            || ISBLANK ( RELATED ( 'dim DimSalesHead'[SalesHeadKey] ) )
-			            || ISBLANK ( RELATED ( 'dim DimBranch'[BranchKey] ) )
-			            || ISBLANK ( RELATED ( 'dim DimGodown'[GodownKey] ) )
-			    )
+			COALESCE (
+			    COUNTROWS (
+			        FILTER (
+			            'fact FactSales',
+			            ISBLANK ( RELATED ( 'dim DimDate'[DateKey] ) )
+			                || ISBLANK ( RELATED ( 'dim DimProduct'[ProductKey] ) )
+			                || ISBLANK ( RELATED ( 'dim DimDistributor'[DistributorKey] ) )
+			                || ISBLANK ( RELATED ( 'dim DimSalesHead'[SalesHeadKey] ) )
+			                || ISBLANK ( RELATED ( 'dim DimBranch'[BranchKey] ) )
+			                || ISBLANK ( RELATED ( 'dim DimGodown'[GodownKey] ) )
+			        )
+			    ),
+			    0
 			)
 		formatString: 0
 		displayFolder: 11_Report Validation
@@ -811,20 +814,23 @@ table Measuress
 
 	measure 'Validation Inventory Orphan Rows' =
 
-			COUNTROWS (
-			    FILTER (
-			        'fact FactInventoryMovement',
-			        ISBLANK ( RELATED ( 'dim DimDate'[DateKey] ) )
-			            || ISBLANK ( RELATED ( 'dim DimProduct'[ProductKey] ) )
-			            || (
-			                NOT ISBLANK ( 'fact FactInventoryMovement'[FromGodownKey] )
-			                    && ISBLANK ( RELATED ( 'dim DimFromGodown'[GodownKey] ) )
-			            )
-			            || (
-			                NOT ISBLANK ( 'fact FactInventoryMovement'[ToGodownKey] )
-			                    && ISBLANK ( RELATED ( 'dim DimToGodown'[GodownKey] ) )
-			            )
-			    )
+			COALESCE (
+			    COUNTROWS (
+			        FILTER (
+			            'fact FactInventoryMovement',
+			            ISBLANK ( RELATED ( 'dim DimDate'[DateKey] ) )
+			                || ISBLANK ( RELATED ( 'dim DimProduct'[ProductKey] ) )
+			                || (
+			                    NOT ISBLANK ( 'fact FactInventoryMovement'[FromGodownKey] )
+			                        && ISBLANK ( RELATED ( 'dim DimFromGodown'[GodownKey] ) )
+			                )
+			                || (
+			                    NOT ISBLANK ( 'fact FactInventoryMovement'[ToGodownKey] )
+			                        && ISBLANK ( RELATED ( 'dim DimToGodown'[GodownKey] ) )
+			                )
+			        )
+			    ),
+			    0
 			)
 		formatString: 0
 		displayFolder: 11_Report Validation
