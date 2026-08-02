@@ -548,7 +548,30 @@ table Measuress
 		displayFolder: 08_Product Performance
 		lineageTag: a47792c4-5e13-4c73-b7ab-92c6a38cd560
 
-	measure 'Total Movement Quantity' =
+	measure 'Inbound Coverage %' =
++
++			DIVIDE ( [Total Inward Quantity], [Total Outward Quantity] )
++		formatString: 0.00%;-0.00%;0.00%
++		displayFolder: 09_Inventory Operations
++		lineageTag: 7b0fe7e3-4622-4a47-9664-b44d5866db71
++
++	measure 'Products with Flow Deficit' =
++
++			VAR ProductFlow =
++			    FILTER (
++			        ADDCOLUMNS (
++			            VALUES ( 'dim DimProduct'[ProductKey] ),
++			            "@NetFlow", CALCULATE ( [Net Movement Quantity] )
++			        ),
++			        [@NetFlow] < 0
++			    )
++			RETURN
++			COUNTROWS ( ProductFlow )
++		formatString: 0
++		displayFolder: 09_Inventory Operations
++		lineageTag: 8d842cab-cac1-419c-a40f-eb8a8866b997
++
++	measure 'Total Movement Quantity' =
 			
 			[Total Inward Quantity] + [Total Outward Quantity]
 		formatString: 0

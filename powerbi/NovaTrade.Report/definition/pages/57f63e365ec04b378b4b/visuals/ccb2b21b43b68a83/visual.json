@@ -108,7 +108,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Open Inventory Movement'"
+                  "Value": "'Open Inventory Operations'"
                 }
               }
             },
@@ -128,7 +128,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Go to Inventory Movement page.'"
+                  "Value": "'Go to Inventory Operations page.'"
                 }
               }
             }

@@ -2,9 +2,9 @@
 
 ## Current gate
 
-Stage 2 establishes the Executive Overview as the golden design and interaction contract. The other four public pages already have functional first-pass shells, but they are not yet accepted as business-ready. Complete one page at a time; do not redesign all four simultaneously.
+Executive Overview, Sales Performance and Product Performance are locked as the golden design and interaction contract. Inventory Operations is the active rebuild; Management Insights remains pending. Complete one page at a time so accepted pages cannot regress.
 
-## Stage 3A — Sales Performance (Desktop review pending)
+## Stage 3A — Sales Performance (locked)
 
 Business questions: When did sales change? Which regions, Sales Heads and distributors drove it? Is cross-region activity healthy or concentrated?
 
@@ -19,7 +19,7 @@ Recommended content:
 
 Completion gate: totals reconcile to Executive Overview under identical filters; month sorting is correct; Top N responds to filters; cross-highlighting is intentional; tooltips, alt text, tab order and navigation pass; Desktop screenshot approved.
 
-## Stage 3B — Product Analysis
+## Stage 3B — Product Performance (locked)
 
 Business questions: Which categories and products create value and volume? Is performance concentrated? Which products are gaining or losing momentum?
 
@@ -35,24 +35,24 @@ Completion gate: category totals reconcile to sales; product ranks change correc
 
 ## Stage 3C — Inventory Operations
 
-Business questions: What moved inward, outward and between godowns? Where are imbalances building? Which products or locations need attention?
+Business questions: When did outbound movement exceed receipts? Which operational godowns and products show the greatest flow deficit? Where should replenishment review begin?
 
-Recommended content:
-- KPIs: Inward, Outward, Transfer, Net Movement, Estimated Closing Stock
-- Monthly movement trend
-- Movement by type and godown
-- Products with highest outward movement
-- Exception table for negative net movement or unusual transfer activity
+Approved content:
+- KPIs: Inward Units, Outward Units, Net Stock Flow, Inbound Coverage and Products with Flow Deficit
+- Monthly inward-versus-outward trend
+- Net Stock Flow by Operational Godown
+- Top 10 Products by Outward Units
+- Replenishment Watchlist at product–godown grain
 - Drillthrough target: Godown / Product movement detail
 
-Mandatory gate before polish: reconcile the opening-stock assumption and the approximately -40M net-movement gap. Estimated Closing Stock must be clearly labelled as an assumption-based estimate until an authoritative opening balance exists.
+Source contract: Net Stock Flow is inward minus outward and must not be interpreted as Stock on Hand. The current warehouse contains no transfer movements and no authoritative opening-stock or inventory snapshot fact, so transfer and closing-stock claims are excluded rather than estimated.
 
 ## Stage 3D — Management Insights
 
 Business questions: What changed, why, where is the risk, and what should management review first?
 
 Recommended content:
-- KPIs: Total Sales, YoY Change %, Sales per Distributor, Cross-Region %, Estimated Closing Stock
+- KPIs: Total Sales, YoY Change %, Sales per Distributor, Cross-Region % and Inbound Coverage or Products with Flow Deficit
 - Trend versus previous year
 - Sales leadership and regional opportunity ranking
 - Category concentration

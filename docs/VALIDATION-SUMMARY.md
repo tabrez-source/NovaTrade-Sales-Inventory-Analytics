@@ -1,6 +1,6 @@
 # NovaTrade PBIP source checkpoint — validation summary
 
-Validated on 2026-07-29.
+Validated on 2026-08-02.
 
 ## Microsoft PBIR validation
 
@@ -8,7 +8,7 @@ Validated on 2026-07-29.
 - Result: succeeded
 - Errors: 0
 - Warnings: 0
-- Visual definitions: 226
+- Visual definitions: 250
 - Page definitions: 9
 
 ## Reproducible repository validation
@@ -16,7 +16,7 @@ Validated on 2026-07-29.
 - Command: `node scripts/qa/validate-pbip-repository.mjs .`
 - Result: passed
 - Issues: 0
-- JSON files checked: 241
+- JSON files checked: 265
 - Public pages: 5
 - Hidden support pages: 4
 - Registered report resources: 2
@@ -29,8 +29,11 @@ Validated on 2026-07-29.
 - Sales result: passed, 0 issues
 - Product command: `node scripts/qa/validate-product-checkpoint.mjs .`
 - Product result: passed, 0 issues
+- Inventory command: `node scripts/qa/validate-inventory-checkpoint.mjs .`
+- Inventory result: passed, 0 issues
 - Sales Performance visual definitions: 55
 - Product Performance visual definitions: 54
+- Inventory Operations visual definitions: 54
 - Sales primary tab order: 11, 12, 20–24 and 30–34
 - Sales interactive or data visuals missing alt text: 0
 - Sales primary visual overlaps or out-of-canvas positions: 0
@@ -97,6 +100,19 @@ Validated on 2026-07-29.
 - Executive and Sales regression checkpoints: passed
 - Rebuild script: deterministic and idempotent
 
+## Inventory Operations checks
+
+- Five KPIs: Inward Units, Outward Units, Net Stock Flow, Inbound Coverage and Products with Flow Deficit
+- Operational Godown slicer: fact-backed `MovementGodown`, retaining destination receipts and source outbound rows
+- Monthly diagnostic: inward versus outward units across calendar-sorted months
+- Product pressure: Visual Top 10 by Outward Units with enough vertical space for all ten bars
+- Godown flow: Net Stock Flow ranked ascending so the largest deficit appears first
+- Replenishment Watchlist: product–godown grain with inward, outward, net flow and coverage
+- Source caveat: transfer rows and authoritative opening stock are unavailable
+- Unsupported claims removed from the page: Transfer Quantity and Estimated Closing Stock
+- Executive, Sales and Product regression checkpoints: passed
+- Rebuild script: deterministic and idempotent
+
 ## Final Desktop render gate
 
-Microsoft schema validation confirms that the source is structurally valid, but Power BI Desktop remains the final visual and analytical runtime. Desktop must confirm that 2020 displays `N/A` for YoY growth, 2021 onward displays a percentage, both monthly lines render, the prior-year series is dashed, the regional YoY chart renders signed percentages, the Reporting Region slicer shows West/South/North/East, Top 5 distributors do not scroll, tooltips and cross-highlighting behave as intended, card totals reconcile with Executive Overview under identical filters, and no text clips at Fit to page or Actual size.
+Microsoft schema validation confirms that the source is structurally valid, but Power BI Desktop remains the final visual and analytical runtime. Desktop must confirm that 2020 displays `N/A` for YoY growth, 2021 onward displays a percentage, both Sales monthly lines render, the prior-year Sales series is dashed, the Reporting Region slicer shows West/South/North/East, Product Top 10 and Inventory Top 10 do not scroll, the Operational Godown slicer retains both inward and outward values, Inventory net flow reconciles to inward minus outward, the replenishment table fits all six columns, tooltips and cross-highlighting behave as intended, card totals reconcile under identical filters, and no text clips at Fit to page or Actual size.
