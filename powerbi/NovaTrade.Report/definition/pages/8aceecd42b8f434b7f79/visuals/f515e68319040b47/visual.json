@@ -1,0 +1,120 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "f515e68319040b47",
+  "position": {
+    "x": 1042,
+    "y": 400,
+    "width": 356,
+    "height": 226,
+    "z": 222,
+    "tabOrder": 25
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "06  Source Limits & Safe Use",
+                    "textStyle": {
+                      "fontFamily": "'Segoe UI'",
+                      "fontSize": "11pt",
+                      "color": "#9A5D4C",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Dataset is synthetic; the current movement fact contains no TRANSFER rows\n• Opening stock and authoritative Stock on Hand are unavailable\n• COGS, margin, supplier lead time, targets and service levels are unavailable\n• Therefore no stockout, profitability, target attainment or forecast claim is made\n• Filters apply through documented model relationships; validation status should be checked before sharing",
+                    "textStyle": {
+                      "fontFamily": "'Segoe UI'",
+                      "fontSize": "9.5pt",
+                      "color": "#2D4558"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'06  Source Limits & Safe Use. • Dataset is synthetic; the current movement fact contains no TRANSFER rows\n• Opening stock and authoritative Stock on Hand are unavailable\n• COGS, margin, supplier lead time, targets and service levels are unavailable\n• Therefore no stockout, profitability, target attainment or forecast claim is made\n• Filters apply through documented model relationships; validation status should be checked before sharing'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

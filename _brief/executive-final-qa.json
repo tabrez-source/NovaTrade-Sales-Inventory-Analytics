@@ -1,13 +1,13 @@
 {
   "status": "passed",
-  "validatedAt": "2026-07-27T04:11:53.811Z",
+  "validatedAt": "2026-08-02T21:51:00.154Z",
   "issueCount": 0,
   "evidence": {
-    "jsonFiles": 196,
+    "jsonFiles": 493,
     "pageDefinitions": 9,
     "publicPages": 5,
     "hiddenPages": 4,
-    "visualDefinitions": 177,
+    "visualDefinitions": 474,
     "linguisticMetadata": "valid JSON",
     "monthAxis": "MonthName sorted by MonthNumber",
     "yearSelection": "single and required",

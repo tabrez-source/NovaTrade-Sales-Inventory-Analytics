@@ -1,0 +1,120 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "f7f4ba819243ec95",
+  "position": {
+    "x": 226,
+    "y": 400,
+    "width": 356,
+    "height": 226,
+    "z": 214,
+    "tabOrder": 23
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "04  Inventory Flow",
+                    "textStyle": {
+                      "fontFamily": "'Segoe UI'",
+                      "fontSize": "11pt",
+                      "color": "#D1842B",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Inward, Outward and Transfer use the movement classification columns\n• Net Stock Flow = Inward Units − Outward Units\n• Inbound-to-Outbound Coverage = Inward ÷ Outward\n• A product has flow deficit when Net Stock Flow < 0\n• Net Stock Flow is a period movement signal—not Stock on Hand",
+                    "textStyle": {
+                      "fontFamily": "'Segoe UI'",
+                      "fontSize": "9.5pt",
+                      "color": "#2D4558"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'04  Inventory Flow. • Inward, Outward and Transfer use the movement classification columns\n• Net Stock Flow = Inward Units − Outward Units\n• Inbound-to-Outbound Coverage = Inward ÷ Outward\n• A product has flow deficit when Net Stock Flow < 0\n• Net Stock Flow is a period movement signal—not Stock on Hand'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

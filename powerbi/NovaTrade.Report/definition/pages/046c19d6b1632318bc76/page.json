@@ -3,7 +3,50 @@
   "name": "046c19d6b1632318bc76",
   "displayName": "DAX & Measures Validation",
   "displayOption": "FitToPage",
-  "height": 720,
-  "width": 1280,
-  "visibility": "HiddenInViewMode"
+  "height": 810,
+  "width": 1440,
+  "visibility": "HiddenInViewMode",
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F7F3EA'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F7F3EA'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
 }

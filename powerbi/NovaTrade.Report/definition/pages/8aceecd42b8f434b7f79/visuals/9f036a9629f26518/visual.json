@@ -1,0 +1,120 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "9f036a9629f26518",
+  "position": {
+    "x": 634,
+    "y": 122,
+    "width": 356,
+    "height": 226,
+    "z": 206,
+    "tabOrder": 21
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "02  Time Intelligence",
+                    "textStyle": {
+                      "fontFamily": "'Segoe UI'",
+                      "fontSize": "11pt",
+                      "color": "#15958D",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• OrderDate is the active sales date; MovementDate is the active inventory date\n• Previous Year uses the same visible date period one year earlier\n• YoY is N/A when no prior-year period exists\n• Running Total uses the maximum visible date within ALLSELECTED\n• Select one complete Year for a comparable management review",
+                    "textStyle": {
+                      "fontFamily": "'Segoe UI'",
+                      "fontSize": "9.5pt",
+                      "color": "#2D4558"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'02  Time Intelligence. • OrderDate is the active sales date; MovementDate is the active inventory date\n• Previous Year uses the same visible date period one year earlier\n• YoY is N/A when no prior-year period exists\n• Running Total uses the maximum visible date within ALLSELECTED\n• Select one complete Year for a comparable management review'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
