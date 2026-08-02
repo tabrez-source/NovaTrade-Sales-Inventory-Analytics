@@ -548,6 +548,162 @@ table Measuress
 		displayFolder: 08_Product Performance
 		lineageTag: a47792c4-5e13-4c73-b7ab-92c6a38cd560
 
+	measure 'Growing Products at Flow Risk' =
+
+			VAR ProductSignals =
+			    ADDCOLUMNS (
+			        VALUES ( 'dim DimProduct'[ProductKey] ),
+			        "@Revenue", CALCULATE ( [Total Sales] ),
+			        "@Growth", CALCULATE ( [YoY Sales Change %] ),
+			        "@NetFlow", CALCULATE ( [Net Movement Quantity] )
+			    )
+			RETURN
+			COUNTROWS (
+			    FILTER (
+			        ProductSignals,
+			        NOT ISBLANK ( [@Revenue] )
+			            && NOT ISBLANK ( [@Growth] )
+			            && NOT ISBLANK ( [@NetFlow] )
+			            && [@Growth] > 0
+			            && [@NetFlow] < 0
+			    )
+			)
+		formatString: 0
+		displayFolder: 10_Management Decision Center
+		lineageTag: 0b7c0246-6c7a-44c7-a2ae-a166b6d6ca0e
+
+	measure 'Revenue at Flow Risk' =
+
+			VAR ProductSignals =
+			    ADDCOLUMNS (
+			        VALUES ( 'dim DimProduct'[ProductKey] ),
+			        "@Revenue", CALCULATE ( [Total Sales] ),
+			        "@Growth", CALCULATE ( [YoY Sales Change %] ),
+			        "@NetFlow", CALCULATE ( [Net Movement Quantity] )
+			    )
+			RETURN
+			SUMX (
+			    FILTER (
+			        ProductSignals,
+			        NOT ISBLANK ( [@Revenue] )
+			            && NOT ISBLANK ( [@Growth] )
+			            && NOT ISBLANK ( [@NetFlow] )
+			            && [@Growth] > 0
+			            && [@NetFlow] < 0
+			    ),
+			    [@Revenue]
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 10_Management Decision Center
+		lineageTag: 1756922f-3e83-4441-a950-26aac53f5c4c
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Revenue at Flow Risk %' =
+
+			DIVIDE ( [Revenue at Flow Risk], [Total Sales] )
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 10_Management Decision Center
+		lineageTag: 42fb3f4d-3afb-4b35-92f1-dff79644fca3
+
+	measure 'Declining Products' =
+
+			VAR ProductSignals =
+			    ADDCOLUMNS (
+			        VALUES ( 'dim DimProduct'[ProductKey] ),
+			        "@Revenue", CALCULATE ( [Total Sales] ),
+			        "@Growth", CALCULATE ( [YoY Sales Change %] )
+			    )
+			RETURN
+			COUNTROWS (
+			    FILTER (
+			        ProductSignals,
+			        NOT ISBLANK ( [@Revenue] )
+			            && NOT ISBLANK ( [@Growth] )
+			            && [@Growth] < 0
+			    )
+			)
+		formatString: 0
+		displayFolder: 10_Management Decision Center
+		lineageTag: 0e295672-28d9-4455-a6f1-f3b22144e5d5
+
+	measure 'Declining Product Revenue' =
+
+			VAR ProductSignals =
+			    ADDCOLUMNS (
+			        VALUES ( 'dim DimProduct'[ProductKey] ),
+			        "@Revenue", CALCULATE ( [Total Sales] ),
+			        "@Growth", CALCULATE ( [YoY Sales Change %] )
+			    )
+			RETURN
+			SUMX (
+			    FILTER (
+			        ProductSignals,
+			        NOT ISBLANK ( [@Revenue] )
+			            && NOT ISBLANK ( [@Growth] )
+			            && [@Growth] < 0
+			    ),
+			    [@Revenue]
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 10_Management Decision Center
+		lineageTag: b366a15c-3af1-4224-b199-d7eaa3206853
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Declining Product Revenue %' =
+
+			DIVIDE ( [Declining Product Revenue], [Total Sales] )
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 10_Management Decision Center
+		lineageTag: 292a45f3-e8b0-4a8a-b389-6ec9086952ea
+
+	measure 'Previous Year Cross Region Sales %' =
+
+			CALCULATE (
+			    [Cross Region Sales %],
+			    SAMEPERIODLASTYEAR ( 'dim DimDate'[FullDate] )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 10_Management Decision Center
+		lineageTag: 50c22d03-452e-41d5-9273-ef8b38931c18
+
+	measure 'Cross Region Exposure Change' =
+
+			VAR PriorYearShare =
+			    [Previous Year Cross Region Sales %]
+			RETURN
+			IF (
+			    ISBLANK ( PriorYearShare ),
+			    BLANK (),
+			    [Cross Region Sales %] - PriorYearShare
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 10_Management Decision Center
+		lineageTag: 201c91f8-2f55-48a3-9419-48b967b3ebba
+
+	measure 'Management Action' =
+
+			VAR ProductRevenue =
+			    [Total Sales]
+			VAR GrowthRate =
+			    [YoY Sales Change %]
+			VAR NetFlow =
+			    [Net Movement Quantity]
+			RETURN
+			SWITCH (
+			    TRUE (),
+			    ISBLANK ( ProductRevenue ), BLANK (),
+			    NOT ISBLANK ( GrowthRate )
+			        && GrowthRate > 0
+			        && NetFlow < 0, "1 · Replenish & protect growth",
+			    NOT ISBLANK ( GrowthRate )
+			        && GrowthRate < 0, "2 · Recover demand",
+			    "3 · Monitor"
+			)
+		displayFolder: 10_Management Decision Center
+		lineageTag: 74cc8bce-9339-45ea-b15f-62bff642126d
+
 	measure 'Inbound Coverage %' =
 
 			DIVIDE ( [Total Inward Quantity], [Total Outward Quantity] )
