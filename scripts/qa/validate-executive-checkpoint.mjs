@@ -23,7 +23,7 @@ const expectedPublicPages = new Set([
   "Executive Overview",
   "Sales Performance",
   "Product Performance",
-  "Inventory Movement Analysis",
+  "Inventory Operations",
   "Management Insights",
 ]);
 

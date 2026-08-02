@@ -80,3 +80,6 @@ jobs:
 
       - name: Validate Product Performance checkpoint
         run: node scripts/qa/validate-product-checkpoint.mjs .
+
+      - name: Validate Inventory Operations checkpoint
+        run: node scripts/qa/validate-inventory-checkpoint.mjs .

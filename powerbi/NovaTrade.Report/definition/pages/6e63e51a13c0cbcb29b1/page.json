@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "6e63e51a13c0cbcb29b1",
-  "displayName": "Inventory Movement Analysis",
+  "displayName": "Inventory Operations",
   "displayOption": "FitToPage",
   "height": 810,
   "width": 1440,
@@ -14,9 +14,16 @@
               "color": {
                 "expr": {
                   "Literal": {
-                    "Value": "'#F7F9FC'"
+                    "Value": "'#F7F3EA'"
                   }
                 }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
               }
             }
           }
@@ -31,7 +38,7 @@
               "color": {
                 "expr": {
                   "Literal": {
-                    "Value": "'#F7F9FC'"
+                    "Value": "'#F7F3EA'"
                   }
                 }
               }

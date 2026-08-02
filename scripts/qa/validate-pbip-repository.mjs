@@ -251,6 +251,13 @@ async function validateTmdl(files) {
     if (/^(<<<<<<<|=======|>>>>>>>)/m.test(content)) {
       addIssue("merge-marker", "Unresolved Git merge marker found.", file);
     }
+    if (/^\+/m.test(content)) {
+      addIssue(
+        "diff-marker",
+        "Literal leading '+' diff marker found in TMDL content.",
+        file,
+      );
+    }
   }
 }
 
