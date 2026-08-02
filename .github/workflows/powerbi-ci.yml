@@ -83,3 +83,6 @@ jobs:
 
       - name: Validate Inventory Operations checkpoint
         run: node scripts/qa/validate-inventory-checkpoint.mjs .
+
+      - name: Validate Management Insights checkpoint
+        run: node scripts/qa/validate-management-checkpoint.mjs .
