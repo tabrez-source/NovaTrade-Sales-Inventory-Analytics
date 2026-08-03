@@ -1,0 +1,120 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "edbc02cef0cd2f6a",
+  "position": {
+    "x": 1042,
+    "y": 122,
+    "width": 356,
+    "height": 226,
+    "z": 210,
+    "tabOrder": 22
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "03  Territory Governance",
+                    "textStyle": {
+                      "fontFamily": "'Segoe UI'",
+                      "fontSize": "11pt",
+                      "color": "#15958D",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Assigned-Region Sales: distributor reporting region matches the Sales Head base region\n• Cross-Region Sales: the two regions differ\n• Cross-Region Revenue Share = Cross-Region Sales ÷ Total Sales\n• Cross-region activity signals market reach and coordination needs; it does not mean account reassignment",
+                    "textStyle": {
+                      "fontFamily": "'Segoe UI'",
+                      "fontSize": "9.5pt",
+                      "color": "#2D4558"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'03  Territory Governance. • Assigned-Region Sales: distributor reporting region matches the Sales Head base region\n• Cross-Region Sales: the two regions differ\n• Cross-Region Revenue Share = Cross-Region Sales ÷ Total Sales\n• Cross-region activity signals market reach and coordination needs; it does not mean account reassignment'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

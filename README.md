@@ -8,7 +8,7 @@ NovaTrade is an end-to-end business intelligence portfolio project for a synthet
 
 > **Data disclosure:** All data and business identities are synthetic and illustrative. NovaTrade is independent and is not affiliated with any real company.
 
-## Executive questions answered
+## Business questions answered
 
 - How much did we sell, and how many units and orders produced that value?
 - What is the average value of each sales order?
@@ -16,6 +16,9 @@ NovaTrade is an end-to-end business intelligence portfolio project for a synthet
 - Which products, sales leaders and regions drive performance?
 - How much selling occurs outside assigned regions, and when?
 - What is the current order-status mix?
+- Which growing products face replenishment pressure?
+- Where is flow-risk revenue concentrated, and who owns the response?
+- Which products require demand recovery or management monitoring?
 
 ## Architecture
 
@@ -28,18 +31,25 @@ flowchart LR
     E --> F[Accessible decision reports]
 ```
 
-## Stage 2 status
+## Reporting-layer status
 
-The Executive Overview is the approved golden design system for the remaining pages. It includes five aligned KPIs, six analytical visuals, a required single-year Jan–Dec view, slicer-responsive stepped teal ranking tones, contextual tooltips, page navigation, logical keyboard order, descriptive alt text, WCAG-aware contrast and a visible synthetic-data disclosure.
+The five core analytical pages are complete. They use one visual system, shared metric definitions, contextual tooltips, page navigation, logical keyboard order, descriptive alt text, WCAG-aware contrast and a visible synthetic-data disclosure.
 
-Current page sequence:
+Core analytical pages:
 
-1. Executive Overview — Stage 2 complete
-2. Sales Performance — rebuild implemented; Desktop review pending
-3. Product Analysis — functional shell
-4. Inventory Movement — functional shell; reconciliation gate pending
-5. Management Insights — functional shell
-6. Drillthrough and hidden validation pages — planned finalization
+1. Executive Overview
+2. Sales Performance
+3. Product Performance
+4. Inventory Operations
+5. Management Insights / Management Decision Center
+
+Hidden reference and governance pages:
+
+1. Measures & Validation Center — six filter-aware reconciliation tests
+2. Data Model Overview — two-fact star schema, grain and relationship contract
+3. Business Logic & Notes — metric definitions, exception rules and source limits
+
+The `00_UI Template` page remains hidden as a design-system support page.
 
 ## Technology
 
@@ -52,15 +62,17 @@ Current page sequence:
 ## Validation evidence
 
 - Microsoft PBIR validation: 0 errors, 0 warnings
-- Reproducible Executive checkpoint validation: 0 issues
+- Reproducible checkpoints for all five analytical pages: 0 issues
+- Report-governance checkpoint: 0 issues
+- Six filter-aware DAX and model-integrity tests
 - Semantic references resolved against the TMDL model
 - Navigation targets verified
-- Executive visuals checked against the 1440 x 810 canvas
+- All completed pages checked against the 1440 x 810 canvas
 - Five public pages and four hidden support pages verified
 - Public data visuals checked for alt text and keyboard order
 - NovaTrade-only identity and external-brand separation verified
 
-See [Validation Summary](docs/VALIDATION-SUMMARY.md), [Accessibility QA](docs/ACCESSIBILITY-QA.md) and the [remaining-page build plan](docs/NEXT-PAGE-BUILD-PLAN.md).
+See [Validation Summary](docs/VALIDATION-SUMMARY.md), [Accessibility QA](docs/ACCESSIBILITY-QA.md) and [Report Governance Pages](docs/REPORT-GOVERNANCE-PAGES.md).
 
 ## Open the report
 
@@ -71,4 +83,4 @@ See [Validation Summary](docs/VALIDATION-SUMMARY.md), [Accessibility QA](docs/AC
 
 ## Next milestone
 
-Stage 3A will lock Sales Performance after Desktop review: prior-year trend comparison, Sales Head and corrected region drivers, distributor ranking, territory mix, interaction QA and accessibility validation.
+Run one report-wide final-polish and publication pass: KPI naming, display units, spacing, tooltip definitions, interaction QA, accessibility review, screenshots and portfolio/GitHub presentation.

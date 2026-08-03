@@ -8,7 +8,7 @@ Validated on 2026-08-02.
 - Result: succeeded
 - Errors: 0
 - Warnings: 0
-- Visual definitions: 250
+- Visual definitions: 474
 - Page definitions: 9
 
 ## Reproducible repository validation
@@ -16,7 +16,7 @@ Validated on 2026-08-02.
 - Command: `node scripts/qa/validate-pbip-repository.mjs .`
 - Result: passed
 - Issues: 0
-- JSON files checked: 265
+- JSON files checked: 489
 - Public pages: 5
 - Hidden support pages: 4
 - Registered report resources: 2
@@ -31,9 +31,17 @@ Validated on 2026-08-02.
 - Product result: passed, 0 issues
 - Inventory command: `node scripts/qa/validate-inventory-checkpoint.mjs .`
 - Inventory result: passed, 0 issues
+- Management command: `node scripts/qa/validate-management-checkpoint.mjs .`
+- Management result: passed, 0 issues
+- Governance command: `node scripts/qa/validate-governance-checkpoint.mjs .`
+- Governance result: passed, 0 issues
 - Sales Performance visual definitions: 55
 - Product Performance visual definitions: 54
 - Inventory Operations visual definitions: 54
+- Management Insights visual definitions: 53
+- Measures & Validation visual definitions: 70
+- Data Model Overview visual definitions: 73
+- Business Logic & Notes visual definitions: 58
 - Sales primary tab order: 11, 12, 20–24 and 30–34
 - Sales interactive or data visuals missing alt text: 0
 - Sales primary visual overlaps or out-of-canvas positions: 0
@@ -113,6 +121,42 @@ Validated on 2026-08-02.
 - Executive, Sales and Product regression checkpoints: passed
 - Rebuild script: deterministic and idempotent
 
+## Management Insights checks
+
+- Five exception-oriented KPIs: YoY Sales Growth, Growing Products at Flow
+  Risk, Flow-Risk Revenue Share, Cross-Region Exposure and Declining Revenue
+  Exposure
+- Flow-risk definition: positive product YoY growth plus negative Net Stock
+  Flow
+- Exposure location: flow-risk revenue ranked by Product Category
+- Accountability: Sales Head YoY growth with territory and distributor context
+- Action queue: product-level decision labels with sales, growth, inbound
+  coverage and net-flow evidence
+- Unsupported closing-stock and outside-assignment claims removed from the page
+- Flow risk is visibly disclosed as replenishment pressure, not proof of a
+  stockout
+- Executive, Sales, Product and Inventory regression checkpoints: passed
+- Rebuild script: deterministic and idempotent
+
+## Report governance checks
+
+- Three reference pages remain hidden from standard tabs and accessible from
+  the sidebar
+- Six filter-aware validation tests cover sales partitioning, AOV identity,
+  relationship-key integrity, net-flow identity, movement classification and
+  product-coverage bounds
+- Eighteen validation measures are grouped in `11_Report Validation`
+- Data Model Overview documents two fact grains, eight dimensions, ten active
+  one-to-many single-direction relationships and the reusable measures layer
+- Business Logic & Notes defines the sales, time, territory, inventory and
+  management exception contracts
+- Source limitations explicitly cover synthetic data, no transfer rows,
+  opening stock, Stock on Hand, COGS, margin, lead time, targets and service
+  levels
+- Unsupported semantic measures removed: `Assump Opening Stock`,
+  `Estimated Closing Stock` and `Total COGS`
+- Governance builder: deterministic and idempotent
+
 ## Final Desktop render gate
 
-Microsoft schema validation confirms that the source is structurally valid, but Power BI Desktop remains the final visual and analytical runtime. Desktop must confirm that 2020 displays `N/A` for YoY growth, 2021 onward displays a percentage, both Sales monthly lines render, the prior-year Sales series is dashed, the Reporting Region slicer shows West/South/North/East, Product Top 10 and Inventory Top 10 do not scroll, the Operational Godown slicer retains both inward and outward values, Inventory net flow reconciles to inward minus outward, the replenishment table fits all six columns, tooltips and cross-highlighting behave as intended, card totals reconcile under identical filters, and no text clips at Fit to page or Actual size.
+Microsoft schema validation confirms that the source is structurally valid, but Power BI Desktop remains the final visual and analytical runtime. Desktop must confirm that 2020 displays `N/A` for YoY growth, 2021 onward displays a percentage, both Sales monthly lines render, the prior-year Sales series is dashed, the Reporting Region slicer shows West/South/North/East, Product Top 10 and Inventory Top 10 do not scroll, the Operational Godown slicer retains both inward and outward values, Inventory net flow reconciles to inward minus outward, the replenishment table fits all six columns, all six validation tiles evaluate as expected under 2021 / All Products, reference navigation works, model and logic labels do not clip, tooltips and cross-highlighting behave as intended, card totals reconcile under identical filters, and no text clips at Fit to page or Actual size.

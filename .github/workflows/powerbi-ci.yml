@@ -86,3 +86,6 @@ jobs:
 
       - name: Validate Management Insights checkpoint
         run: node scripts/qa/validate-management-checkpoint.mjs .
+
+      - name: Validate report governance checkpoint
+        run: node scripts/qa/validate-governance-checkpoint.mjs .

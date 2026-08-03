@@ -734,20 +734,6 @@ table Measuress
 		displayFolder: 03_Inventory
 		lineageTag: cda3ff51-318f-49e8-9f3a-4d9e350819e8
 
-	measure 'Assump Opening Stock' =
-			
-			4523546812
-		formatString: 0.0
-		displayFolder: 03_Inventory
-		lineageTag: 0e02e3ce-4838-4702-9766-0e2ad0992716
-
-	measure 'Estimated Closing Stock' =
-			
-			[Assump Opening Stock] + [Net Movement Quantity]
-		formatString: 0.00
-		displayFolder: 03_Inventory
-		lineageTag: 1f98bc4a-7c77-426e-834b-f1365553e889
-
 	measure 'Movement Row Count' =
 			
 			COUNTROWS('fact FactInventoryMovement')
@@ -755,16 +741,236 @@ table Measuress
 		displayFolder: 03_Inventory
 		lineageTag: ec066508-6cd7-4905-80fa-52391a6d2613
 
-	measure 'Total COGS' =
-			
-			SUMX (
-			    'fact FactSales',
-			    'fact FactSales'[Quantity] * 'fact FactSales'[UnitPrice]
-			)
-		displayFolder: 01_FoundationKPIs
-		lineageTag: b0ebbe92-abbc-40e8-b461-3f3d2d605358
+	measure 'Validation Sales Split Variance' =
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+			VAR ExpectedSales =
+			    COALESCE ( [Assigned-Region Sales], 0 )
+			        + COALESCE ( [Cross Region Sales], 0 )
+			RETURN
+			IF (
+			    ISBLANK ( [Total Sales] ),
+			    BLANK (),
+			    [Total Sales] - ExpectedSales
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 11_Report Validation
+		lineageTag: eab0a4cf-b5bf-4cd2-bf4a-bb8a5ca58f01
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Validation Sales Split Status' =
+
+			IF (
+			    ISBLANK ( [Total Sales] ),
+			    "N/A",
+			    IF ( ABS ( [Validation Sales Split Variance] ) <= 1, "PASS", "FAIL" )
+			)
+		displayFolder: 11_Report Validation
+		lineageTag: 8fe49f4d-48cb-44a7-91d0-1d5e3c1ddf02
+
+	measure 'Validation AOV Variance' =
+
+			IF (
+			    [Sales Order Count] = 0,
+			    BLANK (),
+			    [Total Sales]
+			        - ( [Average Order Value] * [Sales Order Count] )
+			)
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		displayFolder: 11_Report Validation
+		lineageTag: ad9f02ef-78e4-46a6-9b90-97ddd3d0a703
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	measure 'Validation AOV Status' =
+
+			IF (
+			    [Sales Order Count] = 0,
+			    "N/A",
+			    IF ( ABS ( [Validation AOV Variance] ) <= 1, "PASS", "FAIL" )
+			)
+		displayFolder: 11_Report Validation
+		lineageTag: cbcbbf75-9f87-486c-8990-893bcf09ef04
+
+	measure 'Validation Sales Orphan Rows' =
+
+			COALESCE (
+			    COUNTROWS (
+			        FILTER (
+			            'fact FactSales',
+			            ISBLANK ( RELATED ( 'dim DimDate'[DateKey] ) )
+			                || ISBLANK ( RELATED ( 'dim DimProduct'[ProductKey] ) )
+			                || ISBLANK ( RELATED ( 'dim DimDistributor'[DistributorKey] ) )
+			                || ISBLANK ( RELATED ( 'dim DimSalesHead'[SalesHeadKey] ) )
+			                || ISBLANK ( RELATED ( 'dim DimBranch'[BranchKey] ) )
+			                || ISBLANK ( RELATED ( 'dim DimGodown'[GodownKey] ) )
+			        )
+			    ),
+			    0
+			)
+		formatString: 0
+		displayFolder: 11_Report Validation
+		lineageTag: d61aed09-0556-4acd-997f-c86756366a05
+
+	measure 'Validation Inventory Orphan Rows' =
+
+			COALESCE (
+			    COUNTROWS (
+			        FILTER (
+			            'fact FactInventoryMovement',
+			            ISBLANK ( RELATED ( 'dim DimDate'[DateKey] ) )
+			                || ISBLANK ( RELATED ( 'dim DimProduct'[ProductKey] ) )
+			                || (
+			                    NOT ISBLANK ( 'fact FactInventoryMovement'[FromGodownKey] )
+			                        && ISBLANK ( RELATED ( 'dim DimFromGodown'[GodownKey] ) )
+			                )
+			                || (
+			                    NOT ISBLANK ( 'fact FactInventoryMovement'[ToGodownKey] )
+			                        && ISBLANK ( RELATED ( 'dim DimToGodown'[GodownKey] ) )
+			                )
+			        )
+			    ),
+			    0
+			)
+		formatString: 0
+		displayFolder: 11_Report Validation
+		lineageTag: a64e3585-e772-44c0-b655-15c8f321b706
+
+	measure 'Validation Orphan Fact Rows' =
+
+			[Validation Sales Orphan Rows]
+			    + [Validation Inventory Orphan Rows]
+		formatString: 0
+		displayFolder: 11_Report Validation
+		lineageTag: 7be91867-4c5d-4da2-963d-403ae5e7ae07
+
+	measure 'Validation Relationship Integrity Status' =
+
+			IF (
+			    [Sales Row Count] + [Inventory Row Count] = 0,
+			    "N/A",
+			    IF ( [Validation Orphan Fact Rows] = 0, "PASS", "FAIL" )
+			)
+		displayFolder: 11_Report Validation
+		lineageTag: 4d75f999-f09b-4bb8-a704-3fe3c34d2608
+
+	measure 'Validation Net Flow Variance' =
+
+			IF (
+			    [Inventory Row Count] = 0,
+			    BLANK (),
+			    [Net Movement Quantity]
+			        - ( [Total Inward Quantity] - [Total Outward Quantity] )
+			)
+		formatString: 0
+		displayFolder: 11_Report Validation
+		lineageTag: a1e2486f-78f9-411c-95d0-0611cf0f8209
+
+	measure 'Validation Net Flow Status' =
+
+			IF (
+			    [Inventory Row Count] = 0,
+			    "N/A",
+			    IF ( [Validation Net Flow Variance] = 0, "PASS", "FAIL" )
+			)
+		displayFolder: 11_Report Validation
+		lineageTag: 414bc53b-dab8-4b1e-8d7b-50796e7f630a
+
+	measure 'Validation Raw Movement Quantity' =
+
+			SUM ( 'fact FactInventoryMovement'[Quantity] )
+		formatString: 0
+		displayFolder: 11_Report Validation
+		lineageTag: ec823152-b407-450d-85f3-95302d2f930b
+
+	measure 'Validation Movement Classification Variance' =
+
+			IF (
+			    [Inventory Row Count] = 0,
+			    BLANK (),
+			    [Validation Raw Movement Quantity]
+			        - [Total Inward Quantity]
+			        - [Total Outward Quantity]
+			        - [Total Transfer Quantity]
+			)
+		formatString: 0
+		displayFolder: 11_Report Validation
+		lineageTag: 76cfd3cc-a350-4e11-aa0a-8350855c090c
+
+	measure 'Validation Movement Classification Status' =
+
+			IF (
+			    [Inventory Row Count] = 0,
+			    "N/A",
+			    IF (
+			        [Validation Movement Classification Variance] = 0,
+			        "PASS",
+			        "FAIL"
+			    )
+			)
+		displayFolder: 11_Report Validation
+		lineageTag: eef6e97b-c83c-4916-bffd-3af4d8cb6e0d
+
+	measure 'Validation Product Coverage Status' =
+
+			VAR Coverage =
+			    [Product Coverage %]
+			RETURN
+			IF (
+			    ISBLANK ( Coverage ),
+			    "N/A",
+			    IF (
+			        Coverage >= 0
+			            && Coverage <= 1
+			            && [Distinct Products Sold] <= [Product Catalog Count],
+			        "PASS",
+			        "FAIL"
+			    )
+			)
+		displayFolder: 11_Report Validation
+		lineageTag: 63e18788-2d13-43e7-9334-335b89fa9d0e
+
+	measure 'Validation Tests Run' =
+
+			INT ( [Validation Sales Split Status] <> "N/A" )
+			    + INT ( [Validation AOV Status] <> "N/A" )
+			    + INT ( [Validation Relationship Integrity Status] <> "N/A" )
+			    + INT ( [Validation Net Flow Status] <> "N/A" )
+			    + INT ( [Validation Movement Classification Status] <> "N/A" )
+			    + INT ( [Validation Product Coverage Status] <> "N/A" )
+		formatString: 0
+		displayFolder: 11_Report Validation
+		lineageTag: 39da88c1-e4ed-4784-beae-14638023ef0f
+
+	measure 'Validation Tests Passed' =
+
+			INT ( [Validation Sales Split Status] = "PASS" )
+			    + INT ( [Validation AOV Status] = "PASS" )
+			    + INT ( [Validation Relationship Integrity Status] = "PASS" )
+			    + INT ( [Validation Net Flow Status] = "PASS" )
+			    + INT ( [Validation Movement Classification Status] = "PASS" )
+			    + INT ( [Validation Product Coverage Status] = "PASS" )
+		formatString: 0
+		displayFolder: 11_Report Validation
+		lineageTag: 3c892c94-c842-4397-89de-7ca198898310
+
+	measure 'Validation Tests Failed' =
+
+			[Validation Tests Run] - [Validation Tests Passed]
+		formatString: 0
+		displayFolder: 11_Report Validation
+		lineageTag: 1244cfd3-fb26-480f-b6ad-b07ec64a3f11
+
+	measure 'Validation Overall Status' =
+
+			SWITCH (
+			    TRUE (),
+			    [Validation Tests Run] = 0, "NO DATA",
+			    [Validation Tests Failed] = 0, "PASS",
+			    "REVIEW"
+			)
+		displayFolder: 11_Report Validation
+		lineageTag: 4e126490-9671-4d0c-9666-9b8ff363ab12
 
 	column Value
 		isHidden
