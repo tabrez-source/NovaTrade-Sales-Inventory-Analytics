@@ -982,18 +982,6 @@ table Measuress
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Cross Region Type' =
-			
-			IF (
-			    'fact FactSales'[IsCrossRegionSale] = TRUE (),
-			    "Cross Region",
-			    "Non-Cross Region"
-			)
-		lineageTag: bf5b9fdd-1832-4570-92d2-21b749aceb9f
-		summarizeBy: none
-
-		annotation SummarizationSetBy = Automatic
-
 	partition Measuress = calculated
 		mode: import
 		source = { BLANK() }
