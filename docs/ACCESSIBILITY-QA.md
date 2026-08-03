@@ -22,6 +22,7 @@ Automated evidence from `validate-final-polish-checkpoint.mjs`:
 - Duplicate tab-order values: 0
 - Visuals outside the 1440 x 810 canvas: 0
 - Data Model reading-order stops: 16
+- Header subtitles longer than the verified 64-character no-scroll limit: 0
 - Minimum palette contrast ratios: 5.81:1 for secondary text, 9.72:1 for
   active navigation and 14.52:1 for primary text
 

@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Reconcile KPI calculations and relationship integrity under active filters.",
+                    "value": "Validate KPIs and relationship integrity under active filters.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Reconcile KPI calculations and relationship integrity under active filters.'"
+                  "Value": "'Validate KPIs and relationship integrity under active filters.'"
                 }
               }
             }

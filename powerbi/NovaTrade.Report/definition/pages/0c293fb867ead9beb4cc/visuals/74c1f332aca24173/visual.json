@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Assess portfolio coverage, category growth and price-volume position.",
+                    "value": "Assess portfolio coverage, category growth and price-volume mix.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Assess portfolio coverage, category growth and price-volume position.'"
+                  "Value": "'Assess portfolio coverage, category growth and price-volume mix.'"
                 }
               }
             }

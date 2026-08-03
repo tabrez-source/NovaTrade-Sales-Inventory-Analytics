@@ -25,6 +25,8 @@ Stock on Hand, lead time and service-level data are unavailable.
 ## UI, accessibility and integrity changes
 
 - Standardized all page titles, subtitles and navigation labels
+- Shortened header subtitles to the verified no-scroll length while retaining
+  the accessible 10 pt type size and the approved business meaning
 - Replaced inherited footer copy with page-specific decision guidance
 - Applied compact display units to ranked revenue, unit and stock-flow values
 - Stored display-unit selections as typed numeric PBIR literals so Desktop

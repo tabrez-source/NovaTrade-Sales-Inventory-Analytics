@@ -163,6 +163,7 @@ Validated on 2026-08-03.
 
 - Eight report pages have standardized titles, subtitles, navigation and
   page-specific footer guidance
+- Header subtitles above the verified 64-character no-scroll limit: 0
 - User-facing terminology consistently uses Sales Revenue, Inventory
   Operations, Net Stock Flow, Replenishment Pressure and Cross-Region Revenue
   Share
@@ -172,7 +173,8 @@ Validated on 2026-08-03.
 - Data or interactive visuals missing alt text: 0
 - Duplicate tab-order values: 0
 - Visuals outside the 1440 x 810 canvas: 0
-- Ranked visuals with compact display units: 9
+- Ranked visuals with compact display units: 12
+- Typed PBIR display-unit settings: 37
 - Data Model architecture reading-order stops: 16
 - Minimum checked palette contrast ratio: 5.81:1
 - Final-polish builder: deterministic and idempotent

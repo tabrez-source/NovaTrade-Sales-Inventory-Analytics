@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Prioritize growth protection, demand recovery and territory coordination.",
+                    "value": "Protect growth, recover demand and coordinate territories.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Prioritize growth protection, demand recovery and territory coordination.'"
+                  "Value": "'Protect growth, recover demand and coordinate territories.'"
                 }
               }
             }

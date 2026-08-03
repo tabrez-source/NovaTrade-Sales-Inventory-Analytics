@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Track sales momentum, territory execution and distributor concentration.",
+                    "value": "Track sales, territory results and distributor concentration.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Track sales momentum, territory execution and distributor concentration.'"
+                  "Value": "'Track sales, territory results and distributor concentration.'"
                 }
               }
             }

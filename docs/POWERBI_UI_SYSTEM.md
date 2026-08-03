@@ -34,6 +34,8 @@ Field names are translated for business readers: Month, Product Category, Sales 
 
 - Page titles, subtitles, navigation labels and footer instructions are
   page-specific and generated deterministically.
+- Header subtitles remain a single 10 pt text run, use the standard 420 x 34 px
+  container and stay within the verified 64-character no-scroll contract.
 - Ranked revenue visuals display compact millions; ranked unit visuals display
   compact thousands or millions as appropriate.
 - Tables retain short headers while visual titles and tooltips carry the full

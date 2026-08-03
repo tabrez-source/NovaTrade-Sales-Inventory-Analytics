@@ -22,16 +22,14 @@ const pageConfig = {
   },
   "97dd004d959bc353cfef": {
     title: "Sales Performance",
-    subtitle:
-      "Track sales momentum, territory execution and distributor concentration.",
+    subtitle: "Track sales, territory results and distributor concentration.",
     footerPrefix: "Guide: ",
     footer:
       "Filters apply page-wide. YoY is N/A without a prior-year period. Hover rankings for contribution, growth and cross-region context.",
   },
   "0c293fb867ead9beb4cc": {
     title: "Product Performance",
-    subtitle:
-      "Assess portfolio coverage, category growth and price-volume position.",
+    subtitle: "Assess portfolio coverage, category growth and price-volume mix.",
     footerPrefix: "Guide: ",
     footer:
       "Filters apply page-wide. Bubble position shows units and average selling price; size shows revenue. Hover for share and growth.",
@@ -46,21 +44,18 @@ const pageConfig = {
   },
   "0833d451cbce4704acf3": {
     title: "Management Decision Center",
-    subtitle:
-      "Prioritize growth protection, demand recovery and territory coordination.",
+    subtitle: "Protect growth, recover demand and coordinate territories.",
     footerPrefix: "Rule: ",
     footer:
       "Replenishment pressure = positive product YoY growth + negative Net Stock Flow. It is not proof of stockout because opening stock and Stock on Hand are unavailable.",
   },
   "046c19d6b1632318bc76": {
     title: "Measures & Validation Center",
-    subtitle:
-      "Reconcile KPI calculations and relationship integrity under active filters.",
+    subtitle: "Validate KPIs and relationship integrity under active filters.",
   },
   "1f4b43e6cf3bae8af6ab": {
     title: "Data Model Overview",
-    subtitle:
-      "Two-fact star schema, conformed dimensions and single-direction filtering.",
+    subtitle: "Two-fact star schema, conformed dimensions and one-way filters.",
   },
   "8aceecd42b8f434b7f79": {
     title: "Business Logic & Notes",
