@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "Measuress.Declining Product Revenue %",
-              "nativeQueryRef": "Declining Product Revenue %",
-              "active": true
+              "nativeQueryRef": "Declining Revenue Exposure",
+              "active": true,
+              "displayName": "Declining Revenue Exposure"
             }
           ]
         },
@@ -76,8 +77,9 @@
                 }
               },
               "queryRef": "Measuress.Total Sales",
-              "nativeQueryRef": "Total Sales",
-              "active": true
+              "nativeQueryRef": "Sales Revenue",
+              "active": true,
+              "displayName": "Sales Revenue"
             }
           ]
         }

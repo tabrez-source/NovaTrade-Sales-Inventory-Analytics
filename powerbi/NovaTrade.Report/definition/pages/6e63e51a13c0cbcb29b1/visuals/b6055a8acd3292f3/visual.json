@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Source limit: transfers and authoritative opening stock are unavailable. Net Stock Flow = inward − outward; it is not Stock on Hand.",
+                    "value": "Source limit: ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontWeight": "bold",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "An order sold outside the Sales Head's assigned base region. It highlights market reach; it does not mean the account was reassigned.",
+                    "value": "Transfers and authoritative opening stock are unavailable. Net Stock Flow = Inward Units - Outward Units; it is not Stock on Hand.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "9.5pt",
@@ -76,7 +76,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Inventory source limitation: no transfer rows or authoritative opening-stock snapshot are available; net stock flow must not be interpreted as stock on hand.'"
+                  "Value": "'Source limit: Transfers and authoritative opening stock are unavailable. Net Stock Flow = Inward Units - Outward Units; it is not Stock on Hand.'"
                 }
               }
             }

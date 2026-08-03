@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Assess portfolio coverage, category momentum, revenue concentration and price-volume positioning.",
+                    "value": "Assess portfolio coverage, category growth and price-volume position.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Product Performance page purpose: identify the products and categories that drive value, growth and portfolio risk.'"
+                  "Value": "'Assess portfolio coverage, category growth and price-volume position.'"
                 }
               }
             }

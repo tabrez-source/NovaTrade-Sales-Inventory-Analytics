@@ -1,6 +1,6 @@
 # NovaTrade PBIP source checkpoint — validation summary
 
-Validated on 2026-08-02.
+Validated on 2026-08-03.
 
 ## Microsoft PBIR validation
 
@@ -35,6 +35,8 @@ Validated on 2026-08-02.
 - Management result: passed, 0 issues
 - Governance command: `node scripts/qa/validate-governance-checkpoint.mjs .`
 - Governance result: passed, 0 issues
+- Final-polish command: `node scripts/qa/validate-final-polish-checkpoint.mjs .`
+- Final-polish result: passed, 0 issues
 - Sales Performance visual definitions: 55
 - Product Performance visual definitions: 54
 - Inventory Operations visual definitions: 54
@@ -57,7 +59,7 @@ Validated on 2026-08-02.
 - Month display field: `MonthName`, sorted by `MonthNumber`
 - Year slicer: strict single-select; Select All disabled
 - Product-category ranking: Visual Top 5 by Total Sales
-- Executive KPI coverage: Total Sales, Quantity Sold, Average Order Value, Sales Orders and Active Distributors
+- Executive KPI coverage: Sales Revenue, Quantity Sold, Average Order Value, Sales Orders and Active Distributors
 - Cross-region analytical visuals: 1, plus a plain-language definition strip
 - Order-status visuals: 1
 - Monthly visuals with scrollbar risk: 0
@@ -73,14 +75,14 @@ Validated on 2026-08-02.
 
 ## Sales Performance checks
 
-- Five KPIs: Total Sales, Sales Orders, Average Order Value, YoY Sales Growth and Active Distributors
+- Five KPIs: Sales Revenue, Sales Orders, Average Order Value, YoY Sales Growth and Active Distributors
 - Month display field: `MonthName`, sorted by `MonthNumber`
 - Selected-year versus prior-year series: present with solid and dashed line styles
 - Year slicer: strict single-select; Select All disabled
 - Corrected reporting-region slicer: `ReportingRegionName`
 - Territory comparison: assigned-region versus cross-region sales by month
-- Ranked drivers: Reporting Region YoY growth, Sales Head sales and Top 5 Distributors
-- Distributor ranking: Visual Top 5 by Total Sales
+- Ranked drivers: Reporting Region YoY growth, Sales Head revenue and Top 5 Distributors
+- Distributor ranking: Visual Top 5 by Sales Revenue
 - Legacy donut and product-category duplication: removed
 - `Previous Year Sales`: no longer blocked outside `YearMonth` scope
 - First-year YoY state: KPI displays `N/A` when no prior-year sales exist
@@ -91,7 +93,7 @@ Validated on 2026-08-02.
 
 ## Product Performance checks
 
-- Five KPIs: Product Revenue, Units Sold, Product Coverage, Average Selling
+- Five KPIs: Sales Revenue, Units Sold, Product Coverage, Average Selling
   Price and Top Category Revenue Share
 - Catalog audit: 125 approved products reach `DimProduct`; the earlier 200
   figure refers to distributors
@@ -123,17 +125,17 @@ Validated on 2026-08-02.
 
 ## Management Insights checks
 
-- Five exception-oriented KPIs: YoY Sales Growth, Growing Products at Flow
-  Risk, Flow-Risk Revenue Share, Cross-Region Exposure and Declining Revenue
-  Exposure
-- Flow-risk definition: positive product YoY growth plus negative Net Stock
-  Flow
-- Exposure location: flow-risk revenue ranked by Product Category
+- Five exception-oriented KPIs: YoY Sales Growth, Growing Products Under
+  Pressure, Pressure-Exposed Revenue Share, Cross-Region Revenue Share and
+  Declining Revenue Exposure
+- Replenishment-pressure definition: positive product YoY growth plus negative
+  Net Stock Flow
+- Exposure location: pressure-exposed revenue ranked by Product Category
 - Accountability: Sales Head YoY growth with territory and distributor context
 - Action queue: product-level decision labels with sales, growth, inbound
   coverage and net-flow evidence
 - Unsupported closing-stock and outside-assignment claims removed from the page
-- Flow risk is visibly disclosed as replenishment pressure, not proof of a
+- Replenishment pressure is visibly disclosed as a signal, not proof of a
   stockout
 - Executive, Sales, Product and Inventory regression checkpoints: passed
 - Rebuild script: deterministic and idempotent
@@ -157,6 +159,24 @@ Validated on 2026-08-02.
   `Estimated Closing Stock` and `Total COGS`
 - Governance builder: deterministic and idempotent
 
+## Final report polish checks
+
+- Eight report pages have standardized titles, subtitles, navigation and
+  page-specific footer guidance
+- User-facing terminology consistently uses Sales Revenue, Inventory
+  Operations, Net Stock Flow, Replenishment Pressure and Cross-Region Revenue
+  Share
+- Retired user-facing labels `Inventory Movement`, `Flow-Risk` and
+  `Cross-Region Exposure`: 0
+- Data or interactive visuals with alt text and a positive tab order: 137
+- Data or interactive visuals missing alt text: 0
+- Duplicate tab-order values: 0
+- Visuals outside the 1440 x 810 canvas: 0
+- Ranked visuals with compact display units: 9
+- Data Model architecture reading-order stops: 16
+- Minimum checked palette contrast ratio: 5.81:1
+- Final-polish builder: deterministic and idempotent
+
 ## Final Desktop render gate
 
-Microsoft schema validation confirms that the source is structurally valid, but Power BI Desktop remains the final visual and analytical runtime. Desktop must confirm that 2020 displays `N/A` for YoY growth, 2021 onward displays a percentage, both Sales monthly lines render, the prior-year Sales series is dashed, the Reporting Region slicer shows West/South/North/East, Product Top 10 and Inventory Top 10 do not scroll, the Operational Godown slicer retains both inward and outward values, Inventory net flow reconciles to inward minus outward, the replenishment table fits all six columns, all six validation tiles evaluate as expected under 2021 / All Products, reference navigation works, model and logic labels do not clip, tooltips and cross-highlighting behave as intended, card totals reconcile under identical filters, and no text clips at Fit to page or Actual size.
+Microsoft schema validation confirms that the source is structurally valid, but Power BI Desktop remains the final visual and analytical runtime. Desktop must confirm that 2020 displays `N/A` for YoY growth, 2021 onward displays a percentage, both Sales monthly lines render, the prior-year Sales series is dashed, the Reporting Region slicer shows West/South/North/East, Product Top 10 and Inventory Top 10 do not scroll, compact display units are readable, the Operational Godown slicer retains both inward and outward values, Inventory net flow reconciles to inward minus outward, the replenishment table fits all six columns, all six validation tiles evaluate as expected under 2021 / All Products, reference navigation works, model and logic labels do not clip, tooltips and cross-highlighting behave as intended, card totals reconcile under identical filters, and no text clips or scrollbars appear at Fit to page or Actual size.

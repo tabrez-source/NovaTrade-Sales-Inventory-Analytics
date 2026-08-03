@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "Measuress.Total Sales",
-              "nativeQueryRef": "Total Sales",
-              "active": true
+              "nativeQueryRef": "Sales Revenue",
+              "active": true,
+              "displayName": "Sales Revenue"
             }
           ]
         },
@@ -97,7 +98,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Sales'"
+                  "Value": "'Sales Revenue'"
                 }
               }
             },
@@ -242,7 +243,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Sales KPI. Shows sales value for the current Year and Physical Region filters.'"
+                  "Value": "'Sales Revenue KPI. Shows sales value for the current Year and Physical Region filters.'"
                 }
               }
             }

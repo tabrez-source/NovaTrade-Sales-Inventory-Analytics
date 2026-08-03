@@ -256,7 +256,7 @@ function validateSlicers(visuals) {
 
 function validateKpis(visuals) {
   const expected = new Map([
-    ["Total Sales", "Total Sales"],
+    ["Sales Revenue", "Total Sales"],
     ["Sales Orders", "Sales Order Count"],
     ["Average Order Value", "Average Order Value"],
     ["YoY Sales Growth", "YoY Sales Growth Display"],
@@ -285,7 +285,7 @@ function validateKpis(visuals) {
 function validateTrend(visuals) {
   const trend = findByTitle(
     visuals,
-    "Monthly Sales: Selected Year vs Prior Year",
+    "Monthly Revenue: Selected Year vs Prior Year",
   );
   if (!trend) return;
   if (trend.visual?.visualType !== "lineChart") {
@@ -361,7 +361,7 @@ function validateTrend(visuals) {
 function validateDiagnostics(visuals) {
   const territory = findByTitle(
     visuals,
-    "Assigned vs Cross-Region Sales by Month",
+    "Assigned-Region vs Cross-Region Revenue by Month",
   );
   if (territory) {
     for (const measure of [
@@ -379,7 +379,7 @@ function validateDiagnostics(visuals) {
 
   const region = findByTitle(
     visuals,
-    "YoY Growth by Reporting Region",
+    "YoY Sales Growth by Reporting Region",
   );
   if (region) {
     if (
@@ -440,7 +440,7 @@ function validateDiagnostics(visuals) {
     }
   }
 
-  const salesHead = findByTitle(visuals, "Sales by Sales Head");
+  const salesHead = findByTitle(visuals, "Sales Revenue by Sales Head");
   if (
     salesHead &&
     !hasField(
@@ -458,7 +458,7 @@ function validateDiagnostics(visuals) {
 
   const distributors = findByTitle(
     visuals,
-    "Top 5 Distributors by Sales",
+    "Top 5 Distributors by Revenue",
   );
   if (distributors) {
     if (

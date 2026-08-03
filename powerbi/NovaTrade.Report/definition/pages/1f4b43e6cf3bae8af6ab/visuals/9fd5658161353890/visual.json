@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "NovaTrade Data Model",
+                    "value": "Data Model Overview",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "20pt",
@@ -68,7 +68,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'NovaTrade Data Model page title.'"
+                  "Value": "'Data Model Overview page title.'"
                 }
               }
             }

@@ -105,7 +105,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'NT_UI_NAV_6e63e51a13c0cbcb29b1_SHAPE_ACTIVE | Inventory Movement navigation background'"
+                  "Value": "'NT_UI_NAV_6e63e51a13c0cbcb29b1_SHAPE_ACTIVE | Inventory Operations navigation background'"
                 }
               }
             }

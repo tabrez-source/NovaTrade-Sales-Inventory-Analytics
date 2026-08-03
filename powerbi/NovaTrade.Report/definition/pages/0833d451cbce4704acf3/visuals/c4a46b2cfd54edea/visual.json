@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "Measuress.Revenue at Flow Risk %",
-              "nativeQueryRef": "Revenue at Flow Risk %",
-              "active": true
+              "nativeQueryRef": "Pressure-Exposed Revenue Share",
+              "active": true,
+              "displayName": "Pressure-Exposed Revenue Share"
             }
           ]
         },
@@ -46,8 +47,9 @@
                 }
               },
               "queryRef": "Measuress.Revenue at Flow Risk",
-              "nativeQueryRef": "Revenue at Flow Risk",
-              "active": true
+              "nativeQueryRef": "Pressure-Exposed Revenue",
+              "active": true,
+              "displayName": "Pressure-Exposed Revenue"
             },
             {
               "field": {
@@ -61,8 +63,9 @@
                 }
               },
               "queryRef": "Measuress.Total Sales",
-              "nativeQueryRef": "Total Sales",
-              "active": true
+              "nativeQueryRef": "Sales Revenue",
+              "active": true,
+              "displayName": "Sales Revenue"
             }
           ]
         }
@@ -82,7 +85,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Flow-Risk Revenue Share'"
+                  "Value": "'Pressure-Exposed Revenue Share'"
                 }
               }
             },

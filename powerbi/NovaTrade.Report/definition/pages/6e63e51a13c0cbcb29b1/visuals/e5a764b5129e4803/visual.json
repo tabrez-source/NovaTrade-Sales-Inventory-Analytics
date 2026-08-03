@@ -48,7 +48,8 @@
               },
               "queryRef": "Measuress.Total Inward Quantity",
               "nativeQueryRef": "Inward Units",
-              "active": true
+              "active": true,
+              "displayName": "Inward Units"
             },
             {
               "field": {
@@ -63,7 +64,8 @@
               },
               "queryRef": "Measuress.Total Outward Quantity",
               "nativeQueryRef": "Outward Units",
-              "active": true
+              "active": true,
+              "displayName": "Outward Units"
             }
           ]
         },
@@ -82,7 +84,8 @@
               },
               "queryRef": "Measuress.Net Movement Quantity",
               "nativeQueryRef": "Net Stock Flow",
-              "active": true
+              "active": true,
+              "displayName": "Net Stock Flow"
             },
             {
               "field": {
@@ -134,7 +137,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Monthly Inward vs Outward Trend'"
+                  "Value": "'Monthly Inventory Flow: Inward vs Outward Units'"
                 }
               }
             },

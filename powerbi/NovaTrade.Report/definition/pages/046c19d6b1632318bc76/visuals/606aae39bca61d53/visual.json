@@ -76,8 +76,9 @@
                 }
               },
               "queryRef": "Measuress.Total Inward Quantity",
-              "nativeQueryRef": "Total Inward Quantity",
-              "active": true
+              "nativeQueryRef": "Inward Units",
+              "active": true,
+              "displayName": "Inward Units"
             },
             {
               "field": {
@@ -91,8 +92,9 @@
                 }
               },
               "queryRef": "Measuress.Total Outward Quantity",
-              "nativeQueryRef": "Total Outward Quantity",
-              "active": true
+              "nativeQueryRef": "Outward Units",
+              "active": true,
+              "displayName": "Outward Units"
             },
             {
               "field": {

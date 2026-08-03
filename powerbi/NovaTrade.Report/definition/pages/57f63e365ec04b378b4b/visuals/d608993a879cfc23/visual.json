@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Sales, product demand and distribution performance at a glance",
+                    "value": "Executive snapshot of sales, demand and regional performance.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales, product demand and distribution performance at a glance.'"
+                  "Value": "'Executive snapshot of sales, demand and regional performance.'"
                 }
               }
             }

@@ -256,7 +256,7 @@ function validateSlicers(visuals) {
 
 function validateKpis(visuals) {
   const expected = new Map([
-    ["Product Revenue", "Total Sales"],
+    ["Sales Revenue", "Total Sales"],
     ["Units Sold", "Total Quantity Sold"],
     ["Product Coverage", "Product Coverage Display"],
     ["Average Selling Price", "Average Selling Price"],
@@ -283,12 +283,15 @@ function validateKpis(visuals) {
 }
 
 function validateCategoryGrowth(visuals) {
-  const chart = findByTitle(visuals, "Category YoY Growth");
+  const chart = findByTitle(
+    visuals,
+    "YoY Sales Growth by Product Category",
+  );
   if (!chart) return;
   if (chart.visual?.visualType !== "clusteredBarChart") {
     addIssue(
       "category-growth-type",
-      "Category YoY Growth must be a clusteredBarChart.",
+      "Product-category YoY growth must be a clusteredBarChart.",
     );
   }
   if (
@@ -302,7 +305,7 @@ function validateCategoryGrowth(visuals) {
   ) {
     addIssue(
       "category-growth-fields",
-      "Category YoY Growth must use CategoryName and YoY Sales Change %.",
+      "Product-category YoY growth must use CategoryName and YoY Sales Change %.",
     );
   }
   const primary =
@@ -311,7 +314,7 @@ function validateCategoryGrowth(visuals) {
   if (primary !== "YoY Sales Change %") {
     addIssue(
       "category-growth-measure",
-      `Category YoY Growth primary measure must be YoY Sales Change %, found ${primary}.`,
+      `Product-category YoY growth must use YoY Sales Change %, found ${primary}.`,
     );
   }
   const sort = chart.visual?.query?.sortDefinition?.sort?.[0];
@@ -321,7 +324,7 @@ function validateCategoryGrowth(visuals) {
   ) {
     addIssue(
       "category-growth-sort",
-      "Category YoY Growth must sort growth descending.",
+      "Product-category YoY growth must sort descending.",
     );
   }
   const dataPoint = chart.visual?.objects?.dataPoint?.[0];
@@ -331,7 +334,7 @@ function validateCategoryGrowth(visuals) {
   if (color !== "'#0B6F6A'" || JSON.stringify(dataPoint).includes("FillRule")) {
     addIssue(
       "category-growth-color",
-      "Category YoY Growth must use a solid teal mark color without a gradient legend.",
+      "Product-category YoY growth must use a solid teal mark color without a gradient legend.",
     );
   }
   evidence.categoryGrowth =
@@ -394,7 +397,7 @@ function validateTopProducts(visuals) {
   }
   if (
     literalValue(labels?.labelDisplayUnits) !== "'1000000'" ||
-    literalValue(labels?.labelPrecision) !== "2L" ||
+    literalValue(labels?.labelPrecision) !== "1L" ||
     labels?.valueCustomFormatString
   ) {
     addIssue(

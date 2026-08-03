@@ -18,7 +18,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Total Sales = Assigned-Region Sales + Cross-Region Sales\nTolerance: ₹1",
+                    "value": "Sales Revenue = Assigned-Region Sales + Cross-Region Sales\nTolerance: ₹1",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "9.5pt",
@@ -66,7 +66,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales Region Partition validation rule: Total Sales = Assigned-Region Sales + Cross-Region Sales\nTolerance: ₹1'"
+                  "Value": "'Sales Region Partition validation rule: Sales Revenue = Assigned-Region Sales + Cross-Region Sales\nTolerance: ₹1'"
                 }
               }
             }

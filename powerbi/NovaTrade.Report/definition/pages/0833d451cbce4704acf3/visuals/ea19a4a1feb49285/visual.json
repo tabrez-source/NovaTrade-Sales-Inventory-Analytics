@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "Measuress.Growing Products at Flow Risk",
-              "nativeQueryRef": "Growing Products at Flow Risk",
-              "active": true
+              "nativeQueryRef": "Growing Products Under Pressure",
+              "active": true,
+              "displayName": "Growing Products Under Pressure"
             }
           ]
         },
@@ -46,8 +47,9 @@
                 }
               },
               "queryRef": "Measuress.Revenue at Flow Risk",
-              "nativeQueryRef": "Revenue at Flow Risk",
-              "active": true
+              "nativeQueryRef": "Pressure-Exposed Revenue",
+              "active": true,
+              "displayName": "Pressure-Exposed Revenue"
             },
             {
               "field": {
@@ -61,8 +63,9 @@
                 }
               },
               "queryRef": "Measuress.Revenue at Flow Risk %",
-              "nativeQueryRef": "Revenue at Flow Risk %",
-              "active": true
+              "nativeQueryRef": "Pressure-Exposed Revenue Share",
+              "active": true,
+              "displayName": "Pressure-Exposed Revenue Share"
             }
           ]
         }
@@ -82,7 +85,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Growing Products at Flow Risk'"
+                  "Value": "'Growing Products Under Pressure'"
                 }
               }
             },

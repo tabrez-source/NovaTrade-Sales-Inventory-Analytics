@@ -273,10 +273,13 @@ function validateKpis(visuals) {
 }
 
 function validateTrend(visuals) {
-  const chart = findByTitle(visuals, "Monthly Inward vs Outward Trend");
+  const chart = findByTitle(
+    visuals,
+    "Monthly Inventory Flow: Inward vs Outward Units",
+  );
   if (!chart) return;
   if (chart.visual?.visualType !== "lineChart") {
-    addIssue("trend-type", "Monthly Inward vs Outward Trend must be a lineChart.");
+    addIssue("trend-type", "Monthly inventory flow must be a lineChart.");
   }
   if (!hasField(chart, "Column", "dim DimDate", "MonthName")) {
     addIssue("trend-month", "Inventory trend must use sorted DimDate[MonthName].");

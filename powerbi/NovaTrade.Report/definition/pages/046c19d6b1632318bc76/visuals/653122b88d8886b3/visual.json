@@ -18,7 +18,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Total Sales = Average Order Value × Distinct Sales Orders\nTolerance: ₹1",
+                    "value": "Sales Revenue = Average Order Value × Distinct Sales Orders\nTolerance: ₹1",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "9.5pt",
@@ -66,7 +66,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Average Order Value Identity validation rule: Total Sales = Average Order Value × Distinct Sales Orders\nTolerance: ₹1'"
+                  "Value": "'Average Order Value Identity validation rule: Sales Revenue = Average Order Value × Distinct Sales Orders\nTolerance: ₹1'"
                 }
               }
             }

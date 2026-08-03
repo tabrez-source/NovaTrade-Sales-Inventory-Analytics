@@ -46,8 +46,9 @@
                 }
               },
               "queryRef": "Measuress.Total Sales",
-              "nativeQueryRef": "Total Sales",
-              "active": true
+              "nativeQueryRef": "Sales Revenue",
+              "active": true,
+              "displayName": "Sales Revenue"
             },
             {
               "field": {
@@ -61,8 +62,9 @@
                 }
               },
               "queryRef": "Measuress.Previous Year Sales",
-              "nativeQueryRef": "Previous Year Sales",
-              "active": true
+              "nativeQueryRef": "Prior Year Revenue",
+              "active": true,
+              "displayName": "Prior Year Revenue"
             },
             {
               "field": {

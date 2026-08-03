@@ -17,7 +17,7 @@ NovaTrade is an end-to-end business intelligence portfolio project for a synthet
 - How much selling occurs outside assigned regions, and when?
 - What is the current order-status mix?
 - Which growing products face replenishment pressure?
-- Where is flow-risk revenue concentrated, and who owns the response?
+- Where is revenue under replenishment pressure concentrated, and who owns the response?
 - Which products require demand recovery or management monitoring?
 
 ## Architecture
@@ -33,7 +33,7 @@ flowchart LR
 
 ## Reporting-layer status
 
-The five core analytical pages are complete. They use one visual system, shared metric definitions, contextual tooltips, page navigation, logical keyboard order, descriptive alt text, WCAG-aware contrast and a visible synthetic-data disclosure.
+The five core analytical pages and three governance pages are complete and have passed the unified final-polish checkpoint. They use one visual system, shared metric definitions, compact display units, contextual tooltips, page navigation, logical keyboard order, descriptive alt text, WCAG-aware contrast and a visible synthetic-data disclosure.
 
 Core analytical pages:
 
@@ -62,17 +62,18 @@ The `00_UI Template` page remains hidden as a design-system support page.
 ## Validation evidence
 
 - Microsoft PBIR validation: 0 errors, 0 warnings
-- Reproducible checkpoints for all five analytical pages: 0 issues
+- Reproducible checkpoints for all eight report pages: 0 issues
 - Report-governance checkpoint: 0 issues
+- Final report-polish checkpoint: 0 issues
 - Six filter-aware DAX and model-integrity tests
 - Semantic references resolved against the TMDL model
 - Navigation targets verified
 - All completed pages checked against the 1440 x 810 canvas
 - Five public pages and four hidden support pages verified
-- Public data visuals checked for alt text and keyboard order
+- All 137 data and interactive visuals checked for alt text and keyboard order
 - NovaTrade-only identity and external-brand separation verified
 
-See [Validation Summary](docs/VALIDATION-SUMMARY.md), [Accessibility QA](docs/ACCESSIBILITY-QA.md) and [Report Governance Pages](docs/REPORT-GOVERNANCE-PAGES.md).
+See [Validation Summary](docs/VALIDATION-SUMMARY.md), [Accessibility QA](docs/ACCESSIBILITY-QA.md), [Final Report Polish](docs/FINAL-REPORT-POLISH.md) and [Report Governance Pages](docs/REPORT-GOVERNANCE-PAGES.md).
 
 ## Open the report
 
@@ -83,4 +84,4 @@ See [Validation Summary](docs/VALIDATION-SUMMARY.md), [Accessibility QA](docs/AC
 
 ## Next milestone
 
-Run one report-wide final-polish and publication pass: KPI naming, display units, spacing, tooltip definitions, interaction QA, accessibility review, screenshots and portfolio/GitHub presentation.
+Complete the Power BI Desktop visual gate, publish to a development workspace, build the executive dashboard and mobile layouts, then practise refresh, workspace roles, app audiences, row-level security, sharing and monitoring in Power BI Service.

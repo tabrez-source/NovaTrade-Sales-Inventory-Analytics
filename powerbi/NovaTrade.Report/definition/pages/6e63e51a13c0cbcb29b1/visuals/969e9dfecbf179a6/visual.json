@@ -18,7 +18,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Inventory Movement",
+                    "value": "Inventory Operations",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontWeight": "bold",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'NT_UI_NAV_6e63e51a13c0cbcb29b1_TEXT_ACTIVE | Inventory Movement navigation label'"
+                  "Value": "'NT_UI_NAV_6e63e51a13c0cbcb29b1_TEXT_ACTIVE | Inventory Operations navigation label'"
                 }
               }
             }

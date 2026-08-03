@@ -236,9 +236,9 @@ function validateSlicers(visuals) {
 function validateKpis(visuals) {
   const expected = new Map([
     ["YoY Sales Growth", "YoY Sales Change %"],
-    ["Growing Products at Flow Risk", "Growing Products at Flow Risk"],
-    ["Flow-Risk Revenue Share", "Revenue at Flow Risk %"],
-    ["Cross-Region Exposure", "Cross Region Sales %"],
+    ["Growing Products Under Pressure", "Growing Products at Flow Risk"],
+    ["Pressure-Exposed Revenue Share", "Revenue at Flow Risk %"],
+    ["Cross-Region Revenue Share", "Cross Region Sales %"],
     ["Declining Revenue Exposure", "Declining Product Revenue %"],
   ]);
 
@@ -262,12 +262,15 @@ function validateKpis(visuals) {
 }
 
 function validateFlowRiskChart(visuals) {
-  const chart = findByTitle(visuals, "Flow-Risk Revenue by Category");
+  const chart = findByTitle(
+    visuals,
+    "Revenue Under Replenishment Pressure by Category",
+  );
   if (!chart) return;
   if (chart.visual?.visualType !== "clusteredBarChart") {
     addIssue(
       "flow-risk-type",
-      "Flow-Risk Revenue by Category must be a clusteredBarChart.",
+      "Replenishment-pressure revenue must be a clusteredBarChart.",
     );
   }
   for (const [kind, entity, property] of [
@@ -428,10 +431,13 @@ function validateLegacyRemoval(visuals) {
       );
     }
   }
-  if (!serialized.includes("It signals replenishment pressure, not a stockout")) {
+  if (
+    !serialized.includes("Replenishment pressure = positive product YoY growth + negative Net Stock Flow") ||
+    !serialized.includes("It is not proof of stockout")
+  ) {
     addIssue(
       "decision-rule-caveat",
-      "Management page must visibly disclose the exact flow-risk rule and stockout limitation.",
+      "Management page must visibly disclose the replenishment-pressure rule and stockout limitation.",
     );
   }
   evidence.legacyRemoval = "unsupported closing stock, blank outside-assignment KPI and repeated page summaries removed";

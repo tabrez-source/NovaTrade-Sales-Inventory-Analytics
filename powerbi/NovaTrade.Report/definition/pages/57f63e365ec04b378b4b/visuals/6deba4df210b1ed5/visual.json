@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "i  Cross-region sale: ",
+                    "value": "Definition: ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontWeight": "bold",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "An order sold outside the Sales Head's assigned base region. It highlights market reach; it does not mean the account was reassigned.",
+                    "value": "Cross-region revenue is generated outside the Sales Head's assigned base region. It signals market reach, not account reassignment.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "9.5pt",
@@ -76,7 +76,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Definition. A cross-region sale is an order sold outside the Sales Head''s assigned base region. It highlights market reach and does not mean the account was reassigned.'"
+                  "Value": "'Definition: Cross-region revenue is generated outside the Sales Head''s assigned base region. It signals market reach, not account reassignment.'"
                 }
               }
             }

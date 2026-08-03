@@ -89,3 +89,6 @@ jobs:
 
       - name: Validate report governance checkpoint
         run: node scripts/qa/validate-governance-checkpoint.mjs .
+
+      - name: Validate final report polish checkpoint
+        run: node scripts/qa/validate-final-polish-checkpoint.mjs .

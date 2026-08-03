@@ -303,22 +303,19 @@ async function validateRankings() {
     const visual = await loadExecutiveVisual(id);
     const objects = visual.visual.objects;
     const labels = objects.labels?.[0]?.properties;
-    if (literalValue(labels?.labelDisplayUnits) !== "'1'") {
+    if (literalValue(labels?.labelDisplayUnits) !== "'1000000'") {
       addIssue(
         "ranking-units",
-        `${id} must disable automatic label scaling before applying the custom format.`,
+        `${id} must use native million display units.`,
       );
     }
     if (literalValue(labels?.labelPrecision) !== "1L") {
       addIssue("ranking-precision", `${id} must use one decimal place.`);
     }
-    if (
-      literalValue(labels?.valueCustomFormatString) !==
-      "'₹0.0,,\"M\"'"
-    ) {
+    if (labels?.valueCustomFormatString !== undefined) {
       addIssue(
         "ranking-format",
-        `${id} must use the compact ₹0.0M label format.`,
+        `${id} must not override native compact units with a custom format.`,
       );
     }
     if (literalValue(objects.categoryAxis?.[0]?.properties?.showAxisTitle) !== "false") {

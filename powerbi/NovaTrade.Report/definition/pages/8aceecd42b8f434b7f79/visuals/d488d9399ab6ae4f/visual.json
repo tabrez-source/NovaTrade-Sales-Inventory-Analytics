@@ -33,7 +33,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "• Total Sales = Σ FactSales[LineTotal]\n• Units Sold = Σ FactSales[Quantity]\n• Sales Orders = distinct OrderNumber\n• Average Order Value = Total Sales ÷ Sales Orders\n• Active Distributors = distributors with sales in the current filter context",
+                    "value": "• Sales Revenue = Σ FactSales[LineTotal]\n• Units Sold = Σ FactSales[Quantity]\n• Sales Orders = distinct OrderNumber\n• Average Order Value = Sales Revenue ÷ Sales Orders\n• Active Distributors = distributors with sales in the current filter context",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "9.5pt",
@@ -81,7 +81,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'01  Sales & Order KPIs. • Total Sales = Σ FactSales[LineTotal]\n• Units Sold = Σ FactSales[Quantity]\n• Sales Orders = distinct OrderNumber\n• Average Order Value = Total Sales ÷ Sales Orders\n• Active Distributors = distributors with sales in the current filter context'"
+                  "Value": "'01  Sales & Order KPIs• Sales Revenue = Σ FactSales[LineTotal] • Units Sold = Σ FactSales[Quantity] • Sales Orders = distinct OrderNumber • Average Order Value = Sales Revenue ÷ Sales Orders • Active Distributors = distributors with sales in the current filter context'"
                 }
               }
             }

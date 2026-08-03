@@ -80,8 +80,9 @@
                 }
               },
               "queryRef": "Measuress.Cross Region Sales %",
-              "nativeQueryRef": "Cross Region Sales %",
-              "active": true
+              "nativeQueryRef": "Cross-Region Revenue Share",
+              "active": true,
+              "displayName": "Cross-Region Revenue Share"
             },
             {
               "field": {
@@ -148,7 +149,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Assigned vs Cross-Region Sales by Month'"
+                  "Value": "'Assigned-Region vs Cross-Region Revenue by Month'"
                 }
               }
             },
