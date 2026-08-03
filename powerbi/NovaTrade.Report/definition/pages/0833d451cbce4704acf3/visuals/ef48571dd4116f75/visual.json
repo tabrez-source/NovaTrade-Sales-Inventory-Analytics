@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Prioritize growth, territory governance and replenishment exceptions with traceable evidence.",
+                    "value": "Protect growth, recover demand and coordinate territories.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Management page purpose: identify measurable exceptions, quantify exposure, assign ownership and support follow-up action.'"
+                  "Value": "'Protect growth, recover demand and coordinate territories.'"
                 }
               }
             }

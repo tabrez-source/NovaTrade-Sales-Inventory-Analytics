@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Rule: Flow risk = positive YoY product growth + negative Net Stock Flow. It signals replenishment pressure, not a stockout; opening stock and Stock on Hand are unavailable. Select one Year for comparable YoY evidence.",
+                    "value": "Rule: ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontWeight": "bold",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "An order sold outside the Sales Head's assigned base region. It highlights market reach; it does not mean the account was reassigned.",
+                    "value": "Replenishment pressure = positive product YoY growth + negative Net Stock Flow. It is not proof of stockout because opening stock and Stock on Hand are unavailable.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "9.5pt",
@@ -76,7 +76,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Management decision-rule note: flow risk combines positive year-over-year product sales growth with negative net stock flow. It is not proof of a stockout because opening stock and stock on hand are unavailable.'"
+                  "Value": "'Rule: Replenishment pressure = positive product YoY growth + negative Net Stock Flow. It is not proof of stockout because opening stock and Stock on Hand are unavailable.'"
                 }
               }
             }

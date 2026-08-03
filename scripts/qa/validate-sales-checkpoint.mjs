@@ -256,7 +256,7 @@ function validateSlicers(visuals) {
 
 function validateKpis(visuals) {
   const expected = new Map([
-    ["Total Sales", "Total Sales"],
+    ["Sales Revenue", "Total Sales"],
     ["Sales Orders", "Sales Order Count"],
     ["Average Order Value", "Average Order Value"],
     ["YoY Sales Growth", "YoY Sales Growth Display"],
@@ -285,7 +285,7 @@ function validateKpis(visuals) {
 function validateTrend(visuals) {
   const trend = findByTitle(
     visuals,
-    "Monthly Sales: Selected Year vs Prior Year",
+    "Monthly Revenue: Selected Year vs Prior Year",
   );
   if (!trend) return;
   if (trend.visual?.visualType !== "lineChart") {
@@ -361,7 +361,7 @@ function validateTrend(visuals) {
 function validateDiagnostics(visuals) {
   const territory = findByTitle(
     visuals,
-    "Assigned vs Cross-Region Sales by Month",
+    "Assigned-Region vs Cross-Region Revenue by Month",
   );
   if (territory) {
     for (const measure of [
@@ -379,7 +379,7 @@ function validateDiagnostics(visuals) {
 
   const region = findByTitle(
     visuals,
-    "YoY Growth by Reporting Region",
+    "YoY Sales Growth by Reporting Region",
   );
   if (region) {
     if (
@@ -417,14 +417,16 @@ function validateDiagnostics(visuals) {
         "Regional YoY comparison must sort YoY Sales Change % descending.",
       );
     }
-    const labelFormat = literalValue(
-      region.visual?.objects?.labels?.[0]?.properties
-        ?.valueCustomFormatString,
-    );
-    if (labelFormat !== "'0.0%;-0.0%;0.0%'") {
+    const regionLabels =
+      region.visual?.objects?.labels?.[0]?.properties;
+    if (
+      literalValue(regionLabels?.labelDisplayUnits) !== "1D" ||
+      literalValue(regionLabels?.labelPrecision) !== "1L" ||
+      regionLabels?.valueCustomFormatString
+    ) {
       addIssue(
         "region-label-format",
-        `Regional YoY labels must use signed percentages, found ${labelFormat}.`,
+        "Regional YoY labels must use typed percentage units and one decimal place without an overriding format string.",
       );
     }
     if (hasField(region, "Measure", "Measuress", "Total Sales")) {
@@ -440,7 +442,7 @@ function validateDiagnostics(visuals) {
     }
   }
 
-  const salesHead = findByTitle(visuals, "Sales by Sales Head");
+  const salesHead = findByTitle(visuals, "Sales Revenue by Sales Head");
   if (
     salesHead &&
     !hasField(
@@ -458,7 +460,7 @@ function validateDiagnostics(visuals) {
 
   const distributors = findByTitle(
     visuals,
-    "Top 5 Distributors by Sales",
+    "Top 5 Distributors by Revenue",
   );
   if (distributors) {
     if (

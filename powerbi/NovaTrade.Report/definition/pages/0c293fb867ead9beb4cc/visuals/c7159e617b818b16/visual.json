@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Filters apply page-wide. Category bubbles compare price and volume; size represents revenue. Hover for share, growth and units.",
+                    "value": "Guide: ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontWeight": "bold",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "An order sold outside the Sales Head's assigned base region. It highlights market reach; it does not mean the account was reassigned.",
+                    "value": "Filters apply page-wide. Bubble position shows units and average selling price; size shows revenue. Hover for share and growth.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "9.5pt",
@@ -76,7 +76,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Product Performance usage note: filters apply across the page; each bubble is a category and its size represents revenue.'"
+                  "Value": "'Guide: Filters apply page-wide. Bubble position shows units and average selling price; size shows revenue. Hover for share and growth.'"
                 }
               }
             }

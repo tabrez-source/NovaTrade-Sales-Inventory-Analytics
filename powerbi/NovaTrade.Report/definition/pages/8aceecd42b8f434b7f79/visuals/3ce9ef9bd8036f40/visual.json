@@ -81,7 +81,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Decision-use contract: management insights identify where to investigate and prioritize; they do not replace operational stock, cost, target, or forecast systems.'"
+                  "Value": "'DECISION-USE CONTRACTUse this report to identify where to investigate, coordinate and prioritize. Do not use it as proof of physical stock, profitability, target attainment or future demand without the missing operational sources.'"
                 }
               }
             }

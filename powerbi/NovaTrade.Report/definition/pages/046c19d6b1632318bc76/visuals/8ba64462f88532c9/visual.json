@@ -61,8 +61,9 @@
                 }
               },
               "queryRef": "Measuress.Net Movement Quantity",
-              "nativeQueryRef": "Net Movement Quantity",
-              "active": true
+              "nativeQueryRef": "Net Stock Flow",
+              "active": true,
+              "displayName": "Net Stock Flow"
             },
             {
               "field": {
@@ -76,8 +77,9 @@
                 }
               },
               "queryRef": "Measuress.Total Inward Quantity",
-              "nativeQueryRef": "Total Inward Quantity",
-              "active": true
+              "nativeQueryRef": "Inward Units",
+              "active": true,
+              "displayName": "Inward Units"
             },
             {
               "field": {
@@ -91,8 +93,9 @@
                 }
               },
               "queryRef": "Measuress.Total Outward Quantity",
-              "nativeQueryRef": "Total Outward Quantity",
-              "active": true
+              "nativeQueryRef": "Outward Units",
+              "active": true,
+              "displayName": "Outward Units"
             }
           ]
         }

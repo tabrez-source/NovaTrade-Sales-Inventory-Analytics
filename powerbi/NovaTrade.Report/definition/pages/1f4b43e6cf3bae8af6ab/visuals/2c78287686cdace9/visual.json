@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Two-fact star schema with conformed dimensions, single-direction filtering and reusable measures.",
+                    "value": "Two-fact star schema, conformed dimensions and one-way filters.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Two-fact star schema with conformed dimensions, single-direction filtering and reusable measures.'"
+                  "Value": "'Two-fact star schema, conformed dimensions and one-way filters.'"
                 }
               }
             }

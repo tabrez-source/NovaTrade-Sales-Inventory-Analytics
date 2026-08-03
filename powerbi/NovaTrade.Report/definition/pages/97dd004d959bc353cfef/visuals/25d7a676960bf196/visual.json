@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Filters apply to every visual. YoY shows N/A when no prior-year period exists; hover rankings for diagnostic context.",
+                    "value": "Guide: ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontWeight": "bold",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "An order sold outside the Sales Head's assigned base region. It highlights market reach; it does not mean the account was reassigned.",
+                    "value": "Filters apply page-wide. YoY is N/A without a prior-year period. Hover rankings for contribution, growth and cross-region context.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "9.5pt",
@@ -76,7 +76,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales Performance usage note: filters apply across the page, N/A means no prior-year comparison, and tooltips provide diagnostic context.'"
+                  "Value": "'Guide: Filters apply page-wide. YoY is N/A without a prior-year period. Hover rankings for contribution, growth and cross-region context.'"
                 }
               }
             }

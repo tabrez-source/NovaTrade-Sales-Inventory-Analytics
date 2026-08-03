@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Track momentum, territory execution, sales ownership and distributor concentration.",
+                    "value": "Track sales, territory results and distributor concentration.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales Performance page purpose: monitor movement and diagnose commercial drivers.'"
+                  "Value": "'Track sales, territory results and distributor concentration.'"
                 }
               }
             }

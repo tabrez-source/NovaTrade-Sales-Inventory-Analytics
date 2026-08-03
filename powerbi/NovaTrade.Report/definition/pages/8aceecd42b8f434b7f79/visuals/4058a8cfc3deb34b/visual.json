@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Metric definitions, interpretation rules, decision thresholds and known source limitations.",
+                    "value": "Definitions, decision rules and known source limitations.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Metric definitions, interpretation rules, decision thresholds and known source limitations.'"
+                  "Value": "'Definitions, decision rules and known source limitations.'"
                 }
               }
             }

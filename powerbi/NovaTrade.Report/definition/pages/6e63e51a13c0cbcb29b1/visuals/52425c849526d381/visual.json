@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Monitor inventory receipts, outbound pressure, warehouse flow deficits and replenishment priorities.",
+                    "value": "Monitor receipts, outbound demand and replenishment pressure.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Inventory Operations page purpose: identify when, where and for which products outbound inventory flow exceeds receipts.'"
+                  "Value": "'Monitor receipts, outbound demand and replenishment pressure.'"
                 }
               }
             }

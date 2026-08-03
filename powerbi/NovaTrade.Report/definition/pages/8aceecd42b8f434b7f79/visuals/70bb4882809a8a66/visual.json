@@ -33,7 +33,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "• Flow risk = positive product YoY growth AND negative Net Stock Flow\n• Protect growth: growing product under replenishment pressure\n• Recover demand: negative product YoY growth\n• Monitor: neither exception rule is triggered\n• Exception revenue shares quantify exposure; they do not prove shortage or lost sales",
+                    "value": "• Replenishment pressure = positive product YoY growth AND negative Net Stock Flow\n• Protect growth: replenish a growing product under pressure\n• Recover demand: negative product YoY growth\n• Monitor: neither exception rule is triggered\n• Pressure-exposed and declining revenue shares quantify exposure; they do not prove shortage or lost sales",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "9.5pt",
@@ -81,7 +81,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'05  Management Exception Rules. • Flow risk = positive product YoY growth AND negative Net Stock Flow\n• Protect growth: growing product under replenishment pressure\n• Recover demand: negative product YoY growth\n• Monitor: neither exception rule is triggered\n• Exception revenue shares quantify exposure; they do not prove shortage or lost sales'"
+                  "Value": "'05  Management Exception Rules• Replenishment pressure = positive product YoY growth AND negative Net Stock Flow • Protect growth: replenish a growing product under pressure • Recover demand: negative product YoY growth • Monitor: neither exception rule is triggered • Pressure-exposed and declining revenue shares quantify exposure; they do not prove shortage or lost sales'"
                 }
               }
             }

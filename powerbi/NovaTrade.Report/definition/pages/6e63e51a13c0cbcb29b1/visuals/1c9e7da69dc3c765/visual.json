@@ -46,8 +46,9 @@
                 }
               },
               "queryRef": "Measuress.Net Movement Quantity",
-              "nativeQueryRef": "Net Movement Quantity",
-              "active": true
+              "nativeQueryRef": "Net Stock Flow",
+              "active": true,
+              "displayName": "Net Stock Flow"
             },
             {
               "field": {

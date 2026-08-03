@@ -47,8 +47,9 @@
                 }
               },
               "queryRef": "Measuress.Revenue at Flow Risk",
-              "nativeQueryRef": "Revenue at Flow Risk",
-              "active": true
+              "nativeQueryRef": "Pressure-Exposed Revenue",
+              "active": true,
+              "displayName": "Pressure-Exposed Revenue"
             }
           ]
         },
@@ -66,8 +67,9 @@
                 }
               },
               "queryRef": "Measuress.Revenue at Flow Risk %",
-              "nativeQueryRef": "Revenue at Flow Risk %",
-              "active": true
+              "nativeQueryRef": "Pressure-Exposed Revenue Share",
+              "active": true,
+              "displayName": "Pressure-Exposed Revenue Share"
             },
             {
               "field": {
@@ -81,8 +83,9 @@
                 }
               },
               "queryRef": "Measuress.Growing Products at Flow Risk",
-              "nativeQueryRef": "Growing Products at Flow Risk",
-              "active": true
+              "nativeQueryRef": "Growing Products Under Pressure",
+              "active": true,
+              "displayName": "Growing Products Under Pressure"
             },
             {
               "field": {
@@ -96,8 +99,9 @@
                 }
               },
               "queryRef": "Measuress.Total Sales",
-              "nativeQueryRef": "Total Sales",
-              "active": true
+              "nativeQueryRef": "Sales Revenue",
+              "active": true,
+              "displayName": "Sales Revenue"
             },
             {
               "field": {
@@ -141,8 +145,9 @@
                 }
               },
               "queryRef": "Measuress.Net Movement Quantity",
-              "nativeQueryRef": "Net Movement Quantity",
-              "active": true
+              "nativeQueryRef": "Net Stock Flow",
+              "active": true,
+              "displayName": "Net Stock Flow"
             }
           ]
         }
@@ -180,7 +185,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Flow-Risk Revenue by Category'"
+                  "Value": "'Revenue Under Replenishment Pressure by Category'"
                 }
               }
             },
@@ -649,21 +654,21 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue at Flow Risk'"
+                  "Value": "'Pressure-Exposed Revenue'"
                 }
               }
             },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000000000'"
+                  "Value": "1000000D"
                 }
               }
             },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "1L"
                 }
               }
             }
@@ -749,21 +754,14 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000000000'"
+                  "Value": "1000000D"
                 }
               }
             },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
-                }
-              }
-            },
-            "valueCustomFormatString": {
-              "expr": {
-                "Literal": {
-                  "Value": "'₹0.0,,\"M\"'"
+                  "Value": "1L"
                 }
               }
             }

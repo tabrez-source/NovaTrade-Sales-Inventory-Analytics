@@ -46,8 +46,9 @@
                 }
               },
               "queryRef": "Measuress.Total Sales",
-              "nativeQueryRef": "Total Sales",
-              "active": true
+              "nativeQueryRef": "Sales Revenue",
+              "active": true,
+              "displayName": "Sales Revenue"
             }
           ]
         },
@@ -110,8 +111,9 @@
                 }
               },
               "queryRef": "Measuress.Cross Region Sales %",
-              "nativeQueryRef": "Cross Region Sales %",
-              "active": true
+              "nativeQueryRef": "Cross-Region Revenue Share",
+              "active": true,
+              "displayName": "Cross-Region Revenue Share"
             }
           ]
         }
@@ -149,7 +151,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales by Sales Head'"
+                  "Value": "'Sales Revenue by Sales Head'"
                 }
               }
             },
@@ -618,14 +620,14 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales'"
+                  "Value": "'Sales Revenue'"
                 }
               }
             },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000000'"
+                  "Value": "1000000D"
                 }
               }
             },
@@ -718,7 +720,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1'"
+                  "Value": "1000000D"
                 }
               }
             },
@@ -726,13 +728,6 @@
               "expr": {
                 "Literal": {
                   "Value": "1L"
-                }
-              }
-            },
-            "valueCustomFormatString": {
-              "expr": {
-                "Literal": {
-                  "Value": "'₹0.0,,\"M\"'"
                 }
               }
             }

@@ -148,7 +148,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales Inside vs Outside Assigned Region'"
+                  "Value": "'Assigned-Region vs Cross-Region Revenue'"
                 }
               }
             },
@@ -610,7 +610,7 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales'"
+                  "Value": "'Sales Revenue'"
                 }
               }
             }

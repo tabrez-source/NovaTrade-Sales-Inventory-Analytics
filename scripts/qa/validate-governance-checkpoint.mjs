@@ -207,7 +207,7 @@ const modelSlicers = slicerBindings(pages.model.visuals);
 assertContains(
   modelText,
   [
-    "NovaTrade Data Model",
+    "Data Model Overview",
     "FactSales",
     "FactInventoryMovement",
     "DimDate",
@@ -244,14 +244,14 @@ const logicSlicers = slicerBindings(pages.logic.visuals);
 assertContains(
   logicText,
   [
-    "Business Logic & Reporting Notes",
-    "Total Sales = Σ FactSales[LineTotal]",
-    "Average Order Value = Total Sales ÷ Sales Orders",
+    "Business Logic & Notes",
+    "Sales Revenue = Σ FactSales[LineTotal]",
+    "Average Order Value = Sales Revenue ÷ Sales Orders",
     "YoY is N/A when no prior-year period exists",
     "Cross-region activity signals market reach",
     "Net Stock Flow = Inward Units − Outward Units",
     "Net Stock Flow is a period movement signal—not Stock on Hand",
-    "Flow risk = positive product YoY growth AND negative Net Stock Flow",
+    "Replenishment pressure = positive product YoY growth AND negative Net Stock Flow",
     "Opening stock and authoritative Stock on Hand are unavailable",
     "COGS, margin, supplier lead time, targets and service levels are unavailable",
     "DECISION-USE CONTRACT",

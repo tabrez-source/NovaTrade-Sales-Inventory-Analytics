@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Business Logic & Reporting Notes",
+                    "value": "Business Logic & Notes",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "20pt",
@@ -68,7 +68,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Business Logic & Reporting Notes page title.'"
+                  "Value": "'Business Logic & Notes page title.'"
                 }
               }
             }

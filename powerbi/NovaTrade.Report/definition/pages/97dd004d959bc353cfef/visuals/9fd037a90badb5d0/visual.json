@@ -46,8 +46,9 @@
                 }
               },
               "queryRef": "Measuress.Total Sales",
-              "nativeQueryRef": "Total Sales",
-              "active": true
+              "nativeQueryRef": "Sales Revenue",
+              "active": true,
+              "displayName": "Sales Revenue"
             }
           ]
         },
@@ -149,7 +150,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top 5 Distributors by Sales'"
+                  "Value": "'Top 5 Distributors by Revenue'"
                 }
               }
             },
@@ -618,14 +619,14 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales'"
+                  "Value": "'Sales Revenue'"
                 }
               }
             },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000000'"
+                  "Value": "1000000D"
                 }
               }
             },
@@ -718,7 +719,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1'"
+                  "Value": "1000000D"
                 }
               }
             },
@@ -726,13 +727,6 @@
               "expr": {
                 "Literal": {
                   "Value": "1L"
-                }
-              }
-            },
-            "valueCustomFormatString": {
-              "expr": {
-                "Literal": {
-                  "Value": "'₹0.0,,\"M\"'"
                 }
               }
             }

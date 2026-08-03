@@ -33,7 +33,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "• Assigned-Region Sales: distributor reporting region matches the Sales Head base region\n• Cross-Region Sales: the two regions differ\n• Cross-Region Revenue Share = Cross-Region Sales ÷ Total Sales\n• Cross-region activity signals market reach and coordination needs; it does not mean account reassignment",
+                    "value": "• Assigned-Region Sales: distributor reporting region matches the Sales Head base region\n• Cross-Region Sales: the two regions differ\n• Cross-Region Revenue Share = Cross-Region Sales ÷ Sales Revenue\n• Cross-region activity signals market reach and coordination needs; it does not mean account reassignment",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "9.5pt",
@@ -81,7 +81,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'03  Territory Governance. • Assigned-Region Sales: distributor reporting region matches the Sales Head base region\n• Cross-Region Sales: the two regions differ\n• Cross-Region Revenue Share = Cross-Region Sales ÷ Total Sales\n• Cross-region activity signals market reach and coordination needs; it does not mean account reassignment'"
+                  "Value": "'03  Territory Governance• Assigned-Region Sales: distributor reporting region matches the Sales Head base region • Cross-Region Sales: the two regions differ • Cross-Region Revenue Share = Cross-Region Sales ÷ Sales Revenue • Cross-region activity signals market reach and coordination needs; it does not mean account reassignment'"
                 }
               }
             }

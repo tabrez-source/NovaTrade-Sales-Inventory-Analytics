@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "NovaTrade | Executive Overview",
+                    "value": "Executive Overview",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "20pt",
@@ -68,7 +68,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'NovaTrade Executive Overview.'"
+                  "Value": "'Executive Overview page title.'"
                 }
               }
             }

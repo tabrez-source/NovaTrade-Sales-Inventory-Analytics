@@ -66,8 +66,9 @@
                 }
               },
               "queryRef": "Measuress.Total Sales",
-              "nativeQueryRef": "Total Sales",
-              "active": true
+              "nativeQueryRef": "Sales Revenue",
+              "active": true,
+              "displayName": "Sales Revenue"
             },
             {
               "field": {
@@ -81,8 +82,9 @@
                 }
               },
               "queryRef": "Measuress.Previous Year Sales",
-              "nativeQueryRef": "Previous Year Sales",
-              "active": true
+              "nativeQueryRef": "Prior Year Revenue",
+              "active": true,
+              "displayName": "Prior Year Revenue"
             },
             {
               "field": {
@@ -165,7 +167,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Category YoY Growth'"
+                  "Value": "'YoY Sales Growth by Product Category'"
                 }
               }
             },
@@ -634,14 +636,14 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'YoY Growth'"
+                  "Value": "'YoY Sales Growth'"
                 }
               }
             },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1'"
+                  "Value": "1D"
                 }
               }
             },
@@ -734,7 +736,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1'"
+                  "Value": "1D"
                 }
               }
             },
@@ -742,13 +744,6 @@
               "expr": {
                 "Literal": {
                   "Value": "1L"
-                }
-              }
-            },
-            "valueCustomFormatString": {
-              "expr": {
-                "Literal": {
-                  "Value": "'0.0%;-0.0%;0.0%'"
                 }
               }
             }

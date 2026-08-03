@@ -81,7 +81,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'06  Source Limits & Safe Use. • Dataset is synthetic; the current movement fact contains no TRANSFER rows\n• Opening stock and authoritative Stock on Hand are unavailable\n• COGS, margin, supplier lead time, targets and service levels are unavailable\n• Therefore no stockout, profitability, target attainment or forecast claim is made\n• Filters apply through documented model relationships; validation status should be checked before sharing'"
+                  "Value": "'06  Source Limits & Safe Use• Dataset is synthetic; the current movement fact contains no TRANSFER rows • Opening stock and authoritative Stock on Hand are unavailable • COGS, margin, supplier lead time, targets and service levels are unavailable • Therefore no stockout, profitability, target attainment or forecast claim is made • Filters apply through documented model relationships; validation status should be checked before sharing'"
                 }
               }
             }

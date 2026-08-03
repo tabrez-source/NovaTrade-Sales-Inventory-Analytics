@@ -185,13 +185,23 @@ function titleOf(visual) {
 }
 
 async function findSalesTemplate(title) {
+  const polishedTitleAliases = new Map([
+    ["YoY Growth by Reporting Region", "YoY Sales Growth by Reporting Region"],
+    ["Top 5 Distributors by Sales", "Top 5 Distributors by Revenue"],
+  ]);
+  const acceptedTitles = new Set([
+    title,
+    ...(polishedTitleAliases.has(title)
+      ? [polishedTitleAliases.get(title)]
+      : []),
+  ]);
   const entries = await readdir(salesVisuals, { withFileTypes: true });
   for (const entry of entries) {
     if (!entry.isDirectory()) continue;
     const visual = await readJson(
       path.join(salesVisuals, entry.name, "visual.json"),
     );
-    if (titleOf(visual) === title) return visual;
+    if (acceptedTitles.has(titleOf(visual))) return visual;
   }
   throw new Error(`Could not find Sales Performance template: ${title}`);
 }
@@ -697,6 +707,16 @@ async function buildPriceVolumeMatrix() {
               ),
             ],
           },
+          Series: {
+            projections: [
+              columnProjection(
+                "dim DimProduct",
+                "CategoryName",
+                "Category",
+                "Category",
+              ),
+            ],
+          },
           X: {
             projections: [
               measureProjection("Total Quantity Sold", "Units Sold"),
@@ -787,7 +807,7 @@ async function buildPriceVolumeMatrix() {
       },
       visualContainerObjects: visualContainerObjects(
         "Category Price–Volume Matrix",
-        "Six-category bubble chart comparing units sold and average selling price. Bubble size represents revenue and the legend identifies each category.",
+        "Six-category bubble chart comparing units sold and average selling price. Bubble size represents sales revenue and the visible legend identifies each category.",
       ),
       drillFilterOtherVisuals: true,
     },
