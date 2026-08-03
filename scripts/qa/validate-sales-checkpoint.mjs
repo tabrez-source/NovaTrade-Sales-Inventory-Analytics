@@ -417,14 +417,16 @@ function validateDiagnostics(visuals) {
         "Regional YoY comparison must sort YoY Sales Change % descending.",
       );
     }
-    const labelFormat = literalValue(
-      region.visual?.objects?.labels?.[0]?.properties
-        ?.valueCustomFormatString,
-    );
-    if (labelFormat !== "'0.0%;-0.0%;0.0%'") {
+    const regionLabels =
+      region.visual?.objects?.labels?.[0]?.properties;
+    if (
+      literalValue(regionLabels?.labelDisplayUnits) !== "1D" ||
+      literalValue(regionLabels?.labelPrecision) !== "1L" ||
+      regionLabels?.valueCustomFormatString
+    ) {
       addIssue(
         "region-label-format",
-        `Regional YoY labels must use signed percentages, found ${labelFormat}.`,
+        "Regional YoY labels must use typed percentage units and one decimal place without an overriding format string.",
       );
     }
     if (hasField(region, "Measure", "Measuress", "Total Sales")) {

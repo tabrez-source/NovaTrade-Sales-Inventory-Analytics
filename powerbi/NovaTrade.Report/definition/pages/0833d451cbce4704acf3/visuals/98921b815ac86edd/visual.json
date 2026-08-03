@@ -654,14 +654,14 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue at Flow Risk'"
+                  "Value": "'Pressure-Exposed Revenue'"
                 }
               }
             },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000000'"
+                  "Value": "1000000D"
                 }
               }
             },
@@ -754,7 +754,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000000'"
+                  "Value": "1000000D"
                 }
               }
             },

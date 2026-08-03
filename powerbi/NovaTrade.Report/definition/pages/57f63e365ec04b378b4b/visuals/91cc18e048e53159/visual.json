@@ -610,7 +610,7 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales'"
+                  "Value": "'Sales Revenue'"
                 }
               }
             }

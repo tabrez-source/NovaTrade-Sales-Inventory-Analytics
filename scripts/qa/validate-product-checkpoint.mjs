@@ -396,7 +396,7 @@ function validateTopProducts(visuals) {
     );
   }
   if (
-    literalValue(labels?.labelDisplayUnits) !== "'1000000'" ||
+    literalValue(labels?.labelDisplayUnits) !== "1000000D" ||
     literalValue(labels?.labelPrecision) !== "1L" ||
     labels?.valueCustomFormatString
   ) {
@@ -435,6 +435,7 @@ function validatePriceVolume(visuals) {
 
   const expectedRoles = new Map([
     ["Category", ["Column", "CategoryName"]],
+    ["Series", ["Column", "CategoryName"]],
     ["X", ["Measure", "Total Quantity Sold"]],
     ["Y", ["Measure", "Average Selling Price"]],
     ["Size", ["Measure", "Total Sales"]],
@@ -474,7 +475,7 @@ function validatePriceVolume(visuals) {
     );
   }
   evidence.priceVolume =
-    "six category points; units x ASP; revenue bubble size; legend labels";
+    "six category points; units x ASP; sales-revenue bubble size; visible category legend";
 }
 
 function validatePortfolioTable(visuals) {
@@ -549,7 +550,7 @@ function validatePortfolioTable(visuals) {
     )?.properties;
   if (
     literalValue(revenueFormatting?.labelDisplayUnits) !==
-      "'1000000'" ||
+      "1000000D" ||
     literalValue(revenueFormatting?.labelPrecision) !== "2L"
   ) {
     addIssue(

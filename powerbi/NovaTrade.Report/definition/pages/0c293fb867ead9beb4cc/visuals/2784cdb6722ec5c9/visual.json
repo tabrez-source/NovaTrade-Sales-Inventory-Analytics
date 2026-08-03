@@ -204,7 +204,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000000'"
+                  "Value": "1000000D"
                 }
               }
             },

@@ -607,14 +607,14 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'YoY Growth'"
+                  "Value": "'Net Stock Flow'"
                 }
               }
             },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000000'"
+                  "Value": "1000000D"
                 }
               }
             },
@@ -707,7 +707,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000000'"
+                  "Value": "1000000D"
                 }
               }
             },

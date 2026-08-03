@@ -607,14 +607,14 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales'"
+                  "Value": "'Outward Units'"
                 }
               }
             },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000'"
+                  "Value": "1000D"
                 }
               }
             },
@@ -707,7 +707,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000'"
+                  "Value": "1000D"
                 }
               }
             },

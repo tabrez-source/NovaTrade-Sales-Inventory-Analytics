@@ -303,7 +303,7 @@ async function validateRankings() {
     const visual = await loadExecutiveVisual(id);
     const objects = visual.visual.objects;
     const labels = objects.labels?.[0]?.properties;
-    if (literalValue(labels?.labelDisplayUnits) !== "'1000000'") {
+    if (literalValue(labels?.labelDisplayUnits) !== "1000000D") {
       addIssue(
         "ranking-units",
         `${id} must use native million display units.`,

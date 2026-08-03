@@ -27,6 +27,11 @@ Stock on Hand, lead time and service-level data are unavailable.
 - Standardized all page titles, subtitles and navigation labels
 - Replaced inherited footer copy with page-specific decision guidance
 - Applied compact display units to ranked revenue, unit and stock-flow values
+- Stored display-unit selections as typed numeric PBIR literals so Desktop
+  honours the requested millions, thousands and one-decimal percentage labels
+- Added a visible category legend to the Product price-volume matrix
+- Standardized value-axis terminology with the approved business-language
+  contract
 - Preserved concise table headers where full labels would reduce readability
 - Added safe textbox height and reading order to Data Model architecture nodes
 - Verified alt text and unique keyboard order for all 137 data or interactive
@@ -34,6 +39,8 @@ Stock on Hand, lead time and service-level data are unavailable.
 - Verified all visual bounds against the 1440 x 810 canvas
 - Verified the minimum checked text contrast ratio exceeds WCAG AA
 - Added `build-final-report-polish.mjs` as the deterministic presentation layer
+- Kept the Product builder compatible with both pre-polish and polished Sales
+  template titles so page-level regeneration remains safe
 - Added `validate-final-polish-checkpoint.mjs` to prevent terminology,
   accessibility, layout and display-unit regressions
 

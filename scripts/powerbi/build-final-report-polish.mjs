@@ -293,9 +293,26 @@ function updateProjectionLabels(visual) {
 
 function setDisplayUnits(properties, units, precision) {
   if (!properties) return;
-  properties.labelDisplayUnits = literal(quoted(String(units)));
+  properties.labelDisplayUnits = literal(`${units}D`);
   properties.labelPrecision = literal(`${precision}L`);
   delete properties.valueCustomFormatString;
+}
+
+function normalizeDisplayUnitLiterals(value) {
+  if (Array.isArray(value)) {
+    for (const item of value) normalizeDisplayUnitLiterals(item);
+    return;
+  }
+  if (!value || typeof value !== "object") return;
+
+  for (const [key, item] of Object.entries(value)) {
+    if (key.endsWith("DisplayUnits")) {
+      const current = literalValue(item);
+      const numeric = /^'(-?\d+)'$/.exec(current ?? "");
+      if (numeric) item.expr.Literal.Value = `${numeric[1]}D`;
+    }
+    normalizeDisplayUnitLiterals(item);
+  }
 }
 
 function yMeasure(visual) {
@@ -312,6 +329,7 @@ function compactChartLabels(visual) {
   const unitMeasures = new Map([
     ["Measuress.Total Outward Quantity", [1000, 1]],
     ["Measuress.Net Movement Quantity", [1000000, 1]],
+    ["Measuress.YoY Sales Change %", [1, 1]],
   ]);
 
   let format;
@@ -324,6 +342,26 @@ function compactChartLabels(visual) {
   }
   for (const item of visual.visual.objects?.valueAxis ?? []) {
     setDisplayUnits(item.properties, ...format);
+  }
+}
+
+function updateAxisTerminology(visual) {
+  const measure = yMeasure(visual);
+  const titleByMeasure = new Map([
+    ["Measuress.Total Sales", "Sales Revenue"],
+    ["Measuress.Previous Year Sales", "Sales Revenue"],
+    ["Measuress.Assigned-Region Sales", "Sales Revenue"],
+    ["Measuress.Cross Region Sales", "Sales Revenue"],
+    ["Measuress.Revenue at Flow Risk", "Pressure-Exposed Revenue"],
+    ["Measuress.Total Outward Quantity", "Outward Units"],
+    ["Measuress.Net Movement Quantity", "Net Stock Flow"],
+    ["Measuress.YoY Sales Change %", "YoY Sales Growth"],
+  ]);
+  const title = titleByMeasure.get(measure);
+  if (!title) return;
+  for (const item of visual.visual.objects?.valueAxis ?? []) {
+    item.properties ??= {};
+    item.properties.titleText = literal(quoted(title));
   }
 }
 
@@ -449,8 +487,10 @@ async function processPage(pageId) {
     updateNavigation(visual);
     updateProjectionLabels(visual);
     compactChartLabels(visual);
+    updateAxisTerminology(visual);
     updateManagementTable(visual);
     updateGovernanceLanguage(pageId, visual);
+    normalizeDisplayUnitLiterals(visual);
 
     if (pageId === "1f4b43e6cf3bae8af6ab") {
       updateModelDiagram(visual);

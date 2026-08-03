@@ -111,6 +111,7 @@ const evidence = {
   duplicateTabOrders: 0,
   outOfCanvas: 0,
   compactRankings: 0,
+  typedDisplayUnitSettings: 0,
   modelReadingStops: 0,
   contrast: {},
 };
@@ -211,10 +212,11 @@ function checkCompactRanking(visual, file) {
   if (visual.visual?.visualType !== "clusteredBarChart") return;
   const measure = yMeasure(visual);
   const expected = new Map([
-    ["Measuress.Total Sales", ["1000000", "1L"]],
-    ["Measuress.Revenue at Flow Risk", ["1000000", "1L"]],
-    ["Measuress.Total Outward Quantity", ["1000", "1L"]],
-    ["Measuress.Net Movement Quantity", ["1000000", "1L"]],
+    ["Measuress.Total Sales", ["1000000D", "1L"]],
+    ["Measuress.Revenue at Flow Risk", ["1000000D", "1L"]],
+    ["Measuress.Total Outward Quantity", ["1000D", "1L"]],
+    ["Measuress.Net Movement Quantity", ["1000000D", "1L"]],
+    ["Measuress.YoY Sales Change %", ["1D", "1L"]],
   ]).get(measure);
   if (!expected) return;
 
@@ -243,6 +245,55 @@ function checkCompactRanking(visual, file) {
   }
 }
 
+function checkAxisTerminology(visual, file) {
+  const expected = new Map([
+    ["Measuress.Total Sales", "Sales Revenue"],
+    ["Measuress.Previous Year Sales", "Sales Revenue"],
+    ["Measuress.Assigned-Region Sales", "Sales Revenue"],
+    ["Measuress.Cross Region Sales", "Sales Revenue"],
+    ["Measuress.Revenue at Flow Risk", "Pressure-Exposed Revenue"],
+    ["Measuress.Total Outward Quantity", "Outward Units"],
+    ["Measuress.Net Movement Quantity", "Net Stock Flow"],
+    ["Measuress.YoY Sales Change %", "YoY Sales Growth"],
+  ]).get(yMeasure(visual));
+  if (!expected) return;
+  for (const item of visual.visual.objects?.valueAxis ?? []) {
+    const actual = unquote(literalValue(item.properties?.titleText));
+    if (actual !== expected) {
+      issue(
+        "axis-terminology",
+        `${title(visual)} uses ${actual || "no title"} instead of ${expected} for its value axis.`,
+        relative(file),
+      );
+    }
+  }
+}
+
+function checkTypedDisplayUnitLiterals(value, file) {
+  if (Array.isArray(value)) {
+    for (const item of value) checkTypedDisplayUnitLiterals(item, file);
+    return;
+  }
+  if (!value || typeof value !== "object") return;
+
+  for (const [key, item] of Object.entries(value)) {
+    if (key.endsWith("DisplayUnits")) {
+      const current = literalValue(item);
+      if (/^'-?\d+'$/.test(current ?? "")) {
+        issue(
+          "display-unit-type",
+          `${title(value) || "A visual"} stores ${key} as quoted text, which Power BI Desktop can ignore.`,
+          relative(file),
+        );
+      }
+      if (/^-?\d+D$/.test(current ?? "")) {
+        evidence.typedDisplayUnitSettings += 1;
+      }
+    }
+    checkTypedDisplayUnitLiterals(item, file);
+  }
+}
+
 function checkManagementTable(visual, file) {
   if (title(visual) !== "Management Action Queue") return;
   const formats = new Map(
@@ -253,14 +304,14 @@ function checkManagementTable(visual, file) {
   );
   const sales = formats.get("Measuress.Total Sales");
   const flow = formats.get("Measuress.Net Movement Quantity");
-  if (displayUnits(sales) !== "1000000" || precision(sales) !== "1L") {
+  if (displayUnits(sales) !== "1000000D" || precision(sales) !== "1L") {
     issue(
       "management-sales-format",
       "Management Action Queue Sales must display in one-decimal millions.",
       relative(file),
     );
   }
-  if (displayUnits(flow) !== "1000000" || precision(flow) !== "2L") {
+  if (displayUnits(flow) !== "1000000D" || precision(flow) !== "2L") {
     issue(
       "management-flow-format",
       "Management Action Queue Net Flow must display in two-decimal millions.",
@@ -391,7 +442,9 @@ for (const [pageId, expected] of Object.entries(expectedPages)) {
     }
 
     checkCompactRanking(visual, file);
+    checkAxisTerminology(visual, file);
     checkManagementTable(visual, file);
+    checkTypedDisplayUnitLiterals(visual, file);
   }
 
   if (expected.footer) {

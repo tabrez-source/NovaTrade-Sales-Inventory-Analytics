@@ -636,14 +636,14 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'YoY Growth'"
+                  "Value": "'YoY Sales Growth'"
                 }
               }
             },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1'"
+                  "Value": "1D"
                 }
               }
             },
@@ -736,7 +736,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1'"
+                  "Value": "1D"
                 }
               }
             },
@@ -744,13 +744,6 @@
               "expr": {
                 "Literal": {
                   "Value": "1L"
-                }
-              }
-            },
-            "valueCustomFormatString": {
-              "expr": {
-                "Literal": {
-                  "Value": "'0.0%;-0.0%;0.0%'"
                 }
               }
             }

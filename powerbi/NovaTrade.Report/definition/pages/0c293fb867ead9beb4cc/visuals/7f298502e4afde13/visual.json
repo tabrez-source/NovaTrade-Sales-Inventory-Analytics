@@ -33,6 +33,26 @@
             }
           ]
         },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim DimProduct"
+                    }
+                  },
+                  "Property": "CategoryName"
+                }
+              },
+              "queryRef": "dim DimProduct.CategoryName",
+              "nativeQueryRef": "Category",
+              "active": true,
+              "displayName": "Category"
+            }
+          ]
+        },
         "X": {
           "projections": [
             {
@@ -264,7 +284,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1000000'"
+                  "Value": "1000000D"
                 }
               }
             },
@@ -305,7 +325,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'1'"
+                  "Value": "1D"
                 }
               }
             },
@@ -347,7 +367,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Six-category bubble chart comparing units sold and average selling price. Bubble size represents revenue and the legend identifies each category.'"
+                  "Value": "'Six-category bubble chart comparing units sold and average selling price. Bubble size represents sales revenue and the visible legend identifies each category.'"
                 }
               }
             }
