@@ -170,6 +170,29 @@ table 'fact FactInventoryMovement'
 
 		annotation SummarizationSetBy = Automatic
 
+	column MovementBranchID =
+			VAR NormalizedMovementType =
+			    UPPER ( TRIM ( COALESCE ( 'fact FactInventoryMovement'[MovementType], "" ) ) )
+			VAR ToBranchID =
+			    RELATED ( 'dim DimToGodown'[BranchID] )
+			VAR FromBranchID =
+			    RELATED ( 'dim DimFromGodown'[BranchID] )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        NormalizedMovementType = "INWARD", ToBranchID,
+			        NormalizedMovementType = "OUTWARD", FromBranchID,
+			        NOT ISBLANK ( ToBranchID ), ToBranchID,
+			        FromBranchID
+			    )
+		isHidden
+		dataType: int64
+		formatString: 0
+		lineageTag: 93cfb83c-0f5c-4140-bc4e-14c26363aa26
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'fact FactInventoryMovement' = m
 		mode: import
 		source =

@@ -877,7 +877,7 @@ async function buildModelPage() {
     subtitle:
       "Two-fact star schema with conformed dimensions, single-direction filtering and reusable measures.",
     chip1: "Import-mode model",
-    chip2: "10 active relationships",
+    chip2: "11 active relationships",
   });
 
   const summaryCards = [

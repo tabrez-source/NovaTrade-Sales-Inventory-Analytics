@@ -344,7 +344,7 @@ for (const orphanMeasureName of [
   )?.[1];
   if (
     !orphanMeasure?.includes("COALESCE (") ||
-    !/\n\s*0\n\s*\)/.test(orphanMeasure)
+    !/\r?\n\s*0\r?\n\s*\)/.test(orphanMeasure)
   ) {
     fail(
       `${orphanMeasureName} must display an explicit zero for an empty orphan set.`,
@@ -355,8 +355,8 @@ for (const orphanMeasureName of [
 const relationshipsText = await readFile(relationshipsFile, "utf8");
 const relationshipCount =
   relationshipsText.match(/^relationship /gm)?.length ?? 0;
-if (relationshipCount !== 10) {
-  fail(`Expected 10 active relationships; found ${relationshipCount}.`);
+if (relationshipCount !== 11) {
+  fail(`Expected 11 active relationships; found ${relationshipCount}.`);
 }
 for (const forbidden of ["crossFilteringBehavior: both", "isActive: false"] ) {
   if (relationshipsText.includes(forbidden)) {

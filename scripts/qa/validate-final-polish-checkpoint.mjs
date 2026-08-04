@@ -510,12 +510,21 @@ for (const [pageId, expected] of Object.entries(expectedPages)) {
       }
     }
     const modelChip = visuals.find(
-      ({ visual }) => text(visual) === "10 relationships",
+      ({ visual }) => text(visual) === "11 relationships",
     )?.visual;
     if (!modelChip) {
       issue(
         "model-chip",
-        "Data Model Overview must show the non-wrapping 10 relationships chip.",
+        "Data Model Overview must show the non-wrapping 11 relationships chip.",
+        relative(pageFile),
+      );
+    } else if (
+      altText(modelChip) !==
+      "Eleven active one-to-many, single-direction model relationships."
+    ) {
+      issue(
+        "model-chip-alt-text",
+        "Data Model Overview relationship chip must describe all 11 active relationships.",
         relative(pageFile),
       );
     }
