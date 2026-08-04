@@ -1,0 +1,33 @@
+role 'Dynamic Regional Access'
+	modelPermission: read
+
+	tablePermission 'Security UserAccess' =
+			VAR CurrentUPN = LOWER ( TRIM ( USERPRINCIPALNAME () ) )
+			RETURN
+			    'Security UserAccess'[IsActive] = TRUE ()
+			        && LOWER ( TRIM ( 'Security UserAccess'[UserPrincipalName] ) ) = CurrentUPN
+
+	tablePermission 'dim DimBranch' =
+			VAR CurrentUPN = LOWER ( TRIM ( USERPRINCIPALNAME () ) )
+			VAR CurrentBranchID = 'dim DimBranch'[BranchID]
+			VAR HasGlobalAccess =
+			    COUNTROWS (
+			        FILTER (
+			            'Security UserAccess',
+			            'Security UserAccess'[IsActive] = TRUE ()
+			                && LOWER ( TRIM ( 'Security UserAccess'[UserPrincipalName] ) ) = CurrentUPN
+			                && 'Security UserAccess'[AccessScope] = "GLOBAL"
+			        )
+			    ) > 0
+			VAR HasRegionalAccess =
+			    COUNTROWS (
+			        FILTER (
+			            'Security UserAccess',
+			            'Security UserAccess'[IsActive] = TRUE ()
+			                && LOWER ( TRIM ( 'Security UserAccess'[UserPrincipalName] ) ) = CurrentUPN
+			                && 'Security UserAccess'[AccessScope] = "REGION"
+			                && 'Security UserAccess'[BranchID] = CurrentBranchID
+			        )
+			    ) > 0
+			RETURN
+			    HasGlobalAccess || HasRegionalAccess

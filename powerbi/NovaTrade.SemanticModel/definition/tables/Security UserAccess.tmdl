@@ -1,0 +1,88 @@
+table 'Security UserAccess'
+	isHidden
+	lineageTag: 7c510491-ce70-48f0-9175-2c1a9f0e2369
+
+	column UserPrincipalName
+		isHidden
+		dataType: string
+		lineageTag: 310ac012-5b7e-47c8-a94b-e417810dd5ba
+		summarizeBy: none
+		sourceColumn: UserPrincipalName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Persona
+		isHidden
+		dataType: string
+		lineageTag: 842dcd29-f8b6-4b7c-8474-d2f1b670d6cc
+		summarizeBy: none
+		sourceColumn: Persona
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccessScope
+		isHidden
+		dataType: string
+		lineageTag: 27ff2f4e-4c99-42ea-a658-9984728fafc0
+		summarizeBy: none
+		sourceColumn: AccessScope
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchID
+		isHidden
+		dataType: int64
+		formatString: 0
+		lineageTag: ffc06032-f035-4d9e-83c6-7c91d1c1be91
+		summarizeBy: none
+		sourceColumn: BranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionName
+		isHidden
+		dataType: string
+		lineageTag: a6dd4575-4c2a-47d0-a055-c7a05c3235e0
+		summarizeBy: none
+		sourceColumn: RegionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActive
+		isHidden
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 16f26eb0-0fd2-42da-b82e-7c6523e4f61d
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Security UserAccess' = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [
+				            UserPrincipalName = text,
+				            Persona = text,
+				            AccessScope = text,
+				            BranchID = nullable Int64.Type,
+				            RegionName = nullable text,
+				            IsActive = logical
+				        ],
+				        {
+				            {"ceo@novatrade.example", "CEO", "GLOBAL", null, null, true},
+				            {"manager@novatrade.example", "Manager", "GLOBAL", null, null, true},
+				            {"sales.mumbai@novatrade.example", "Mumbai Salesperson", "REGION", 1, "West", true},
+				            {"sales.chennai@novatrade.example", "Chennai Salesperson", "REGION", 2, "South", true},
+				            {"sales.delhi@novatrade.example", "Delhi Salesperson", "REGION", 3, "North", true},
+				            {"sales.kolkata@novatrade.example", "Kolkata Salesperson", "REGION", 4, "East", true}
+				        }
+				    )
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Source
+
+	annotation PBI_ResultType = Table

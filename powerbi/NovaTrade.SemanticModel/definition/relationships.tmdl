@@ -38,3 +38,7 @@ relationship a866215e-544d-0d88-8654-88d55e4fc3aa
 	fromColumn: 'fact FactInventoryMovement'.FromGodownKey
 	toColumn: 'dim DimFromGodown'.GodownKey
 
+relationship 6f2d5cd5-4c67-42cf-9a88-8374ba9915c1
+	fromColumn: 'fact FactInventoryMovement'.MovementBranchID
+	toColumn: 'dim DimBranch'.BranchID
+

@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["dim DimBranch","dim DimDate","dim DimDistributor","dim DimGodown","dim DimSalesHead","fact FactInventoryMovement","dim DimProduct","fact FactSales","dim DimFromGodown","dim DimToGodown"]
+annotation PBI_QueryOrder = ["dim DimBranch","dim DimDate","dim DimDistributor","dim DimGodown","dim DimSalesHead","fact FactInventoryMovement","dim DimProduct","fact FactSales","dim DimFromGodown","dim DimToGodown","Security UserAccess"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -23,6 +23,9 @@ ref table 'fact FactSales'
 ref table 'dim DimFromGodown'
 ref table 'dim DimToGodown'
 ref table Measuress
+ref table 'Security UserAccess'
+
+ref role 'Dynamic Regional Access'
 
 ref cultureInfo en-US
 
