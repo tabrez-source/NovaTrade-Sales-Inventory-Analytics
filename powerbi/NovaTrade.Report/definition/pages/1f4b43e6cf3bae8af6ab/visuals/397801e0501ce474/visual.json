@@ -18,7 +18,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "10 relationships",
+                    "value": "11 relationships",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontWeight": "bold",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ten active one-to-many, single-direction model relationships.'"
+                  "Value": "'Eleven active one-to-many, single-direction model relationships.'"
                 }
               }
             }

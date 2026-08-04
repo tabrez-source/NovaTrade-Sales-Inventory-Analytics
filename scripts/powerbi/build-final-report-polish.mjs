@@ -398,11 +398,11 @@ function updateModelDiagram(visual) {
 }
 
 function updateModelChip(visual) {
-  if (textboxText(visual) !== "10 active relationships") return;
-  setTextbox(visual, "10 relationships");
+  if (textboxText(visual) !== "11 active relationships") return;
+  setTextbox(visual, "11 relationships");
   setAltText(
     visual,
-    "Ten active one-to-many, single-direction model relationships.",
+    "Eleven active one-to-many, single-direction model relationships.",
   );
 }
 

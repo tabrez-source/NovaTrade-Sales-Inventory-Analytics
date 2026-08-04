@@ -17,12 +17,19 @@ const expectedRows = [
   ["sales.kolkata@novatrade.example", "Kolkata Salesperson", "REGION", "4", "East", "true"],
 ];
 const allowedChanges = new Set([
+  ".github/workflows/powerbi-ci.yml",
   "powerbi/NovaTrade.SemanticModel/definition/tables/Security UserAccess.tmdl",
   "powerbi/NovaTrade.SemanticModel/definition/roles/Dynamic Regional Access.tmdl",
   "scripts/qa/validate-rls-governance-checkpoint.mjs",
+  "scripts/qa/validate-governance-checkpoint.mjs",
+  "scripts/qa/validate-final-polish-checkpoint.mjs",
+  "scripts/powerbi/build-final-report-polish.mjs",
+  "scripts/powerbi/build-report-governance.mjs",
+  "docs/REPORT-GOVERNANCE-PAGES.md",
   "powerbi/NovaTrade.SemanticModel/definition/model.tmdl",
   "powerbi/NovaTrade.SemanticModel/definition/relationships.tmdl",
   "powerbi/NovaTrade.SemanticModel/definition/tables/fact FactInventoryMovement.tmdl",
+  "powerbi/NovaTrade.Report/definition/pages/1f4b43e6cf3bae8af6ab/visuals/397801e0501ce474/visual.json",
 ]);
 
 function fail(message) {
@@ -53,6 +60,14 @@ function movementBranch(movementType, toBranchId, fromBranchId) {
   return toBranchId ?? fromBranchId;
 }
 
+function gitPaths(args) {
+  return execFileSync("git", args, { cwd: root })
+    .toString("utf8")
+    .split("\0")
+    .filter(Boolean)
+    .map((entry) => entry.replaceAll("\\", "/"));
+}
+
 async function walkVisualFiles(directory, output = []) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     const entryPath = path.join(directory, entry.name);
@@ -63,10 +78,13 @@ async function walkVisualFiles(directory, output = []) {
 }
 
 function changedPaths() {
-	const bytes = execFileSync("git", ["status", "--porcelain=v1", "--untracked-files=all", "-z"], {
-    cwd: root,
-  });
-  return bytes.toString("utf8").split("\0").filter(Boolean).map((entry) => entry.slice(3).replaceAll("\\", "/"));
+  return [
+    ...new Set([
+      ...gitPaths(["diff", "--name-only", "-z", "origin/main...HEAD"]),
+      ...gitPaths(["diff", "--name-only", "-z", "HEAD"]),
+      ...gitPaths(["ls-files", "--others", "--exclude-standard", "-z"]),
+    ]),
+  ];
 }
 
 const files = {

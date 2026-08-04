@@ -72,6 +72,9 @@ jobs:
       - name: Validate PBIP repository structure
         run: node scripts/qa/validate-pbip-repository.mjs .
 
+      - name: Validate RLS governance checkpoint
+        run: node scripts/qa/validate-rls-governance-checkpoint.mjs .
+
       - name: Validate Executive checkpoint
         run: node scripts/qa/validate-executive-checkpoint.mjs . --no-write
 

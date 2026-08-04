@@ -41,7 +41,7 @@ view.
 - Sales-specific dimensions: `DimDistributor`, `DimSalesHead`, `DimBranch`
   and fulfillment `DimGodown`.
 - Inventory role-playing dimensions: `DimFromGodown` and `DimToGodown`.
-- Relationship contract: ten active one-to-many, single-direction
+- Relationship contract: eleven active one-to-many, single-direction
   relationships from dimensions to facts.
 - Measures are centralized in a dedicated reusable DAX table.
 
